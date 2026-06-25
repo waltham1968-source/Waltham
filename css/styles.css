@@ -13,9 +13,9 @@
   --gray-100: #f7f7f5;
   --gray-200: #efefed;
   --gray-300: #d8d8d4;
-  --gray-400: #a8a8a0;
-  --gray-500: #707068;
-  --gray-600: #484840;
+  --gray-400: #8a8a82;
+  --gray-500: #525248;
+  --gray-600: #323228;
   --accent: #b5986a;
   --accent-light: #d4b98a;
   --accent-muted: rgba(181, 152, 106, 0.12);
@@ -39,7 +39,7 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
+  font-size: 18px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -209,9 +209,9 @@ a {
 }
 
 .hero-sub {
-  font-size: clamp(16px, 2vw, 20px);
+  font-size: clamp(18px, 2vw, 22px);
   font-weight: 300;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.75);
   max-width: 540px;
   line-height: 1.65;
   margin-bottom: 56px;
@@ -287,14 +287,14 @@ a {
 }
 
 .about-text p {
-  font-size: 17px;
-  line-height: 1.8;
+  font-size: 18px;
+  line-height: 1.85;
   color: var(--gray-600);
   margin-bottom: 24px;
 }
 
 .about-text p:first-child {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 300;
   color: var(--black);
   line-height: 1.7;
@@ -413,8 +413,8 @@ a {
 }
 
 .project-desc {
-  font-size: 14px;
-  line-height: 1.7;
+  font-size: 16px;
+  line-height: 1.75;
   color: var(--gray-500);
   transition: color var(--transition);
 }
@@ -495,8 +495,8 @@ a {
 }
 
 .timeline-text {
-  font-size: 15px;
-  line-height: 1.75;
+  font-size: 17px;
+  line-height: 1.8;
   color: var(--gray-500);
   max-width: 620px;
 }
@@ -560,9 +560,9 @@ a {
 }
 
 .sailing-text p {
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.8;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.80);
   margin-bottom: 24px;
 }
 
@@ -600,8 +600,8 @@ a {
 }
 
 .sailing-milestone-desc {
-  font-size: 13px;
-  color: rgba(255,255,255,0.4);
+  font-size: 14px;
+  color: rgba(255,255,255,0.65);
   line-height: 1.5;
 }
 
@@ -670,9 +670,9 @@ a {
 }
 
 .quote-context {
-  font-size: 13px;
-  color: var(--gray-400);
-  line-height: 1.6;
+  font-size: 15px;
+  color: var(--gray-500);
+  line-height: 1.7;
 }
 
 /* ─── Writing ────────────────────────────────────────── */
@@ -720,9 +720,9 @@ a {
 }
 
 .writing-card-desc {
-  font-size: 14px;
-  line-height: 1.7;
-  color: var(--gray-400);
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--gray-500);
 }
 
 /* ─── Contact ────────────────────────────────────────── */
@@ -743,9 +743,9 @@ a {
 }
 
 .contact-text {
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.8;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.75);
   max-width: 400px;
 }
 
@@ -761,8 +761,8 @@ a {
   justify-content: space-between;
   padding: 20px 0;
   border-bottom: 1px solid rgba(255,255,255,0.08);
-  color: rgba(255,255,255,0.7);
-  font-size: 15px;
+  color: rgba(255,255,255,0.85);
+  font-size: 17px;
   transition: color var(--transition);
 }
 
