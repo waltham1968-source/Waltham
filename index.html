@@ -12,6 +12,31 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    .contact-email-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
+      background: transparent;
+      border: 1px solid rgba(181,152,106,0.5);
+      color: rgba(181,152,106,1);
+      text-decoration: none;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .contact-email-btn::before {
+      content: "✉";
+      font-size: 1em;
+    }
+    .contact-email-btn:hover {
+      background: rgba(181,152,106,0.1);
+      border-color: rgba(181,152,106,0.9);
+      color: #fff;
+    }
+  </style>
 </head>
 <body>
 
@@ -410,9 +435,8 @@
           </div>
 
           <div class="contact-email">
-            <p class="contact-email-label">Email</p>
-            <a href="mailto:nikolai@waltham.no" class="contact-email-address">
-              nikolai@waltham.no
+            <a href="mailto:nikolai@waltham.no" class="contact-email-btn" aria-label="Send email">
+              Send me an email
             </a>
           </div>
         </div>
