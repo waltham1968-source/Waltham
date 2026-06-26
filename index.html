@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nikolai Waltham — entrepreneur, builder, and sailor. Curiosity has always been my compass.">
+  <meta name="author" content="Nikolai Waltham">
+  <meta property="og:title" content="Nikolai Waltham">
+  <meta property="og:description" content="I build companies, solve problems and explore ideas—whether in business, technology or at sea.">
+  <meta property="og:type" content="website">
+  <title>Nikolai Waltham</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    .contact-email-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
+      background: transparent;
+      border: 1px solid rgba(181,152,106,0.5);
+      color: rgba(181,152,106,1);
+      text-decoration: none;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .contact-email-btn::before {
+      content: "✉";
+      font-size: 1em;
+    }
+    .contact-email-btn:hover {
+      background: rgba(181,152,106,0.1);
+      border-color: rgba(181,152,106,0.9);
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Navigation ─────────────────────────────── -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-logo">Nikolai<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#entrepreneurship">Work</a></li>
+      <li><a href="#sailing">Sailing</a></li>
+      <li><a href="#philosophy">Philosophy</a></li>
+      <li><a href="#writing">Writing</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile drawer -->
+  <div class="nav-drawer" id="nav-drawer">
+    <a href="#about" class="drawer-link">About</a>
+    <a href="#projects" class="drawer-link">Projects</a>
+    <a href="#entrepreneurship" class="drawer-link">Work</a>
+    <a href="#sailing" class="drawer-link">Sailing</a>
+    <a href="#philosophy" class="drawer-link">Philosophy</a>
+    <a href="#writing" class="drawer-link">Writing</a>
+    <a href="#contact" class="drawer-link">Contact</a>
+  </div>
+
+  <!-- ─── Hero ───────────────────────────────────── -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-grain"></div>
+    <div class="hero-accent-line"></div>
+
+    <div class="hero-content">
+      <p class="hero-label">Nikolai Waltham — Nyborg, Denmark</p>
+      <h1 class="hero-headline">
+        Curiosity has always<br>been my <em>compass.</em>
+      </h1>
+      <p class="hero-sub">
+        I build companies, solve problems and explore ideas—whether in business, technology or at sea.
+      </p>
+      <div class="hero-scroll">
+        <div class="hero-scroll-line"></div>
+        <span>Scroll to explore</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── About ──────────────────────────────────── -->
+  <section class="section about" id="about">
+    <div class="section-inner">
+      <p class="section-label">About</p>
+      <div class="about-grid">
+        <div class="about-text">
+          <h2 class="section-title">A Norwegian who found<br>his home at <em>sea and in Denmark.</em></h2>
+          <div class="divider"></div>
+          <p>
+            I grew up with an instinct to build things. Not out of ambition in the classical sense—but out of genuine curiosity about how things work, what happens when you try something new, and what becomes possible when you simply begin.
+          </p>
+          <p>
+            Over the past three decades I've started companies, filed patents, managed properties, and crossed oceans. I've built things that worked and things that didn't. The failures taught me more.
+          </p>
+          <p>
+            Today I live and work in Nyborg on the Danish island of Funen. I manage commercial properties, explore the emerging world of AI, and spend as much time as possible on the water. I believe that good work happens when you stay curious, stay humble, and stay close to the people you serve.
+          </p>
+          <p>
+            I was born in Norway, but Denmark shaped me. And the sea—the North Sea, the Atlantic, the Belt—continues to educate me in ways no classroom ever could.
+          </p>
+
+          <div class="about-stats">
+            <div>
+              <div class="stat-number">30+</div>
+              <div class="stat-label">Years building</div>
+            </div>
+            <div>
+              <div class="stat-number">5+</div>
+              <div class="stat-label">Companies founded</div>
+            </div>
+            <div>
+              <div class="stat-number">1</div>
+              <div class="stat-label">Atlantic crossing</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-image-block">
+          <figure class="about-image-figure">
+            <img src="images/nikolai-at-sea.jpg" alt="Nikolai Waltham at sea during sunset" class="about-image">
+            <figcaption class="about-image-caption">Photo — Nikolai at sea</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Projects ───────────────────────────────── -->
+  <section class="section projects" id="projects">
+    <div class="section-inner">
+      <p class="section-label">Selected Projects</p>
+      <h2 class="section-title">Things I've built,<br>managed and <em>imagined.</em></h2>
+
+      <div class="projects-grid">
+
+        <div class="project-card project-card-large">
+          <span class="project-tag">Business Intelligence</span>
+          <h3 class="project-title">InFact</h3>
+          <p class="project-desc">
+            A company built on the idea that decisions should be grounded in facts, not assumptions. InFact develops tools and frameworks that help businesses move from intuition to informed action—quietly, without fanfare.
+          </p>
+          <p class="project-meta">Founded · Active</p>
+        </div>
+
+        <div class="project-card">
+          <span class="project-tag">Property</span>
+          <h3 class="project-title">Lindholm Business Center</h3>
+          <p class="project-desc">
+            More than a commercial property. A platform for businesses to meet, grow, and connect. Managing LBC is an exercise in listening—understanding what tenants actually need and creating the conditions for them to thrive.
+          </p>
+          <p class="project-meta">Nyborg, Denmark · Active</p>
+        </div>
+
+        <div class="project-card">
+          <span class="project-tag">Technology</span>
+          <h3 class="project-title">AI Projects</h3>
+          <p class="project-desc">
+            Practical explorations at the intersection of artificial intelligence and everyday business. Not AI for its own sake—but AI as a lever for doing more thoughtful, efficient and human work.
+          </p>
+          <p class="project-meta">Ongoing exploration</p>
+        </div>
+
+        <div class="project-card">
+          <span class="project-tag">Web & Digital</span>
+          <h3 class="project-title">Websites & Digital Tools</h3>
+          <p class="project-desc">
+            Over the years, a quiet portfolio of web projects for businesses, individuals and ideas. Clean, purposeful, built to work rather than impress.
+          </p>
+          <p class="project-meta">Multiple clients · Ongoing</p>
+        </div>
+
+        <div class="project-card">
+          <span class="project-tag">Horizon</span>
+          <h3 class="project-title">Future Ideas</h3>
+          <p class="project-desc">
+            A list that never shrinks. Ideas about property intelligence, maritime data tools, automated tenant communications and the future of small-scale entrepreneurship in a world reshaped by AI.
+          </p>
+          <p class="project-meta">Always in progress</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Entrepreneurship ────────────────────────── -->
+  <section class="section entrepreneurship" id="entrepreneurship">
+    <div class="section-inner">
+      <p class="section-label">Entrepreneurship</p>
+      <h2 class="section-title">A life of building,<br>one chapter at a <em>time.</em></h2>
+      <div class="divider"></div>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <p class="timeline-year">Age 16</p>
+          <h3 class="timeline-title">First Business — Pancakes</h3>
+          <p class="timeline-text">
+            It started with a griddle, some batter and a market stall. At sixteen I sold pancakes and learned something nobody teaches in business school: that customers decide everything. That lesson has never left me.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <p class="timeline-year">1990s</p>
+          <h3 class="timeline-title">First Companies</h3>
+          <p class="timeline-text">
+            A series of early ventures exploring what it meant to build something from scratch—services, trade, early digital. Some grew. Some didn't. Each one taught me something the previous one couldn't.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <p class="timeline-year">2000s</p>
+          <h3 class="timeline-title">InFact — Business Intelligence</h3>
+          <p class="timeline-text">
+            Founded InFact with the conviction that better information leads to better decisions. Developed products and frameworks to help businesses understand their own data. A long, patient project.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <p class="timeline-year">2000s–2010s</p>
+          <h3 class="timeline-title">Patent Development</h3>
+          <p class="timeline-text">
+            Ideas that wanted to become inventions. Working through the patent process taught me the discipline of precision—how to describe an idea so completely and clearly that it becomes defensible.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <p class="timeline-year">2015–present</p>
+          <h3 class="timeline-title">Property Administration</h3>
+          <p class="timeline-text">
+            Managing Lindholm Business Center in Nyborg and AltiPark Højlager in Svendborg on behalf of HC Ejendomme. An exercise in trust, relationships and the quiet satisfaction of spaces that work well for the people inside them.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <p class="timeline-year">2023–present</p>
+          <h3 class="timeline-title">AI Exploration & Automation</h3>
+          <p class="timeline-text">
+            The emergence of practical AI feels like the early days of the internet—full of noise, but genuinely transformative underneath. I'm building tools, automating workflows and thinking hard about what this means for small businesses and property management.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Sailing ─────────────────────────────────── -->
+  <section class="section sailing" id="sailing">
+    <div class="sailing-bg-image"></div>
+    <div class="sailing-bg"></div>
+    <div class="section-inner">
+      <p class="section-label">Sailing</p>
+      <h2 class="section-title" style="color: var(--white);">The sea is the best<br><em style="color: rgba(255,255,255,0.5)">teacher I've had.</em></h2>
+
+      <div class="sailing-grid">
+        <div class="sailing-text">
+          <p>
+            I've been sailing for as long as I can remember, and the sea has a way of cutting through everything unnecessary. Out there, there's no room for excuses, ego or wishful thinking. You read the conditions, make a decision and live with it.
+          </p>
+          <p>
+            That discipline—honest assessment, decisive action, continuous adjustment—is something I carry back to shore with me every time.
+          </p>
+          <p>
+            Sailing isn't a hobby for me. It's a philosophy with salt in it.
+          </p>
+
+          <div class="sailing-milestones">
+            <div class="sailing-milestone">
+              <div class="sailing-milestone-icon">🌊</div>
+              <div>
+                <div class="sailing-milestone-title">Atlantic Crossing</div>
+                <div class="sailing-milestone-desc">Crossed the Atlantic. Blue water sailing that puts everything in perspective.</div>
+              </div>
+            </div>
+            <div class="sailing-milestone">
+              <div class="sailing-milestone-icon">⚓</div>
+              <div>
+                <div class="sailing-milestone-title">North Sea Crossings</div>
+                <div class="sailing-milestone-desc">Multiple crossings of the North Sea. The honest sea—no place to hide from yourself or the weather.</div>
+              </div>
+            </div>
+            <div class="sailing-milestone">
+              <div class="sailing-milestone-icon">🏆</div>
+              <div>
+                <div class="sailing-milestone-title">Silverrudder Race</div>
+                <div class="sailing-milestone-desc">Single-handed circumnavigation of Funen. Silence, focus and complete self-reliance.</div>
+              </div>
+            </div>
+            <div class="sailing-milestone">
+              <div class="sailing-milestone-icon">💨</div>
+              <div>
+                <div class="sailing-milestone-title">Wingfoiling</div>
+                <div class="sailing-milestone-desc">Flying above the water on a foil. Pure physics. Pure joy.</div>
+              </div>
+            </div>
+            <div class="sailing-milestone">
+              <div class="sailing-milestone-icon">🚩</div>
+              <div>
+                <div class="sailing-milestone-title">Offshore Racing</div>
+                <div class="sailing-milestone-desc">Racing offshore demands everything simultaneously. Strategy, endurance, teamwork and luck.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="sailing-quote">
+            <p class="sailing-quote-text">
+              "When you cross the North Sea, you don't get offended because the wind changes. You adjust your course."
+            </p>
+            <p class="sailing-quote-attr">— A lesson from the sea</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Philosophy ──────────────────────────────── -->
+  <section class="section philosophy" id="philosophy">
+    <div class="section-inner">
+      <p class="section-label">Philosophy</p>
+      <h2 class="section-title">A few things I<br>actually <em>believe.</em></h2>
+
+      <div class="philosophy-quotes">
+
+        <div class="quote-block">
+          <p class="quote-text">Small adjustments can create great movements.</p>
+          <p class="quote-context">
+            The biggest changes in a boat's course come from the smallest movements of the rudder. Business and life work the same way. Consistency of small, correct decisions compounds into transformation.
+          </p>
+        </div>
+
+        <div class="quote-block">
+          <p class="quote-text">Curiosity is not a personality trait. It's a discipline.</p>
+          <p class="quote-context">
+            Staying genuinely curious requires effort, especially as you accumulate experience. The temptation to rely on what you already know is enormous. Resisting it is the work.
+          </p>
+        </div>
+
+        <div class="quote-block">
+          <p class="quote-text">Facts are friendly. They tell you where you actually are.</p>
+          <p class="quote-context">
+            The truth about a situation—however uncomfortable—is always more useful than a comfortable story. This is why I built InFact. Honest data is the starting point for good decisions.
+          </p>
+        </div>
+
+        <div class="quote-block">
+          <p class="quote-text">The best infrastructure is invisible.</p>
+          <p class="quote-context">
+            A building that works perfectly, a system that runs silently, a process that nobody notices—these are the highest achievements. Excellence in the background enables excellence up front.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Writing ─────────────────────────────────── -->
+  <section class="section writing" id="writing">
+    <div class="section-inner">
+      <p class="section-label">Writing</p>
+      <h2 class="section-title">Reflections and<br><em>observations.</em></h2>
+      <p class="writing-intro">
+        I've spent most of my life doing rather than writing. That's changing. Here, eventually, will be essays and reflections on entrepreneurship, AI, property, sailing and the ideas that keep me curious.
+      </p>
+
+      <div class="writing-grid">
+
+        <div class="writing-card">
+          <span class="writing-card-coming">Coming soon</span>
+          <h3 class="writing-card-title">What the sea teaches that business schools don't</h3>
+          <p class="writing-card-desc">On decision-making, risk tolerance and the discipline of reading conditions accurately.</p>
+        </div>
+
+        <div class="writing-card">
+          <span class="writing-card-coming">Coming soon</span>
+          <h3 class="writing-card-title">AI and the small business landlord</h3>
+          <p class="writing-card-desc">How artificial intelligence is quietly changing property administration—and what that means for the humans involved.</p>
+        </div>
+
+        <div class="writing-card">
+          <span class="writing-card-coming">Coming soon</span>
+          <h3 class="writing-card-title">On starting small and meaning it</h3>
+          <p class="writing-card-desc">A defense of the small company, the patient build and the entrepreneur who doesn't need to be famous.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Contact ─────────────────────────────────── -->
+  <section class="section contact" id="contact">
+    <div class="section-inner">
+      <p class="section-label" style="color: rgba(181,152,106,0.8)">Contact</p>
+      <div class="contact-grid">
+
+        <div>
+          <h2 class="section-title">Let's talk<br>about <em style="color: rgba(255,255,255,0.4)">something real.</em></h2>
+          <p class="contact-text">
+            Whether it's a collaboration, a question, a business idea or just a conversation about sailing and AI—I'm interested in genuine exchanges with curious people.
+          </p>
+        </div>
+
+        <div>
+          <div class="contact-links">
+            <a href="https://linkedin.com/in/nikolaiwaltham" class="contact-link" target="_blank" rel="noopener">
+              <span>LinkedIn</span>
+              <span class="contact-link-arrow">→</span>
+            </a>
+            <a href="https://github.com/nikolaiwaltham" class="contact-link" target="_blank" rel="noopener">
+              <span>GitHub</span>
+              <span class="contact-link-arrow">→</span>
+            </a>
+            <a href="#" class="contact-link">
+              <span>Lindholm Business Center</span>
+              <span class="contact-link-arrow">→</span>
+            </a>
+          </div>
+
+          <div class="contact-email">
+            <a href="mailto:nikolai@waltham.no" class="contact-email-btn" aria-label="Send email">
+              Send me an email
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Footer ──────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-logo">Nikolai<span>.</span></p>
+      <p class="footer-copy">© 2025 Nikolai Waltham. Nyborg, Denmark.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
