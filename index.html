@@ -36,9 +36,131 @@
       border-color: rgba(181,152,106,0.9);
       color: #fff;
     }
+
+    /* ─── Password Gate ─────────────────────────────── */
+    #password-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #0d0d0b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      transition: opacity 0.6s ease;
+    }
+    #password-gate.unlocking {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #password-gate.hidden {
+      display: none;
+    }
+    .gate-inner {
+      text-align: center;
+      padding: 2rem;
+      max-width: 420px;
+      width: 100%;
+    }
+    .gate-logo {
+      font-size: 1.6rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: #fff;
+      margin-bottom: 2.5rem;
+    }
+    .gate-logo span {
+      color: #b5986a;
+    }
+    .gate-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 1.5rem;
+    }
+    .gate-input-wrap {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+    #gate-input {
+      width: 100%;
+      background: transparent;
+      border: 1px solid rgba(181,152,106,0.35);
+      color: #fff;
+      font-size: 1rem;
+      padding: 0.85rem 1.2rem;
+      letter-spacing: 0.06em;
+      outline: none;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+      font-family: inherit;
+      text-align: center;
+    }
+    #gate-input::placeholder {
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.08em;
+    }
+    #gate-input:focus {
+      border-color: rgba(181,152,106,0.8);
+    }
+    #gate-input.error {
+      border-color: rgba(200,80,80,0.7);
+      animation: gate-shake 0.3s ease;
+    }
+    @keyframes gate-shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+    #gate-error {
+      font-size: 0.75rem;
+      color: rgba(200,80,80,0.8);
+      letter-spacing: 0.06em;
+      min-height: 1.2em;
+      margin-bottom: 0.5rem;
+    }
+    #gate-submit {
+      width: 100%;
+      background: transparent;
+      border: 1px solid rgba(181,152,106,0.5);
+      color: rgba(181,152,106,1);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.85rem;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      font-family: inherit;
+    }
+    #gate-submit:hover {
+      background: rgba(181,152,106,0.1);
+      border-color: rgba(181,152,106,0.9);
+      color: #fff;
+    }
+    .gate-hint {
+      margin-top: 1.8rem;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.15);
+      letter-spacing: 0.06em;
+    }
   </style>
 </head>
 <body>
+
+  <!-- ─── Password Gate ───────────────────────────── -->
+  <div id="password-gate">
+    <div class="gate-inner">
+      <p class="gate-logo">Nikolai<span>.</span></p>
+      <p class="gate-label">Private site</p>
+      <div class="gate-input-wrap">
+        <input type="password" id="gate-input" placeholder="Password" autocomplete="off" autocapitalize="none" spellcheck="false">
+      </div>
+      <p id="gate-error"></p>
+      <button id="gate-submit">Enter</button>
+      <p class="gate-hint">Access is by invitation.</p>
+    </div>
+  </div>
 
   <!-- ─── Navigation ─────────────────────────────── -->
   <nav class="nav" id="nav">
@@ -454,5 +576,47 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    (function () {
+      var gate = document.getElementById('password-gate');
+      var input = document.getElementById('gate-input');
+      var submit = document.getElementById('gate-submit');
+      var error = document.getElementById('gate-error');
+      var KEY = 'nw_unlocked';
+      var PASS = 'Summer';
+
+      function unlock() {
+        gate.classList.add('unlocking');
+        setTimeout(function () { gate.classList.add('hidden'); }, 650);
+        sessionStorage.setItem(KEY, '1');
+      }
+
+      function attempt() {
+        if (input.value === PASS) {
+          unlock();
+        } else {
+          error.textContent = 'Incorrect password.';
+          input.classList.add('error');
+          input.value = '';
+          setTimeout(function () { input.classList.remove('error'); }, 400);
+        }
+      }
+
+      // Already unlocked this session?
+      if (sessionStorage.getItem(KEY)) {
+        gate.classList.add('hidden');
+        return;
+      }
+
+      submit.addEventListener('click', attempt);
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') attempt();
+        if (error.textContent) error.textContent = '';
+      });
+
+      // Focus input automatically
+      setTimeout(function () { input.focus(); }, 100);
+    })();
+  </script>
 </body>
 </html>
