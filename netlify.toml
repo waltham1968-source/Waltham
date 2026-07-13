@@ -1,0 +1,7 @@
+[build]
+  publish = "."
+
+[[edge_functions]]
+  function = "password-gate"
+  path = "/*"
+
