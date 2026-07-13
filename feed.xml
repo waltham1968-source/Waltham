@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nikolai Waltham — Notes</title>
+    <link>https://waltham.no/</link>
+    <description>Notes on practical AI, smarter systems, entrepreneurship, time and life.</description>
+    <language>en</language>
+    <atom:link href="https://waltham.no/feed.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>Mon, 13 Jul 2026 12:00:00 +0200</lastBuildDate>
+  </channel>
+</rss>
