@@ -106,7 +106,15 @@
     .chat-input{display:flex;border-top:1px solid var(--line);padding:14px;gap:10px}
     .chat-input input{flex:1;border:0;background:#f3f0e9;padding:13px;outline:none}
     .chat-input button{border:0;background:var(--gold);padding:0 18px;cursor:pointer}
-    .case{background:#dcd7cc}
+    .case{
+      background:
+        linear-gradient(90deg,rgba(5,20,31,.88) 0%,rgba(5,20,31,.74) 47%,rgba(5,20,31,.50) 100%),
+        url('/assets/images/nyborg-fjord-background.jpeg') center 52%/cover no-repeat;
+      color:#fff;
+    }
+    .case .label{color:var(--gold-2)}
+    .case .lead{color:rgba(255,255,255,.78)}
+    .case-grid>div:first-child>p:last-child{color:rgba(255,255,255,.88)}
     .case-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
     .case-panel{background:#10100e;color:#fff;padding:44px;min-height:520px;display:flex;flex-direction:column;justify-content:space-between}
     .case-panel small{color:var(--gold-2);letter-spacing:.18em;text-transform:uppercase}
@@ -176,6 +184,7 @@
       .links{display:none}.menu{display:block}
       .links.open{display:flex;position:fixed;top:72px;left:0;right:0;flex-direction:column;gap:18px;padding:24px var(--gutter);background:rgba(244,241,234,.98);color:var(--ink);border-bottom:1px solid var(--line)}
       .problem-grid,.tool-wrap,.case-grid,.about,.origin-grid,.proof-grid,.partners-grid{grid-template-columns:1fr}
+      .case{background-position:58% center}
       .problem-grid>*,.tool-wrap>*,.case-grid>*,.about>*,.origin-grid>*,.proof-grid>*,.partners-grid>*{min-width:0}
       .card,.card.large{grid-column:span 12}
       .articles{grid-template-columns:1fr}
