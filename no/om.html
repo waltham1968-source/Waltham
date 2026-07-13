@@ -83,6 +83,14 @@
     .archive p{color:#555149}
     .archive small{display:block;margin-top:22px;color:#777168}
 
+    .press{background:#171713;color:#fff;overflow:hidden}
+    .press-head{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,7vw,95px);align-items:end}
+    .press .lead{color:rgba(255,255,255,.66)}
+    .press-copy{color:rgba(255,255,255,.66);font-size:16px}.press-copy p+p{margin-top:17px}
+    .press-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;margin-top:68px;align-items:start}.press-item{min-width:0}
+    .press-cover{aspect-ratio:3/4;background:#090908;padding:7px;box-shadow:0 18px 40px rgba(0,0,0,.3)}.press-cover img{width:100%;height:100%;object-fit:contain;object-position:top center}
+    .press-item figcaption{padding-top:16px}.press-item small{display:block;color:var(--gold-2);font-size:10px;letter-spacing:.14em;text-transform:uppercase}.press-item strong{display:block;font-family:var(--display);font-size:23px;line-height:1.05;margin-top:7px;font-weight:400}.press-note{margin-top:35px;color:rgba(255,255,255,.48);font-size:12px;max-width:760px}
+
     .sea{background:#11110f;color:#fff;position:relative;overflow:hidden}
     .sea:after{content:"";position:absolute;right:-10%;bottom:-25%;width:60vw;height:60vw;border:1px solid rgba(215,189,145,.12);border-radius:50%;box-shadow:0 0 0 80px rgba(215,189,145,.035),0 0 0 160px rgba(215,189,145,.025)}
     .sea-grid{position:relative;z-index:1;display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(45px,8vw,110px)}
@@ -118,13 +126,14 @@
       .links{display:none}.menu{display:block}
       .links.open{display:flex;position:fixed;top:72px;left:0;right:0;flex-direction:column;align-items:flex-start;gap:18px;padding:24px var(--gutter);background:rgba(244,241,234,.98);color:var(--ink);border-bottom:1px solid var(--line)}
       .hero{grid-template-columns:1fr;min-height:0}.hero-copy{min-height:76vh}.hero-image{height:68vh}
-      .opening,.sea-grid,.life-grid,.ai-box{grid-template-columns:1fr}
+      .opening,.press-head,.sea-grid,.life-grid,.ai-box{grid-template-columns:1fr}
       .story{grid-template-columns:95px 1fr}.story-text{grid-column:2}
-      .archive{grid-template-columns:1fr}.principle-grid{grid-template-columns:1fr 1fr}
+      .archive{grid-template-columns:1fr}.press-grid{grid-template-columns:repeat(3,1fr)}.principle-grid{grid-template-columns:1fr 1fr}
     }
     @media(max-width:600px){
       h1{font-size:56px}.hero-copy{min-height:72vh;padding-bottom:62px}.hero-image{height:55vh}
       .story{grid-template-columns:1fr;gap:14px}.story-text{grid-column:auto}.story-year{padding-top:0}
+      .press-grid{grid-template-columns:1fr 1fr;gap:13px}.press-item strong{font-size:20px}
       .principle-grid{grid-template-columns:1fr}.principle{min-height:210px}
       .archive{padding:24px}.pull{padding-left:20px}
     }
@@ -246,6 +255,23 @@
             <small>Avisutklipp fra Oslo, 1990-tallet.</small>
           </figcaption>
         </figure>
+      </div>
+    </section>
+
+    <section class="section press" id="infact-medier">
+      <div class="inner">
+        <div class="press-head">
+          <div><p class="label">InFact i mediene</p><h2 class="title">Da målingene ble forsider.</h2><p class="lead">En måling var ikke bare data. Den kunne bli starten på en offentlig samtale — og på det neste oppdraget.</p></div>
+          <div class="press-copy"><p>InFact bygget et system der automatiserte telefonintervjuer raskt kunne omsettes til dokumentert kunnskap. Når temaet var relevant og spørsmålet presist, kunne resultatet gå fra robotoppringninger til journalistikk og nasjonal synlighet.</p><p>Det var kommunikasjonshjulet i praksis: måling ble til nyhet, nyhet til oppmerksomhet, oppmerksomhet til kunder og kunder til nye målinger.</p></div>
+        </div>
+        <div class="press-grid">
+          <figure class="press-item"><div class="press-cover"><img src="/assets/images/infact-vg-terrorhandtering-2011.jpg" alt="VG-forside om meningsmåling av håndteringen etter terrorangrepet" width="1400" height="2081" loading="lazy" /></div><figcaption><small>VG · 27. juli 2011</small><strong>Terrorhåndtering</strong></figcaption></figure>
+          <figure class="press-item"><div class="press-cover"><img src="/assets/images/infact-vg-juni-2011.jpg" alt="VG-forside om nordmenns ønske om vektnedgang" width="1400" height="2079" loading="lazy" /></div><figcaption><small>VG · 15. juni 2011</small><strong>Folkehelse</strong></figcaption></figure>
+          <figure class="press-item"><div class="press-cover"><img src="/assets/images/infact-vg-august-2011.jpg" alt="VG-forside om gjeldsrekord og privatøkonomi" width="1400" height="2068" loading="lazy" /></div><figcaption><small>VG · 15. august 2011</small><strong>Gjeld og privatøkonomi</strong></figcaption></figure>
+          <figure class="press-item"><div class="press-cover"><img src="/assets/images/infact-vg-valg-2011.jpg" alt="VG Netts valgdagsmåling med InFact som kilde" width="1400" height="1233" loading="lazy" /></div><figcaption><small>VG Nett · 12. september 2011</small><strong>Valgdagsmåling</strong></figcaption></figure>
+          <figure class="press-item"><div class="press-cover"><img src="/assets/images/infact-dagbladet-2022.jpg" alt="Dagbladet-forside om nordmenns vurdering av krigen i Ukraina" width="828" height="1104" loading="lazy" /></div><figcaption><small>Dagbladet · 29. november 2022</small><strong>Krigen i Ukraina</strong></figcaption></figure>
+        </div>
+        <p class="press-note">Utvalgte forsider fra InFacts eget arkiv. De vises som historisk dokumentasjon på målingenes redaksjonelle gjennomslag.</p>
       </div>
     </section>
 
