@@ -45,6 +45,8 @@
     .logo span{color:var(--gold)}
     .links{display:flex;gap:23px;list-style:none;font-size:12px;letter-spacing:.12em;text-transform:uppercase;align-items:center}
     .links a:hover{color:var(--gold)}
+    .links .nav-featured{padding:8px 11px;background:var(--gold);color:#111;letter-spacing:.08em}
+    .links .nav-featured:hover{background:var(--gold-2);color:#111}
     .lang-switch{display:flex;gap:8px;padding-left:16px;border-left:1px solid currentColor;letter-spacing:.06em}
     .lang-switch a[aria-current="true"]{color:var(--gold-2)}
     .menu{display:none;border:0;background:none;color:inherit;font-size:24px}
@@ -85,6 +87,7 @@
     .cards{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:54px}
     .card{grid-column:span 6;border:1px solid rgba(255,255,255,.13);padding:34px;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;background:rgba(255,255,255,.025)}
     .card.large{grid-column:span 12;min-height:360px;background:linear-gradient(135deg,rgba(181,152,106,.13),rgba(255,255,255,.02))}
+    .card.featured{border-color:var(--gold);background:linear-gradient(135deg,rgba(181,152,106,.28),rgba(255,255,255,.035));box-shadow:inset 4px 0 0 var(--gold)}
     .tag{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-2)}
     .card h3{font-size:42px;line-height:1;margin:22px 0 14px}
     .card p{color:rgba(255,255,255,.68);max-width:650px}
@@ -191,7 +194,7 @@
   <nav class="nav" id="nav">
     <a class="logo" href="/en/">Waltham<span>.</span></a>
     <ul class="links">
-      <li><a href="#historien">Story</a></li><li><a href="#produkter">Services</a></li>
+      <li><a class="nav-featured" href="from-idea-to-business.html">Start a business</a></li><li><a href="#produkter">Services</a></li>
       <li><a href="#vaerktoej">Try a tool</a></li>
       <li><a href="#case">Case</a></li><li><a href="#erfaring">Experience</a></li>
       <li><a href="#artikler">Articles</a></li>
@@ -213,7 +216,7 @@
       </p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#vaerktoej">Describe your challenge</a>
-        <a class="btn btn-secondary" href="#produkter">See how I can help</a>
+        <a class="btn btn-secondary" href="from-idea-to-business.html">From idea to business →</a>
       </div>
     </div>
   </header>
@@ -265,6 +268,15 @@
       <p class="lead">Start small, gain clarity and build only what creates real value.</p>
 
       <div class="cards">
+        <article class="card large featured">
+          <div>
+            <span class="tag">From first idea to first customer</span>
+            <h3>From idea to business</h3>
+            <p>A connected journey where competitor analysis, business model, ownership and agreements, website and launch are built as one coherent case.</p>
+          </div>
+          <a href="from-idea-to-business.html" class="link">See the complete business journey →</a>
+        </article>
+
         <article class="card large">
           <div>
             <span class="tag">For groups, organisations and complex projects</span>
@@ -281,15 +293,6 @@
             <p>An honest review of the problem, customer, business model, risks and the least expensive way to test the idea.</p>
           </div>
           <a href="#vaerktoej" class="link">Try the first analysis →</a>
-        </article>
-
-        <article class="card">
-          <div>
-            <span class="tag">From first idea to first customer</span>
-            <h3>From idea to business</h3>
-            <p>A connected journey through competitor analysis, business model, ownership and agreements, website and a practical 90-day launch.</p>
-          </div>
-          <a href="from-idea-to-business.html" class="link">See the complete business journey →</a>
         </article>
 
         <article class="card">
