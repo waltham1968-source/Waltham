@@ -1,155 +1,110 @@
-/**
- * Waltham.no — main.js
- * Minimal, purposeful JavaScript. No distractions.
- */
-
 (function () {
   'use strict';
 
-  // ─── Navigation ──────────────────────────────────
   const nav = document.getElementById('nav');
-  const navToggle = document.getElementById('nav-toggle');
-  const navDrawer = document.getElementById('nav-drawer');
-  const drawerLinks = navDrawer ? navDrawer.querySelectorAll('a') : [];
+  const toggle = document.getElementById('nav-toggle');
+  const drawer = document.getElementById('nav-drawer');
+  const drawerLinks = drawer ? drawer.querySelectorAll('a') : [];
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const sections = document.querySelectorAll('main section[id]');
+  let previousScroll = 0;
+  let scheduled = false;
 
-  let lastScrollY = 0;
-  let ticking = false;
+  function closeMenu() {
+    if (!toggle || !drawer) return;
+    toggle.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open menu');
+    drawer.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
 
-  function updateNav() {
-    const scrollY = window.scrollY;
+  function openMenu() {
+    if (!toggle || !drawer) return;
+    toggle.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Close menu');
+    drawer.classList.add('open');
+    drawer.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
 
-    // Add scrolled class for backdrop
-    if (scrollY > 60) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
+  if (toggle && drawer) {
+    toggle.addEventListener('click', function () {
+      if (drawer.classList.contains('open')) closeMenu();
+      else openMenu();
+    });
+    drawerLinks.forEach(function (link) {
+      link.addEventListener('click', closeMenu);
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') closeMenu();
+    });
+  }
 
-    // Hide nav on scroll down, show on scroll up (only past hero)
-    if (scrollY > window.innerHeight * 0.5) {
-      if (scrollY > lastScrollY + 4) {
+  function updateNavigation() {
+    const scroll = window.scrollY;
+    const drawerOpen = drawer && drawer.classList.contains('open');
+
+    if (nav) {
+      nav.classList.toggle('scrolled', scroll > 35 || drawerOpen);
+      if (!drawerOpen && scroll > window.innerHeight * 0.7 && scroll > previousScroll + 6) {
         nav.classList.add('hidden');
-      } else if (scrollY < lastScrollY - 4) {
+      } else if (scroll < previousScroll - 6 || scroll < window.innerHeight * 0.7) {
         nav.classList.remove('hidden');
       }
-    } else {
-      nav.classList.remove('hidden');
     }
 
-    lastScrollY = scrollY;
-    ticking = false;
+    const marker = scroll + window.innerHeight * 0.35;
+    sections.forEach(function (section) {
+      const active = marker >= section.offsetTop && marker < section.offsetTop + section.offsetHeight;
+      if (!active) return;
+      navLinks.forEach(function (link) {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + section.id);
+      });
+    });
+
+    previousScroll = scroll;
+    scheduled = false;
   }
 
   window.addEventListener('scroll', function () {
-    if (!ticking) {
-      requestAnimationFrame(updateNav);
-      ticking = true;
-    }
+    if (scheduled) return;
+    scheduled = true;
+    window.requestAnimationFrame(updateNavigation);
   }, { passive: true });
 
-  // ─── Mobile Menu ─────────────────────────────────
-  if (navToggle && navDrawer) {
-    navToggle.addEventListener('click', function () {
-      const isOpen = navDrawer.classList.contains('open');
-      navDrawer.classList.toggle('open', !isOpen);
-      document.body.style.overflow = isOpen ? '' : 'hidden';
-    });
-
-    drawerLinks.forEach(function (link) {
-      link.addEventListener('click', function () {
-        navDrawer.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
-  }
-
-  // ─── Active Nav Link Highlighting ────────────────
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-
-  function highlightActiveSection() {
-    const scrollPos = window.scrollY + (window.innerHeight / 3);
-
-    sections.forEach(function (section) {
-      const top = section.offsetTop;
-      const bottom = top + section.offsetHeight;
-      const id = section.getAttribute('id');
-
-      if (scrollPos >= top && scrollPos < bottom) {
-        navLinks.forEach(function (link) {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === '#' + id) {
-            link.classList.add('active');
-          }
-        });
-      }
-    });
-  }
-
-  window.addEventListener('scroll', highlightActiveSection, { passive: true });
-
-  // ─── Smooth scroll for anchor links ──────────────
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-    anchor.addEventListener('click', function (e) {
-      const href = this.getAttribute('href');
-      if (href === '#') return;
-
+    anchor.addEventListener('click', function (event) {
+      const href = anchor.getAttribute('href');
+      if (!href || href === '#') return;
       const target = document.querySelector(href);
-      if (target) {
-        e.preventDefault();
-        const navHeight = nav ? nav.offsetHeight : 72;
-        const top = target.getBoundingClientRect().top + window.scrollY - navHeight;
-        window.scrollTo({ top: top, behavior: 'smooth' });
-      }
+      if (!target) return;
+      event.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
 
-  // ─── Subtle fade-in on scroll ────────────────────
-  // Uses IntersectionObserver — no jarring animations
-  if ('IntersectionObserver' in window) {
-    const style = document.createElement('style');
-    style.textContent = `
-      .fade-in {
-        opacity: 0;
-        transform: translateY(24px);
-        transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
-      }
-      .fade-in.visible {
-        opacity: 1;
-        transform: none;
-      }
-    `;
-    document.head.appendChild(style);
-
-    // Apply fade-in to key elements
-    const fadeTargets = document.querySelectorAll(
-      '.timeline-item, .project-card, .quote-block, .writing-card, .sailing-milestone'
-    );
-
-    fadeTargets.forEach(function (el) {
-      el.classList.add('fade-in');
-    });
-
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
       });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -40px 0px'
-    });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px' });
 
-    fadeTargets.forEach(function (el) {
-      observer.observe(el);
+    reveals.forEach(function (element, index) {
+      element.style.transitionDelay = Math.min(index % 4, 3) * 70 + 'ms';
+      observer.observe(element);
+    });
+  } else {
+    reveals.forEach(function (element) {
+      element.classList.add('visible');
     });
   }
 
-  // ─── Staggered animation for grids ───────────────
-  document.querySelectorAll('.projects-grid .project-card, .philosophy-quotes .quote-block, .writing-grid .writing-card').forEach(function (el, i) {
-    el.style.transitionDelay = (i * 80) + 'ms';
-  });
-
+  updateNavigation();
 })();
