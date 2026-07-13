@@ -1,494 +1,588 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Nikolai Waltham helps leaders rethink how work gets done — combining four decades of entrepreneurship, practical problem-solving and modern AI.">
-  <meta name="author" content="Nikolai Waltham">
-  <meta name="robots" content="index, follow, max-image-preview:large">
-  <link rel="canonical" href="https://waltham.no/">
-  <link rel="alternate" type="application/rss+xml" title="Nikolai Waltham — Notes" href="https://waltham.no/feed.xml">
-  <meta property="og:title" content="Nikolai Waltham — Smarter systems for a better life">
-  <meta property="og:description" content="Four decades of building companies, solving practical problems and creating systems that free time for what matters.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://waltham.no/">
-  <meta name="twitter:card" content="summary_large_image">
-  <title>Nikolai Waltham — Smarter systems, practical AI and human judgment</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/styles.css?v=20260713">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Praktisk sparring, idéudvikling, AI-gennemgange og digitale sagsrum for virksomheder, foreninger og mennesker med noget vigtigt på spil." />
+  <title>Waltham — Idéer, sparring og digitale sagsrum</title>
   <style>
-    .contact-email-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5em;
-      margin-top: 2rem;
-      padding: 0.75rem 1.5rem;
-      background: transparent;
-      border: 1px solid rgba(181,152,106,0.5);
-      color: rgba(181,152,106,1);
-      text-decoration: none;
-      font-size: 0.95rem;
-      letter-spacing: 0.04em;
-      transition: border-color 0.2s, color 0.2s, background 0.2s;
-    }
-    .contact-email-btn::before {
-      content: "✉";
-      font-size: 1em;
-    }
-    .contact-email-btn:hover {
-      background: rgba(181,152,106,0.1);
-      border-color: rgba(181,152,106,0.9);
-      color: #fff;
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
 
+    :root {
+      --ink:#0b0b0a;
+      --paper:#f4f1ea;
+      --white:#fff;
+      --muted:#77756d;
+      --line:rgba(16,16,14,.12);
+      --gold:#b5986a;
+      --gold-2:#d7bd91;
+      --deep:#11110f;
+      --soft:#ebe6dc;
+      --max:1220px;
+      --gutter:clamp(22px,5vw,76px);
+      --display:'Cormorant Garamond',Georgia,serif;
+      --body:'Inter',system-ui,sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    button,input,textarea{font:inherit}
+    .nav{
+      position:fixed;inset:0 0 auto 0;height:72px;z-index:20;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 var(--gutter);color:#fff;
+      transition:.25s;background:linear-gradient(to bottom,rgba(0,0,0,.42),transparent)
+    }
+    .nav.scrolled{background:rgba(244,241,234,.95);backdrop-filter:blur(16px);color:var(--ink);border-bottom:1px solid var(--line)}
+    .logo{font-family:var(--display);font-size:24px;letter-spacing:.02em}
+    .logo span{color:var(--gold)}
+    .links{display:flex;gap:28px;list-style:none;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+    .links a:hover{color:var(--gold)}
+    .menu{display:none;border:0;background:none;color:inherit;font-size:24px}
+    .hero{
+      min-height:100vh;background:
+      radial-gradient(circle at 78% 20%,rgba(181,152,106,.16),transparent 30%),
+      linear-gradient(145deg,#1a1a17 0%,#090908 62%,#171612 100%);
+      color:#fff;display:flex;align-items:flex-end;position:relative;overflow:hidden;
+      padding:150px var(--gutter) 92px;
+    }
+    .hero:after{
+      content:"";position:absolute;inset:0;opacity:.05;pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")
+    }
+    .hero-inner{position:relative;z-index:1;max-width:1050px}
+    .eyebrow{font-size:11px;letter-spacing:.23em;text-transform:uppercase;color:var(--gold-2);margin-bottom:26px}
+    h1,h2,h3{font-family:var(--display);font-weight:400}
+    h1{font-size:clamp(62px,9vw,126px);line-height:.91;max-width:980px;letter-spacing:-.025em}
+    h1 em{color:var(--gold-2)}
+    .hero-copy{font-size:clamp(18px,2vw,23px);font-weight:300;color:rgba(255,255,255,.75);max-width:720px;margin:34px 0}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border:1px solid transparent;font-size:13px;letter-spacing:.05em;transition:.2s}
+    .btn-primary{background:var(--gold);color:#111}
+    .btn-primary:hover{background:var(--gold-2)}
+    .btn-secondary{border-color:rgba(255,255,255,.28);color:#fff}
+    .btn-secondary:hover{border-color:var(--gold);color:var(--gold-2)}
+    .section{padding:clamp(82px,10vw,145px) var(--gutter)}
+    .inner{max-width:var(--max);margin:auto}
+    .label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+    .title{font-size:clamp(44px,6vw,78px);line-height:1;max-width:900px}
+    .lead{font-size:clamp(18px,2vw,22px);color:#535149;max-width:760px;margin-top:26px}
+    .problem-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:start}
+    .problem-list{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+    .problem{background:#faf8f3;padding:26px}
+    .problem strong{display:block;font-family:var(--display);font-size:27px;font-weight:500;margin-bottom:5px}
+    .dark{background:var(--deep);color:#fff}
+    .dark .lead{color:rgba(255,255,255,.65)}
+    .cards{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:54px}
+    .card{grid-column:span 6;border:1px solid rgba(255,255,255,.13);padding:34px;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;background:rgba(255,255,255,.025)}
+    .card.large{grid-column:span 12;min-height:360px;background:linear-gradient(135deg,rgba(181,152,106,.13),rgba(255,255,255,.02))}
+    .tag{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-2)}
+    .card h3{font-size:42px;line-height:1;margin:22px 0 14px}
+    .card p{color:rgba(255,255,255,.68);max-width:650px}
+    .card .link{margin-top:28px;color:var(--gold-2);font-size:13px}
+    .tool-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:52px;align-items:stretch}
+    .chat{background:#fff;border:1px solid var(--line);box-shadow:0 25px 70px rgba(26,24,18,.08);min-height:520px;display:flex;flex-direction:column}
+    .chat-top{padding:22px 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px}
+    .dot{width:10px;height:10px;border-radius:50%;background:var(--gold)}
+    .chat-body{padding:26px;display:flex;flex-direction:column;gap:16px;flex:1}
+    .bubble{padding:15px 17px;max-width:84%;font-size:14px}
+    .bot{background:var(--soft);align-self:flex-start}
+    .user{background:#171713;color:#fff;align-self:flex-end}
+    .choices{display:grid;gap:9px;margin-top:6px}
+    .choice{border:1px solid var(--line);background:#fff;text-align:left;padding:13px;cursor:pointer}
+    .choice:hover{border-color:var(--gold)}
+    .chat-input{display:flex;border-top:1px solid var(--line);padding:14px;gap:10px}
+    .chat-input input{flex:1;border:0;background:#f3f0e9;padding:13px;outline:none}
+    .chat-input button{border:0;background:var(--gold);padding:0 18px;cursor:pointer}
+    .case{background:#dcd7cc}
+    .case-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+    .case-panel{background:#10100e;color:#fff;padding:44px;min-height:520px;display:flex;flex-direction:column;justify-content:space-between}
+    .case-panel small{color:var(--gold-2);letter-spacing:.18em;text-transform:uppercase}
+    .case-panel h3{font-size:56px;line-height:.95;margin:20px 0}
+    .case-panel p{color:rgba(255,255,255,.66)}
+    .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.12);margin-top:30px}
+    .metric{padding:18px;background:#171713}
+    .metric b{display:block;font-family:var(--display);font-size:30px;color:var(--gold-2)}
+    .articles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:52px}
+    .article{border-top:1px solid var(--ink);padding-top:20px}
+    .article .num{font-size:11px;color:var(--gold);letter-spacing:.14em}
+    .article h3{font-size:34px;line-height:1.05;margin:18px 0}
+    .article p{font-size:14px;color:#5c5951}
+    .ideas{background:#fff}
+    .idea-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:45px}
+    .idea{background:#fff;padding:32px;transition:.2s}
+    .idea:hover{background:#f5f1e8}
+    .idea h3{font-size:34px;line-height:1.05;margin:12px 0}
+    .idea .meta{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+    .about{display:grid;grid-template-columns:1.2fr .8fr;gap:70px}
+    .quote{font-family:var(--display);font-size:clamp(34px,4vw,55px);line-height:1.05}
+    .bio{font-size:16px;color:#545149}
+    .bio p+p{margin-top:18px}
+    .newsletter{text-align:center;background:var(--deep);color:#fff;padding:100px var(--gutter)}
+    .newsletter h2{font-size:clamp(48px,6vw,82px);line-height:1}
+    .newsletter p{color:rgba(255,255,255,.65);max-width:630px;margin:22px auto}
+    .form{max-width:620px;margin:30px auto 0;display:flex}
+    .form input{flex:1;padding:16px;border:0}
+    .form button{border:0;background:var(--gold);padding:0 25px}
+    footer{background:#080807;color:rgba(255,255,255,.55);padding:45px var(--gutter);font-size:12px}
+    .foot{max-width:var(--max);margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+    .origin{background:#f1ede4}
+    .origin-grid,.proof-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:70px;align-items:start}
+    .origin-story{font-size:18px;color:#4f4c45}
+    .origin-story p+p{margin-top:18px}
+    .origin-pull{background:#11110f;color:#fff;padding:42px;min-height:420px;display:flex;flex-direction:column;justify-content:space-between}
+    .origin-pull blockquote{font-family:var(--display);font-size:46px;line-height:1.02}
+    .origin-pull small{color:var(--gold-2);letter-spacing:.16em;text-transform:uppercase}
+    .proof{background:#fff}
+    .proof-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+    .proof-stat{background:#fff;padding:28px}
+    .proof-stat b{display:block;font-family:var(--display);font-size:48px;line-height:1;color:var(--gold)}
+    .proof-stat span{display:block;margin-top:8px;color:#5e5a52;font-size:14px}
+    .press-wall{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .press-card{min-height:185px;background:#161613;color:#fff;padding:18px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid rgba(255,255,255,.08)}
+    .press-card small{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-2)}
+    .press-card h4{font-family:var(--display);font-size:27px;line-height:1.05;font-weight:500}
+    .press-card p{font-size:12px;color:rgba(255,255,255,.62)}
+    .press-note{margin-top:18px;font-size:13px;color:#68645b}
+
+
+    .partners{background:#171713;color:#fff}
+    .partners-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:start}
+    .partners .lead{color:rgba(255,255,255,.66)}
+    .partner-types{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12)}
+    .partner-type{background:#1e1e19;padding:28px}
+    .partner-type small{display:block;color:var(--gold-2);font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px}
+    .partner-type h3{font-size:32px;line-height:1.05;margin-bottom:10px}
+    .partner-type p{color:rgba(255,255,255,.62);font-size:14px}
+    .partner-brief{margin-top:26px;border:1px solid rgba(255,255,255,.14);padding:28px;background:rgba(255,255,255,.025)}
+    .partner-brief strong{display:block;font-family:var(--display);font-size:29px;color:var(--gold-2);margin-bottom:12px}
+    .partner-brief ul{padding-left:18px;color:rgba(255,255,255,.67)}
+    .partner-brief li+li{margin-top:7px}
+
+    @media(max-width:900px){
+      .links{display:none}.menu{display:block}
+      .links.open{display:flex;position:fixed;top:72px;left:0;right:0;flex-direction:column;gap:18px;padding:24px var(--gutter);background:rgba(244,241,234,.98);color:var(--ink);border-bottom:1px solid var(--line)}
+      .problem-grid,.tool-wrap,.case-grid,.about,.origin-grid,.proof-grid,.partners-grid{grid-template-columns:1fr}
+      .problem-grid>*,.tool-wrap>*,.case-grid>*,.about>*,.origin-grid>*,.proof-grid>*,.partners-grid>*{min-width:0}
+      .card,.card.large{grid-column:span 12}
+      .articles{grid-template-columns:1fr}
+      .idea-grid{grid-template-columns:1fr}.press-wall{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:600px){
+      h1{font-size:58px}
+      .hero{padding-bottom:62px}
+      .form{flex-direction:column}.form button{padding:15px}
+      .metrics,.proof-stats,.press-wall,.partner-types{grid-template-columns:1fr}
+      .case-panel{padding:28px}
+    }
   </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Person",
-        "@id": "https://waltham.no/#nikolai",
-        "name": "Nikolai Waltham",
-        "url": "https://waltham.no/",
-        "homeLocation": {"@type": "Place", "name": "Nyborg, Denmark"},
-        "description": "Norwegian entrepreneur, systems thinker, practical problem-solver and sailor using AI to help organisations rethink how work gets done.",
-        "knowsAbout": ["Artificial intelligence", "Business automation", "Entrepreneurship", "Systems thinking", "Property management", "Sailing"],
-        "sameAs": ["https://linkedin.com/in/nikolaiwaltham"]
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://waltham.no/#website",
-        "url": "https://waltham.no/",
-        "name": "Nikolai Waltham",
-        "inLanguage": "en",
-        "publisher": {"@id": "https://waltham.no/#nikolai"}
-      }
-    ]
-  }
-  </script>
 </head>
 <body>
-
-  <!-- ─── Navigation ─────────────────────────────── -->
   <nav class="nav" id="nav">
-    <a href="#" class="nav-logo">Nikolai<span>.</span></a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#story">Story</a></li>
-      <li><a href="#sailing">Sailing</a></li>
-      <li><a href="#philosophy">Philosophy</a></li>
-      <li><a href="#ideas">Ideas</a></li>
-      <li><a href="#contact">Contact</a></li>
+    <a class="logo" href="#top">Waltham<span>.</span></a>
+    <ul class="links">
+      <li><a href="#historien">Historien</a></li><li><a href="#produkter">Produkter</a></li>
+      <li><a href="#vaerktoej">Prøv et værktøj</a></li>
+      <li><a href="#case">Case</a></li><li><a href="#erfaring">Erfaring</a></li>
+      <li><a href="#artikler">Artikler</a></li>
+      <li><a href="#ideer">Åbne idéer</a></li><li><a href="#partnere">Partnere</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
     </ul>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <button class="menu" aria-label="Menu" aria-expanded="false">☰</button>
   </nav>
 
-  <!-- Mobile drawer -->
-  <div class="nav-drawer" id="nav-drawer">
-    <a href="#about" class="drawer-link">About</a>
-    <a href="#work" class="drawer-link">Work</a>
-    <a href="#story" class="drawer-link">Story</a>
-    <a href="#sailing" class="drawer-link">Sailing</a>
-    <a href="#philosophy" class="drawer-link">Philosophy</a>
-    <a href="#ideas" class="drawer-link">Ideas</a>
-    <a href="#contact" class="drawer-link">Contact</a>
-  </div>
-
-  <!-- ─── Hero ───────────────────────────────────── -->
-  <section class="hero" id="home">
-    <div class="hero-bg"></div>
-    <div class="hero-grain"></div>
-    <div class="hero-accent-line"></div>
-
-    <div class="hero-content">
-      <p class="hero-label">Nikolai Waltham — Nyborg, Denmark</p> 
-      <h1 class="hero-headline">Build smarter systems.<br>Make more room for <em>life.</em></h1>
-      <p class="hero-sub">
-        For four decades, I have turned practical problems into businesses, automation and momentum. Today, AI is simply the most powerful tool in the box.
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <p class="eyebrow">Praktisk intelligens · mennesker først</p>
+      <h1>Gode idéer fortjener<br>et <em>virkeligt liv.</em></h1>
+      <p class="hero-copy">
+        Praktisk sparring, AI-værktøjer og digitale sagsrum for virksomheder,
+        foreninger og mennesker, der står med en god idé, en vanskelig beslutning
+        eller en sag, som er blevet for kompleks.
       </p>
-      <div class="hero-scroll">
-        <div class="hero-scroll-line"></div>
-        <span>Scroll to explore</span>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#vaerktoej">Beskriv din udfordring</a>
+        <a class="btn btn-secondary" href="#produkter">Se, hvordan jeg kan hjælpe</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="inner problem-grid">
+      <div>
+        <p class="label">Det egentlige problem</p>
+        <h2 class="title">De fleste mangler ikke information. De mangler overblik.</h2>
+        <p class="lead">
+          Når dokumenter, idéer, mennesker og interesser vokser i alle retninger,
+          bliver det svært at se, hvad der er vigtigt, hvad der er sandt, og hvad næste skridt bør være.
+        </p>
+      </div>
+      <div class="problem-list">
+        <div class="problem"><strong>En idé uden retning</strong><span>God energi, men uklart marked, kunde eller første test.</span></div>
+        <div class="problem"><strong>En virksomhed uden momentum</strong><span>Mange muligheder, men for lidt fokus og for få nye kunder.</span></div>
+        <div class="problem"><strong>En sag uden fælles virkelighed</strong><span>Mange dokumenter, holdninger og versioner af samme historie.</span></div>
+        <div class="problem"><strong>En leder uden modspil</strong><span>Vigtige beslutninger kræver en ærlig og erfaren samtalepartner.</span></div>
       </div>
     </div>
   </section>
 
-  <!-- ─── About ──────────────────────────────────── -->
-  <section class="section about" id="about">
-    <div class="section-inner">
-      <p class="section-label">The idea</p>
-      <div class="about-grid">
-        <div class="about-text">
-          <h2 class="section-title">AI is new.<br>The questions <em>aren't.</em></h2>
-          <div class="divider"></div>
-          <p>
-            For more than 25 years, I have been fascinated by one question: how can knowledge, decisions and repetitive work be turned into systems that work better?
-          </p>
-          <p>
-            At InFact, that meant automated telephone systems capable of conducting hundreds of conversations at once. Today, it means AI assistants, knowledge systems and workflows. The technology has changed dramatically. The way I approach a problem has not.
-          </p>
-          <p>
-            I am not the person you hire to write every line of code. I work best before that: understanding the real problem, seeing connections across disciplines, challenging assumptions and deciding what is worth building. Then I bring in people who are technically better than me to make it real.
-          </p>
-          <p>
-            The goal is not technology for its own sake. It is to remove unnecessary work, protect human attention and create more time for what actually matters.
-          </p>
 
-          <div class="about-stats">
-            <div>
-              <div class="stat-number">40</div>
-              <div class="stat-label">Years solving problems</div>
-            </div>
-            <div>
-              <div class="stat-number">0→1</div>
-              <div class="stat-label">Where I do my best work</div>
-            </div>
-            <div>
-              <div class="stat-number">1</div>
-              <div class="stat-label">Life worth protecting</div>
-            </div>
+  <section class="section origin" id="historien">
+    <div class="inner origin-grid">
+      <div>
+        <p class="label">Hvorfor det begyndte</p>
+        <h2 class="title">Før jeg byggede InFact, forsøgte jeg at bygge frihed.</h2>
+        <div class="origin-story" style="margin-top:30px">
+          <p>Omkring år 2000 havde jeg en drøm om at sejle jorden rundt med mine to små sønner. Jeg havde købt en 45 fods stålbåd, og på mange måder var vi klar. Det, jeg manglede, var en indtægt, som kunne følge med os.</p>
+          <p>Derfor begyndte jeg at udvikle et automatiseret telefonisystem, som kunne ringe til tusindvis af mennesker, stille spørgsmål og samle svar. Tanken var enkel: Hvis jeg kunne finde en internetcafé, kunne jeg i princippet styre arbejdet fra hvor som helst.</p>
+          <p>Men idéen kom også fra en anden erfaring. Jeg havde allerede prøvet at lancere flere forretningsidéer, som jeg selv mente var gode, men som markedet ikke var klar til. Næste gang ville jeg vide, om kunderne faktisk fandtes, før jeg byggede hele løsningen.</p>
+          <p>Det blev begyndelsen på InFact — og på en metode, jeg stadig tror på: <strong>Spørg først. Forstå behovet. Byg derefter.</strong></p>
+        </div>
+      </div>
+      <aside class="origin-pull">
+        <small>Den røde tråd</small>
+        <blockquote>“En god idé bliver ikke stærkere af, at du selv elsker den. Den bliver stærkere, når virkeligheden svarer igen.”</blockquote>
+        <p style="color:rgba(255,255,255,.62)">Fra sejladsdrøm til automatiseret dataindsamling, markedsforståelse og praktisk sparring.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section dark" id="produkter">
+    <div class="inner">
+      <p class="label">Produkter</p>
+      <h2 class="title">Ikke mere konsulentteater.<br>Et bedre næste skridt.</h2>
+      <p class="lead">Begynd småt, få klarhed og byg kun det, der faktisk skaber værdi.</p>
+
+      <div class="cards">
+        <article class="card large">
+          <div>
+            <span class="tag">For grupper, foreninger og komplekse projekter</span>
+            <h3>Digitalt sagsrum</h3>
+            <p>Fra dokumentkaos til en troværdig, søgbar og levende vidensbase med tidslinje, temaer, kilder, interessenter, nyheder og en AI-assistent, der svarer ud fra materialet.</p>
+          </div>
+          <a href="#case" class="link">Se Bevar Nyborg Fjord som første case →</a>
+        </article>
+
+        <article class="card">
+          <div>
+            <span class="tag">For iværksættere</span>
+            <h3>Idétesten</h3>
+            <p>En ærlig gennemgang af problemet, kunden, forretningsmodellen, risiciene og den billigste måde at teste idéen på.</p>
+          </div>
+          <a href="#vaerktoej" class="link">Prøv den første analyse →</a>
+        </article>
+
+        <article class="card">
+          <div>
+            <span class="tag">For mindre virksomheder</span>
+            <h3>Flere kunder</h3>
+            <p>Find skarpere kundegrupper, bedre budskaber, nye samarbejdsmuligheder og konkrete søge- og indholdsidéer.</p>
+          </div>
+          <a href="#kontakt" class="link">Book en kundesparring →</a>
+        </article>
+
+        <article class="card">
+          <div>
+            <span class="tag">For virksomheder og organisationer</span>
+            <h3>AI-gennemgang</h3>
+            <p>Find de arbejdsgange, hvor AI kan spare tid, skabe overblik og forbedre kvaliteten uden at gøre organisationen mere kompliceret.</p>
+          </div>
+          <a href="#kontakt" class="link">Start med én arbejdsproces →</a>
+        </article>
+
+        <article class="card">
+          <div>
+            <span class="tag">For ejere og ledere</span>
+            <h3>Fast sparringspartner</h3>
+            <p>Løbende, fortrolig sparring om beslutninger, idéer, kommunikation og de problemer, som ikke passer ind i et standardregneark.</p>
+          </div>
+          <a href="#kontakt" class="link">Tal om et længere forløb →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="vaerktoej">
+    <div class="inner tool-wrap">
+      <div>
+        <p class="label">Interaktiv indgang</p>
+        <h2 class="title">Fortæl, hvad du prøver at løse.</h2>
+        <p class="lead">
+          Du behøver ikke kende det rigtige fagudtryk. Skriv eller tal, som du ville forklare situationen til et andet menneske.
+        </p>
+        <p style="margin-top:24px;color:#5d5a52">
+          Den endelige version kan have flere målrettede assistenter: idétest, kundejagt,
+          AI-gennemgang og digitalt sagsrum. Denne prototype viser oplevelsen.
+        </p>
+      </div>
+
+      <div class="chat">
+        <div class="chat-top"><span class="dot"></span><strong>Waltham sparringsassistent</strong></div>
+        <div class="chat-body" id="chatBody">
+          <div class="bubble bot">Hvad står du med lige nu?</div>
+          <div class="choices">
+            <button class="choice" onclick="choose('Jeg har en forretningsidé, men ved ikke om den holder.')">Jeg har en idé, jeg vil teste</button>
+            <button class="choice" onclick="choose('Jeg vil gerne have flere kunder, men ved ikke hvor jeg skal begynde.')">Jeg vil have flere kunder</button>
+            <button class="choice" onclick="choose('Vi har en kompleks sag med mange dokumenter og mennesker.')">Vi har en kompleks sag</button>
+            <button class="choice" onclick="choose('Jeg vil finde praktiske steder at bruge AI i min virksomhed.')">Jeg vil bruge AI mere praktisk</button>
           </div>
         </div>
-
-        <div class="about-image-block">
-          <div class="about-image-placeholder">
-            <span class="about-image-caption">Photo — Nikolai at sea</span>
-          </div>
-        </div>
+        <form class="chat-input" onsubmit="sendMessage(event)">
+          <input id="chatInput" placeholder="Skriv med dine egne ord..." />
+          <button>Send</button>
+        </form>
       </div>
     </div>
   </section>
 
-  <!-- ─── Projects ───────────────────────────────── -->
-  <section class="section projects" id="work">
-    <div class="section-inner">
-      <p class="section-label">How I can help</p>
-      <h2 class="section-title">Not more AI.<br><em>Better questions.</em></h2>
-
-      <div class="projects-grid">
-
-        <div class="project-card project-card-large">
-          <span class="project-tag">For companies</span>
-          <h3 class="project-title">AI & Systems Review</h3>
-          <p class="project-desc">
-            A focused review of how work actually gets done. We find the bottlenecks, repeated tasks, lost attention and unrealised opportunities—then decide where AI, automation or a simpler process can create the most leverage.
-          </p>
-          <p class="project-meta">Clarity first · Technology second</p>
-        </div>
-
-        <div class="project-card">
-          <span class="project-tag">For founders</span>
-          <h3 class="project-title">Idea Catalyst</h3>
-          <p class="project-desc">
-            Bring an idea, a difficult decision or an incomplete plan. I challenge the assumptions, connect it to lessons from other industries and help identify the small lever that could create momentum.
-          </p>
-          <p class="project-meta">Confidential · Independent perspective</p>
-        </div>
-
-        <div class="project-card">
-          <span class="project-tag">For leaders</span>
-          <h3 class="project-title">Thinking Partner</h3>
-          <p class="project-desc">
-            Ongoing, direct sparring for owners and leaders who need an experienced outside mind. Less consultancy theatre; more honest questions, practical judgment and decisions that survive contact with reality.
-          </p>
-          <p class="project-meta">Selected relationships · Flexible format</p>
-        </div>
-
-        <div class="project-card">
-          <span class="project-tag">What I bring</span>
-          <h3 class="project-title">A broad training set</h3>
-          <p class="project-desc">
-            Companies, automation, patents, property, sales, mechanics, building, oceans, crises and restarts. AI can generate options. Experience helps us choose which option deserves to become real.
-          </p>
-          <p class="project-meta">Human judgment · Amplified by AI</p>
-        </div>
-
-        <div class="project-card">
-          <span class="project-tag">The objective</span>
-          <h3 class="project-title">Time returned</h3>
-          <p class="project-desc">
-            The best system is not the one that keeps everyone busier. It is the one that removes unnecessary work and gives people more attention for judgment, relationships, creativity and life.
-          </p>
-          <p class="project-meta">Work smarter · Live more deliberately</p>
-        </div>
-
+  <section class="section case" id="case">
+    <div class="inner case-grid">
+      <div>
+        <p class="label">Første demonstrationscase</p>
+        <h2 class="title">Bevar Nyborg Fjord</h2>
+        <p class="lead">
+          En omfattende lokal sag bliver gjort forståelig gennem temarapporter,
+          tidslinje, kilder, aktørkort og løbende situationsbilleder.
+        </p>
+        <p style="margin-top:24px">
+          Casen viser et produkt, der kan bruges af borgergrupper, grundejerforeninger,
+          organisationer, virksomheder og andre, som har brug for en fælles,
+          dokumenteret virkelighed.
+        </p>
       </div>
-    </div>
-  </section>
-
-  <!-- ─── Entrepreneurship ────────────────────────── -->
-  <section class="section entrepreneurship" id="story">
-    <div class="section-inner">
-      <p class="section-label">Problems I enjoyed solving</p>
-      <h2 class="section-title">The path was never straight.<br>The pattern <em>was.</em></h2>
-      <div class="divider"></div>
-
-      <div class="timeline">
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <p class="timeline-year">Early 1980s · Age 16</p>
-          <h3 class="timeline-title">Learning through my hands</h3>
-          <p class="timeline-text">
-            I began assembling and repairing bicycles in an Oslo bike shop. Mechanics taught me a lasting lesson: if I do not understand a system, I can take it apart, learn it and put it back together. Renovation jobs, engines and boatbuilding added more tools to the same practical education.
-          </p>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <p class="timeline-year">Early ventures</p>
-          <h3 class="timeline-title">Reklamevask — starting with borrowed tools</h3>
-          <p class="timeline-text">
-            A friend and I borrowed a van and a pressure washer, then sold clean façades to shops and cafés. Almost no capital, one clear observation and direct action. An early lesson in making something useful from what was already available.
-          </p>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <p class="timeline-year">1990s</p>
-          <h3 class="timeline-title">Ski- og Sykkelstasjonen</h3>
-          <p class="timeline-text">
-            We wanted the best equipment for the sports we loved, so we built a shop. With enthusiasm instead of capital, we convinced a supplier to fill it with bikes on consignment and worked with a ski factory to create our own wide, soft telemark skis. Once the concept worked, I handed the business to my partners and looked for the next challenge.
-          </p>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <p class="timeline-year">1990s</p>
-          <h3 class="timeline-title">SmartSense — inventing the application</h3>
-          <p class="timeline-text">
-            I connected an East German gas sensor with Norway's changing indoor-smoking rules. The engineers created an electronic nose that detected smoke and activated an electrostatic filter. We sold the first systems. I did not invent the sensor; I saw a new use for it.
-          </p>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <p class="timeline-year">Late 1990s</p>
-          <h3 class="timeline-title">Old boats, long passages</h3>
-          <p class="timeline-text">
-            I bought an old sailboat unseen in Malta, made the deal on arrival and sailed it home via the Azores. Later I revived a stripped, confiscated boat on the Azores with whatever parts I could find, then sailed it through the English Channel and North Sea. Incomplete systems under pressure have a way of clarifying what matters.
-          </p>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <p class="timeline-year">2000–2024</p>
-          <h3 class="timeline-title">InFact — automation with a purpose</h3>
-          <p class="timeline-text">
-            InFact began with a wish for freedom: a company I could run from anywhere with an internet connection. Automated telephone systems eventually handled hundreds of simultaneous conversations. Polls became headlines, headlines created attention, and attention led to the next customer—a system that produced both insight and momentum.
-          </p>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <p class="timeline-year">2022–present</p>
-          <h3 class="timeline-title">Generative AI — the next tool</h3>
-          <p class="timeline-text">
-            I put ChatGPT to practical use soon after it became public: first in board work, later in the sale of my company, and now across analysis, websites, property, documentation and new ventures. AI is not a new identity. It is the natural continuation of a lifetime spent asking how systems can carry more of the repetitive work.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── Sailing ─────────────────────────────────── -->
-  <section class="section sailing" id="sailing">
-    <div class="sailing-bg-image"></div>
-    <div class="sailing-bg"></div>
-    <div class="section-inner">
-      <p class="section-label">The operator, not the driver</p>
-      <h2 class="section-title" style="color: var(--white);">Trim the system.<br><em style="color: rgba(255,255,255,0.5)">Then let it work.</em></h2>
-
-      <div class="sailing-grid">
-        <div class="sailing-text">
-          <p>
-            On a passage lasting ten or fourteen days, the goal is not to fight the helm every minute. You invest time in balancing the sails, the boat and the windvane until the boat can sail herself.
-          </p>
-          <p>
-            Then your role changes. You become the operator rather than the driver: watching the conditions, protecting the system and making small corrections when the weather changes.
-          </p>
-          <p>
-            I recognise the same principle in a good company and a well-designed AI workflow. The initial thinking matters. Balance matters. And human judgment still decides when to trust the system and when to intervene.
-          </p>
-
-          <div class="sailing-milestones">
-            <div class="sailing-milestone">
-              <div class="sailing-milestone-icon">🌊</div>
-              <div>
-                <div class="sailing-milestone-title">Atlantic Crossing</div>
-                <div class="sailing-milestone-desc">Crossed the Atlantic. Blue water sailing that puts everything in perspective.</div>
-              </div>
-            </div>
-            <div class="sailing-milestone">
-              <div class="sailing-milestone-icon">⚓</div>
-              <div>
-                <div class="sailing-milestone-title">North Sea Crossings</div>
-                <div class="sailing-milestone-desc">Multiple crossings of the North Sea. The honest sea—no place to hide from yourself or the weather.</div>
-              </div>
-            </div>
-            <div class="sailing-milestone">
-              <div class="sailing-milestone-icon">🏆</div>
-              <div>
-                <div class="sailing-milestone-title">Silverrudder Race</div>
-                <div class="sailing-milestone-desc">Single-handed circumnavigation of Funen. Silence, focus and complete self-reliance.</div>
-              </div>
-            </div>
-            <div class="sailing-milestone">
-              <div class="sailing-milestone-icon">💨</div>
-              <div>
-                <div class="sailing-milestone-title">Wingfoiling</div>
-                <div class="sailing-milestone-desc">Flying above the water on a foil. Pure physics. Pure joy.</div>
-              </div>
-            </div>
-            <div class="sailing-milestone">
-              <div class="sailing-milestone-icon">🚩</div>
-              <div>
-                <div class="sailing-milestone-title">Offshore Racing</div>
-                <div class="sailing-milestone-desc">Racing offshore demands everything simultaneously. Strategy, endurance, teamwork and luck.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
+      <div class="case-panel">
         <div>
-          <div class="sailing-quote">
-            <p class="sailing-quote-text">
-              "When the wind changes, you don't argue with the weather. You adjust the course."
-            </p>
-            <p class="sailing-quote-attr">— A principle for sea, business and life</p>
-          </div>
+          <small>Digitalt sagsrum · levende vidensbase</small>
+          <h3>Fra holdning til dokumenteret overblik.</h3>
+          <p>
+            Platformen tager ikke kompleksiteten væk. Den gør den navigerbar.
+            Fakta, vurderinger, usikkerheder og argumenter skilles tydeligt ad.
+          </p>
+        </div>
+        <div class="metrics">
+          <div class="metric"><b>01</b><span>Samlet situationsbillede</span></div>
+          <div class="metric"><b>07</b><span>Tematiske spor</span></div>
+          <div class="metric"><b>24/7</b><span>Søgbar viden</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── Philosophy ──────────────────────────────── -->
-  <section class="section philosophy" id="philosophy">
-    <div class="section-inner">
-      <p class="section-label">Principles</p>
-      <h2 class="section-title">What all the stories<br>have <em>taught me.</em></h2>
-
-      <div class="philosophy-quotes">
-
-        <div class="quote-block">
-          <p class="quote-text">Time is the only resource we never get more of.</p>
-          <p class="quote-context">
-            I have never measured an opportunity only by the money it might produce. I also count the future emails, calls, meetings and obligations. A good system does not merely save money. It returns attention and time to people.
-          </p>
-        </div>
-
-        <div class="quote-block">
-          <p class="quote-text">Build the autopilot. Keep the judgment.</p>
-          <p class="quote-context">
-            The goal is not to remove people from the process. It is to remove people from unnecessary work. Machines can carry the repetition; humans should keep responsibility, context and the ability to intervene.
-          </p>
-        </div>
-
-        <div class="quote-block">
-          <p class="quote-text">Make soup from a nail.</p>
-          <p class="quote-context">
-            Start with what you have. Make it useful. Invite others in. Let one result create the next. Many of my companies began with little more than a practical observation, borrowed equipment and enough enthusiasm to start the wheel turning.
-          </p>
-        </div>
-
-        <div class="quote-block">
-          <p class="quote-text">Work smarter. Create more. Spend more days in the sun.</p>
-          <p class="quote-context">
-            Freedom is not about doing nothing. It is having room to remain curious, build something, help someone, spend time with family, go sailing and keep playing for as long as life allows.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── Writing ─────────────────────────────────── -->
-  <section class="section writing" id="ideas">
-    <div class="section-inner">
-      <p class="section-label">Thinking log</p>
-      <h2 class="section-title">One thought can lead<br>to the <em>next thing.</em></h2>
-      <p class="writing-intro">
-        I notice awkward processes and overlooked possibilities almost every day. This will become a public notebook of observations, old business ideas and practical lessons—shared in the hope that someone else can use them, improve them or start something unexpected.
+  <section class="section" id="artikler">
+    <div class="inner">
+      <p class="label">Historier med hjerte og anvendelse</p>
+      <h2 class="title">Tanker, man kan tage med sig.</h2>
+      <p class="lead">
+        Artiklerne skal ikke fylde internettet med mere støj. De skal fortælle en historie,
+        give læseren noget konkret og vise en måde at tænke på.
       </p>
 
-      <div class="writing-grid">
-
-        <div class="writing-card">
-          <span class="writing-card-coming">First story · In preparation</span>
-          <h3 class="writing-card-title">What 600 telephone robots taught me about AI agents</h3>
-          <p class="writing-card-desc">Automation did not begin with ChatGPT. A story about translating human work into systems—and what has changed since.</p>
-        </div>
-
-        <div class="writing-card">
-          <span class="writing-card-coming">Field note · In preparation</span>
-          <h3 class="writing-card-title">What a Shimano hub reminded me about learning</h3>
-          <p class="writing-card-desc">Fourteen videos, many small parts and one repaired bicycle: if I do not understand a system, I want to take it apart until I do.</p>
-        </div>
-
-        <div class="writing-card">
-          <span class="writing-card-coming">Principle · In preparation</span>
-          <h3 class="writing-card-title">Making soup from a nail</h3>
-          <p class="writing-card-desc">How borrowed tools, a simple observation and the ability to bring people along can turn almost nothing into useful momentum.</p>
-        </div>
-
+      <div class="articles">
+        <article class="article">
+          <span class="num">HISTORIE 01</span>
+          <h3>Den bedste idé er ikke altid den, du selv skal bygge.</h3>
+          <p>Om hvorfor ubrugte idéer ikke er spild, og hvordan de kan få et bedre liv hos andre.</p>
+        </article>
+        <article class="article">
+          <span class="num">HISTORIE 02</span>
+          <h3>En chatbot er ikke et produkt, før den løser en opgave.</h3>
+          <p>Forskellen på en teknisk gimmick og et værktøj, som faktisk hjælper mennesker videre.</p>
+        </article>
+        <article class="article">
+          <span class="num">HISTORIE 03</span>
+          <h3>Når alle har ret, men ingen har overblik.</h3>
+          <p>Hvordan en fælles vidensbase kan dæmpe konflikter uden at fjerne uenigheden.</p>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ─── Contact ─────────────────────────────────── -->
-  <section class="section contact" id="contact">
-    <div class="section-inner">
-      <p class="section-label" style="color: rgba(181,152,106,0.8)">Contact</p>
-      <div class="contact-grid">
+  <section class="section ideas" id="ideer">
+    <div class="inner">
+      <p class="label">Åben idébank</p>
+      <h2 class="title">Idéer, jeg ikke selv når at bygge.</h2>
+      <p class="lead">
+        Nogle idéer passer bedre til et andet menneske, et andet sted eller et andet tidspunkt.
+        Her kan de blive undersøgt, forbedret og måske taget videre.
+      </p>
 
-        <div>
-          <h2 class="section-title">What could work<br><em style="color: rgba(255,255,255,0.4)">better?</em></h2>
-          <p class="contact-text">
-            If you have a company, a difficult decision or an idea that deserves a different angle, tell me what is getting in the way. I am interested in a few meaningful projects with curious people—not in filling the calendar with meetings.
-          </p>
-        </div>
-
-        <div>
-          <div class="contact-links">
-            <a href="https://linkedin.com/in/nikolaiwaltham" class="contact-link" target="_blank" rel="noopener">
-              <span>LinkedIn</span>
-              <span class="contact-link-arrow">→</span>
-            </a>
-            <a href="https://www.lindholmbusinesscenter.dk" class="contact-link" target="_blank" rel="noopener">
-              <span>Lindholm Business Center</span>
-              <span class="contact-link-arrow">→</span>
-            </a>
-          </div>
-
-          <div class="contact-email">
-            <a href="mailto:nikolai@waltham.no" class="contact-email-btn" aria-label="Send email">
-              Send me an email
-            </a>
-          </div>
-        </div>
-
+      <div class="idea-grid">
+        <article class="idea">
+          <span class="meta">Tag idéen · lokal handel</span>
+          <h3>Den digitale landsbybutik</h3>
+          <p>En fælles lokal salgskanal, hvor små butikker deler distribution, historier og kundedata uden at miste deres identitet.</p>
+        </article>
+        <article class="idea">
+          <span class="meta">Tag idéen · ejendomme</span>
+          <h3>Lejerens intelligente indgang</h3>
+          <p>Én samtalebaseret indgang til fejlmeldinger, husorden, dokumenter og opfølgning — med menneskelig overtagelse, når det kræves.</p>
+        </article>
+        <article class="idea">
+          <span class="meta">Tag idéen · foreninger</span>
+          <h3>Fælles hukommelse for ejerkredse</h3>
+          <p>Et sagsrum, der holder styr på beslutninger, opgaver, dokumenter og historik, når mange mennesker deler ansvar over lang tid.</p>
+        </article>
+        <article class="idea">
+          <span class="meta">Tag idéen · iværksætteri</span>
+          <h3>Idéens dødsårsag</h3>
+          <p>En enkel tjeneste, der analyserer, hvorfor et projekt gik i stå — og om det bør genoplives, gives væk eller afsluttes ordentligt.</p>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ─── Footer ──────────────────────────────────── -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <p class="footer-logo">Nikolai<span>.</span></p>
-      <p class="footer-copy">© 2026 Nikolai Waltham. Nyborg, Denmark.</p>
-      <a class="footer-copy" href="/?logout=1">Log out</a>
+
+  <section class="section proof" id="erfaring">
+    <div class="inner proof-grid">
+      <div>
+        <p class="label">Erfaring, der kan ses</p>
+        <h2 class="title">25 år tæt på mennesker, medier og beslutninger.</h2>
+        <p class="lead">InFact blev ikke kun et system. Det blev et udsigtspunkt til, hvordan mennesker svarer, hvordan spørgsmål former debatten, og hvordan dokumentation bliver brugt i virkelige sager.</p>
+        <div class="proof-stats" style="margin-top:38px">
+          <div class="proof-stat"><b>30+</b><span>år med virksomheder, ledelse og nye koncepter</span></div>
+          <div class="proof-stat"><b>25</b><span>år med meningsmålinger og markedsindsigt</span></div>
+          <div class="proof-stat"><b>Millioner</b><span>af gennemførte interview på tværs af Skandinavien</span></div>
+          <div class="proof-stat"><b>Hundredvis</b><span>af medie-, PR- og kommunikationscases</span></div>
+        </div>
+        <p class="press-note">Tallene skal kvalitetssikres mod InFacts dokumentation før offentlig lancering.</p>
+      </div>
+      <div>
+        <div class="press-wall">
+          <article class="press-card"><small>Eksempel · landsdækkende nyhed</small><h4>“Ny måling ændrer billedet af vælgernes holdning”</h4><p>InFact leverede datagrundlaget bag den offentlige samtale.</p></article>
+          <article class="press-card"><small>Eksempel · PR-case</small><h4>“8 ud af 10 ønsker en enklere løsning”</h4><p>En kunde brugte dokumentation til at gøre et abstrakt problem konkret.</p></article>
+          <article class="press-card"><small>Eksempel · lokal debat</small><h4>“Borgerne siger nej til planerne”</h4><p>Lokale stemmer blev samlet og gjort synlige i medierne.</p></article>
+          <article class="press-card"><small>Eksempel · forbrugere</small><h4>“Danskerne vil have mere gennemsigtighed”</h4><p>En undersøgelse gav en sag en klar og forståelig vinkel.</p></article>
+          <article class="press-card"><small>Eksempel · dagsorden</small><h4>“Flertal kræver handling nu”</h4><p>Spørgsmål, timing og formidling blev afgørende for gennemslaget.</p></article>
+          <article class="press-card"><small>Plads til rigtige forsider</small><h4>Udvalgte InFact-opslag indsættes her</h4><p>Med medie, dato, kilde og en kort forklaring af InFacts rolle.</p></article>
+        </div>
+        <p class="press-note">Disse er visuelle pladsholdere. De kan erstattes af rigtige forsider og opslag, når materialet er samlet og brugsretten er afklaret.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section partners" id="partnere">
+    <div class="inner partners-grid">
+      <div>
+        <p class="label">Idéer søger mennesker</p>
+        <h2 class="title">Måske er det ikke dig, der skal bygge idéen alene.</h2>
+        <p class="lead">
+          Nogle idéer mangler ikke potentiale. De mangler den rigtige kombination af mennesker:
+          en medstifter, en investor, en faglig partner, en pilotkunde eller en person, som kan tage
+          ansvar for at føre idéen ud i livet.
+        </p>
+        <div class="partner-brief">
+          <strong>Hver idé bør være tydelig om, hvad den søger.</strong>
+          <ul>
+            <li>Hvilket problem løser idéen?</li>
+            <li>Hvad er allerede undersøgt eller bygget?</li>
+            <li>Hvilken type person eller organisation mangler?</li>
+            <li>Hvad er det realistiske næste skridt?</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="partner-types">
+        <article class="partner-type">
+          <small>Søger</small>
+          <h3>Medstifter</h3>
+          <p>En person, der vil bygge virksomheden og dele ansvar, risiko og ejerskab.</p>
+        </article>
+        <article class="partner-type">
+          <small>Søger</small>
+          <h3>Investor</h3>
+          <p>Kapital og erfaring til en idé, som allerede har dokumenteret behov eller tidlig fremdrift.</p>
+        </article>
+        <article class="partner-type">
+          <small>Søger</small>
+          <h3>Faglig partner</h3>
+          <p>Teknisk, juridisk, kommerciel eller branchespecifik kompetence, som idéen mangler.</p>
+        </article>
+        <article class="partner-type">
+          <small>Søger</small>
+          <h3>Pilotkunde</h3>
+          <p>En virkelig bruger, som vil teste løsningen og hjælpe med at gøre den anvendelig.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="inner about">
+      <div class="quote">
+        “Erfaring er ikke et CV.<br>Det er evnen til at genkende et mønster, før det bliver dyrt.”
+      </div>
+      <div class="bio">
+        <p>
+          Bag siden står Nikolai Waltham, iværksætter og praktisk problemløser med mange års erfaring fra virksomheder, teknologi, salg, ejendomme og udvikling af nye koncepter.
+        </p>
+        <p>
+          Baggrunden er med for at skabe troværdighed — ikke for at gøre privatlivet til produktet.
+          Fokus er på problemet, idéen og det næste brugbare skridt.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter" id="kontakt">
+    <p class="label">Én god idé ad gangen</p>
+    <h2>Få historier, værktøjer og åbne idéer.</h2>
+    <p>
+      Tilmeld dig et roligt nyhedsbrev, eller brug mailen til at foreslå en samtale om en idé,
+      en virksomhed eller en kompliceret sag.
+    </p>
+    <form class="form" onsubmit="event.preventDefault(); alert('Prototype: Her kobles nyhedsbrev eller kontaktformular på.');">
+      <input type="email" placeholder="Din e-mailadresse" required />
+      <button>Tilmeld</button>
+    </form>
+    <div class="cta-row" style="justify-content:center;margin-top:22px">
+      <a class="btn btn-secondary" href="mailto:waltham@me.com">Skriv om en samtale</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot">
+      <span>© 2026 Waltham. Praktisk intelligens, mennesker først.</span>
+      <span>Web · LinkedIn · Facebook · Nyhedsbrev</span>
     </div>
   </footer>
 
-  <script src="js/main.js?v=20260713"></script>
+  <script>
+    const nav=document.getElementById('nav');
+    const menu=document.querySelector('.menu');
+    const links=document.querySelector('.links');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50));
+    menu.addEventListener('click',()=>{
+      const open=links.classList.toggle('open');
+      menu.setAttribute('aria-expanded',String(open));
+    });
+    links.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
+      links.classList.remove('open');
+      menu.setAttribute('aria-expanded','false');
+    }));
+
+    function addBubble(text, cls){
+      const body=document.getElementById('chatBody');
+      const el=document.createElement('div');
+      el.className='bubble '+cls;
+      el.textContent=text;
+      body.appendChild(el);
+      body.scrollTop=body.scrollHeight;
+    }
+    function choose(text){
+      addBubble(text,'user');
+      setTimeout(()=>addBubble('Tak. Det første jeg vil afklare er: Hvad vil være anderledes om 90 dage, hvis det lykkes? Beskriv gerne resultatet helt konkret.','bot'),350);
+    }
+    function sendMessage(e){
+      e.preventDefault();
+      const input=document.getElementById('chatInput');
+      const text=input.value.trim();
+      if(!text)return;
+      addBubble(text,'user');input.value='';
+      setTimeout(()=>addBubble('Det giver mening. I en rigtig version ville jeg nu stille 2–4 målrettede spørgsmål og samle svarene i en første analyse med risici, muligheder og næste skridt.','bot'),350);
+    }
+  </script>
 </body>
 </html>
