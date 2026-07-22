@@ -26,6 +26,7 @@
 - Anonymised concept case: turning one retail sales catalogue into a steady stream of targeted product stories and measurable customer encounters with AI-assisted content production.
 - TILLID review: maps verifiable evidence of transparency, identity, delivery capability, continuity, integrity and documentation, then makes those trust signals easier for people, search engines and AI assistants to find and understand.
 - Anonymised concept case: turning a loosely described car problem into a workshop-ready fault report, relevant provider links and a user-approved service request ready to send.
+- Provider matching: helps local businesses describe specific problem expertise, verifiable trust signals, current contact routes and next actions so search engines and AI assistants can understand when the provider is relevant to a user's situation.
 
 ## Recurring themes
 
