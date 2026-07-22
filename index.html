@@ -45,6 +45,9 @@
     .logo span{color:var(--gold)}
     .links{display:flex;gap:28px;list-style:none;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
     .links a:hover{color:var(--gold)}
+    .nav-actions{display:flex;align-items:center;gap:16px}
+    .language-switcher{display:flex;gap:8px;padding-left:16px;border-left:1px solid currentColor;font-size:11px;letter-spacing:.08em}
+    .language-switcher a{opacity:.62}.language-switcher a:hover,.language-switcher a[aria-current="true"]{opacity:1;color:var(--gold-2)}
     .menu{display:none;border:0;background:none;color:inherit;font-size:24px}
     .hero{
       min-height:100vh;background:
@@ -195,6 +198,7 @@
 
     @media(max-width:900px){
       .links{display:none}.menu{display:block}
+      .nav-actions{gap:12px}.language-switcher{padding-left:0;border-left:0}
       .problem-grid,.tool-wrap,.case-grid,.about,.origin-grid,.proof-grid,.partners-grid,.trust-intro,.property-head{grid-template-columns:1fr}
       .card,.card.large{grid-column:span 12}
       .articles{grid-template-columns:1fr}
@@ -231,7 +235,10 @@
       <li><a href="#erfaring">Erfaring</a></li><li><a href="#artikler">Blog</a></li><li><a href="#historien">Om</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
     </ul>
-    <button class="menu" id="menuButton" aria-label="Åbn menu" aria-expanded="false">☰</button>
+    <div class="nav-actions">
+      <div class="language-switcher" aria-label="Vælg sprog"><a href="/" lang="da" aria-current="true">DA</a><a href="/no/" lang="nb">NO</a><a href="/en/" lang="en">EN</a></div>
+      <button class="menu" id="menuButton" aria-label="Åbn menu" aria-expanded="false">☰</button>
+    </div>
   </nav>
   <div class="mobile-panel" id="mobilePanel">
     <a href="#produkter">Ydelser</a><a href="#tillid">TILLID</a><a href="#ejendomme">Ejendomme</a>
