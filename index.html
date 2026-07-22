@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Praktisk sparring, idéudvikling, AI-gennemgange og digitale sagsrum for virksomheder, foreninger og mennesker med noget vigtigt på spil." />
-  <title>Waltham — Idéer, sparring og digitale sagsrum</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <meta name="description" content="Waltham hjælper virksomheder og ejendomsejere med strategi, tillid, synlighed og praktisk gennemførelse. Se TILLID-gennemgangen og vores arbejde med erhvervsejendomme." />
+  <meta name="theme-color" content="#11110f" />
+  <meta property="og:title" content="Waltham — strategi, tillid og praktisk gennemførelse" />
+  <meta property="og:description" content="Fra uklare muligheder til et konkret næste skridt. Strategi, TILLID-gennemgang, digitale sagsrum og ejendomsudvikling." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://waltham.no/" />
   <link rel="canonical" href="https://waltham.no/" />
-  <link rel="alternate" hreflang="da" href="https://waltham.no/" />
-  <link rel="alternate" hreflang="nb" href="https://waltham.no/no/" />
-  <link rel="alternate" hreflang="en" href="https://waltham.no/en/" />
-  <link rel="alternate" hreflang="x-default" href="https://waltham.no/" />
+  <title>Waltham — strategi, tillid og praktisk gennemførelse</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
 
@@ -43,12 +43,8 @@
     .nav.scrolled{background:rgba(244,241,234,.95);backdrop-filter:blur(16px);color:var(--ink);border-bottom:1px solid var(--line)}
     .logo{font-family:var(--display);font-size:24px;letter-spacing:.02em}
     .logo span{color:var(--gold)}
-    .links{display:flex;gap:23px;list-style:none;font-size:12px;letter-spacing:.12em;text-transform:uppercase;align-items:center}
+    .links{display:flex;gap:28px;list-style:none;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
     .links a:hover{color:var(--gold)}
-    .links .nav-featured{padding:8px 11px;background:var(--gold);color:#111;letter-spacing:.08em}
-    .links .nav-featured:hover{background:var(--gold-2);color:#111}
-    .lang-switch{display:flex;gap:8px;padding-left:16px;border-left:1px solid currentColor;letter-spacing:.06em}
-    .lang-switch a[aria-current="true"]{color:var(--gold-2)}
     .menu{display:none;border:0;background:none;color:inherit;font-size:24px}
     .hero{
       min-height:100vh;background:
@@ -87,7 +83,6 @@
     .cards{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:54px}
     .card{grid-column:span 6;border:1px solid rgba(255,255,255,.13);padding:34px;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;background:rgba(255,255,255,.025)}
     .card.large{grid-column:span 12;min-height:360px;background:linear-gradient(135deg,rgba(181,152,106,.13),rgba(255,255,255,.02))}
-    .card.featured{border-color:var(--gold);background:linear-gradient(135deg,rgba(181,152,106,.28),rgba(255,255,255,.035));box-shadow:inset 4px 0 0 var(--gold)}
     .tag{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-2)}
     .card h3{font-size:42px;line-height:1;margin:22px 0 14px}
     .card p{color:rgba(255,255,255,.68);max-width:650px}
@@ -106,21 +101,12 @@
     .chat-input{display:flex;border-top:1px solid var(--line);padding:14px;gap:10px}
     .chat-input input{flex:1;border:0;background:#f3f0e9;padding:13px;outline:none}
     .chat-input button{border:0;background:var(--gold);padding:0 18px;cursor:pointer}
-    .case{
-      background:url('/assets/images/nyborg-fjord-background.jpeg') center 52%/cover no-repeat;
-      color:#fff;
-    }
-    .case-grid>div:first-child{text-shadow:0 2px 18px rgba(0,0,0,.72)}
-    .case .label{color:var(--gold-2)}
-    .case .lead{color:rgba(255,255,255,.78)}
-    .case-grid>div:first-child>p:last-child{color:rgba(255,255,255,.88)}
+    .case{background:#dcd7cc}
     .case-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
     .case-panel{background:#10100e;color:#fff;padding:44px;min-height:520px;display:flex;flex-direction:column;justify-content:space-between}
     .case-panel small{color:var(--gold-2);letter-spacing:.18em;text-transform:uppercase}
     .case-panel h3{font-size:56px;line-height:.95;margin:20px 0}
     .case-panel p{color:rgba(255,255,255,.66)}
-    .case-link{display:inline-flex;margin-top:28px;padding:12px 18px;border:1px solid rgba(255,255,255,.55);color:#fff;font-size:12px;letter-spacing:.08em;text-transform:uppercase;transition:.2s}
-    .case-link:hover{background:#fff;color:#111}
     .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.12);margin-top:30px}
     .metric{padding:18px;background:#171713}
     .metric b{display:block;font-family:var(--display);font-size:30px;color:var(--gold-2)}
@@ -181,52 +167,84 @@
     .partner-brief ul{padding-left:18px;color:rgba(255,255,255,.67)}
     .partner-brief li+li{margin-top:7px}
 
+    .trust{background:#f6f2e9}
+    .trust-intro{display:grid;grid-template-columns:.95fr 1.05fr;gap:70px;align-items:start}
+    .trust-model{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+    .trust-item{background:#fff;padding:24px}
+    .trust-letter{font-family:var(--display);font-size:42px;color:var(--gold);line-height:1}
+    .trust-item h3{font-size:26px;margin:8px 0 5px}.trust-item p{font-size:13px;color:#5e5a52}
+    .trust-delivery{margin-top:50px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .trust-box{background:#11110f;color:#fff;padding:38px}.trust-box h3{font-size:38px;margin-bottom:16px}
+    .trust-box p,.trust-box li{color:rgba(255,255,255,.68)}.trust-box ul{padding-left:18px;margin-top:18px}.trust-box li+li{margin-top:8px}
+    .score-card{background:#fff;border:1px solid var(--line);padding:38px}.score-card h3{font-size:38px}
+    .score-row{display:grid;grid-template-columns:125px 1fr 28px;gap:12px;align-items:center;margin-top:15px;font-size:13px}
+    .score-row input{accent-color:var(--gold);width:100%}
+    .score-total{margin-top:26px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:end}
+    .score-total b{font-family:var(--display);font-size:54px;color:var(--gold);line-height:1}
+    .property{background:#dcd7cc}.property-head{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:end}
+    .property-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:46px}
+    .property-card{background:#fff;min-height:245px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;border-top:3px solid var(--gold)}
+    .property-card h3{font-size:34px;line-height:1.05;margin:12px 0}.property-card p{font-size:14px;color:#5b5850}
+    .property-note{font-size:12px;color:#666158;margin-top:20px}.btn-dark{background:#151512;color:#fff}.btn-dark:hover{background:#2b2a25}
+    .mobile-panel{display:none;position:fixed;z-index:19;inset:72px 0 auto 0;background:rgba(244,241,234,.98);padding:24px var(--gutter);border-bottom:1px solid var(--line)}
+    .mobile-panel.open{display:grid;gap:16px}.mobile-panel a{font-size:14px;letter-spacing:.1em;text-transform:uppercase}
+
     @media(max-width:900px){
       .links{display:none}.menu{display:block}
-      .links.open{display:flex;position:fixed;top:72px;left:0;right:0;flex-direction:column;gap:18px;padding:24px var(--gutter);background:rgba(244,241,234,.98);color:var(--ink);border-bottom:1px solid var(--line)}
-      .problem-grid,.tool-wrap,.case-grid,.about,.origin-grid,.proof-grid,.partners-grid{grid-template-columns:1fr}
-      .case{background-position:58% center}
-      .problem-grid>*,.tool-wrap>*,.case-grid>*,.about>*,.origin-grid>*,.proof-grid>*,.partners-grid>*{min-width:0}
+      .problem-grid,.tool-wrap,.case-grid,.about,.origin-grid,.proof-grid,.partners-grid,.trust-intro,.property-head{grid-template-columns:1fr}
       .card,.card.large{grid-column:span 12}
       .articles{grid-template-columns:1fr}
-      .idea-grid{grid-template-columns:1fr}.press-wall{grid-template-columns:1fr 1fr}
+      .idea-grid,.trust-delivery{grid-template-columns:1fr}.press-wall{grid-template-columns:1fr 1fr}.property-grid{grid-template-columns:1fr}
     }
     @media(max-width:600px){
       h1{font-size:58px}
       .hero{padding-bottom:62px}
       .form{flex-direction:column}.form button{padding:15px}
-      .metrics,.proof-stats,.press-wall,.partner-types{grid-template-columns:1fr}
-      .case-panel{padding:28px}
+      .metrics{grid-template-columns:1fr}
+      .trust-model{grid-template-columns:1fr}.score-row{grid-template-columns:105px 1fr 24px}
     }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Waltham",
+    "url": "https://waltham.no/",
+    "email": "waltham@me.com",
+    "founder": {"@type": "Person", "name": "Nikolai Waltham"},
+    "areaServed": ["Danmark", "Norge"],
+    "knowsAbout": ["Strategi", "Forretningsudvikling", "Tillid", "Erhvervsejendomme", "Digital synlighed"],
+    "description": "Waltham hjælper virksomheder og ejendomsejere med strategi, tillid, synlighed og praktisk gennemførelse."
+  }
+  </script>
 </head>
 <body>
   <nav class="nav" id="nav">
-    <a class="logo" href="/">Waltham<span>.</span></a>
+    <a class="logo" href="#top">Waltham<span>.</span></a>
     <ul class="links">
-      <li><a class="nav-featured" href="fra-ide-til-virksomhed.html">Start virksomhed</a></li><li><a href="#produkter">Produkter</a></li>
-      <li><a href="#vaerktoej">Prøv et værktøj</a></li>
-      <li><a href="#case">Case</a></li><li><a href="#erfaring">Erfaring</a></li>
-      <li><a href="#artikler">Artikler</a></li>
-      <li><a href="#ideer">Åbne idéer</a></li><li><a href="om.html">Om Nikolai</a></li>
+      <li><a href="#produkter">Ydelser</a></li><li><a href="#tillid">TILLID</a></li>
+      <li><a href="#ejendomme">Ejendomme</a></li><li><a href="#case">Cases</a></li>
+      <li><a href="#erfaring">Erfaring</a></li><li><a href="#historien">Om</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
-      <li class="lang-switch" aria-label="Vælg sprog"><a href="/" aria-current="true" lang="da">DA</a><a href="/no/" lang="nb">NO</a><a href="/en/" lang="en">EN</a></li>
     </ul>
-    <button class="menu" aria-label="Menu" aria-expanded="false">☰</button>
+    <button class="menu" id="menuButton" aria-label="Åbn menu" aria-expanded="false">☰</button>
   </nav>
+  <div class="mobile-panel" id="mobilePanel">
+    <a href="#produkter">Ydelser</a><a href="#tillid">TILLID</a><a href="#ejendomme">Ejendomme</a>
+    <a href="#case">Cases</a><a href="#erfaring">Erfaring</a><a href="#kontakt">Kontakt</a>
+  </div>
 
   <header class="hero" id="top">
     <div class="hero-inner">
-      <p class="eyebrow">Praktisk intelligens · mennesker først</p>
-      <h1>Gode idéer fortjener<br>et <em>virkeligt liv.</em></h1>
+      <p class="eyebrow">Strategi · tillid · praktisk gennemførelse</p>
+      <h1>Fra mulighed til<br><em>virkeligt resultat.</em></h1>
       <p class="hero-copy">
-        Praktisk sparring, AI-værktøjer og digitale sagsrum for virksomheder,
-        foreninger og mennesker, der står med en god idé, en vanskelig beslutning
-        eller en sag, som er blevet for kompleks.
+        Waltham hjælper mindre virksomheder og ejendomsejere med at skabe retning,
+        gøre deres kvaliteter synlige og føre gode beslutninger ud i livet.
       </p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="#vaerktoej">Beskriv din udfordring</a>
-        <a class="btn btn-secondary" href="fra-ide-til-virksomhed.html">Fra idé til virksomhed →</a>
+        <a class="btn btn-primary" href="#produkter">Se vores ydelser</a>
+        <a class="btn btn-secondary" href="#kontakt">Tag en uforpligtende samtale</a>
       </div>
     </div>
   </header>
@@ -234,8 +252,8 @@
   <section class="section">
     <div class="inner problem-grid">
       <div>
-        <p class="label">Det egentlige problem</p>
-        <h2 class="title">De fleste mangler ikke information. De mangler overblik.</h2>
+        <p class="label">Når potentialet ikke bliver til fremdrift</p>
+        <h2 class="title">De fleste mangler ikke muligheder. De mangler et klart næste skridt.</h2>
         <p class="lead">
           Når dokumenter, idéer, mennesker og interesser vokser i alle retninger,
           bliver det svært at se, hvad der er vigtigt, hvad der er sandt, og hvad næste skridt bør være.
@@ -274,19 +292,10 @@
   <section class="section dark" id="produkter">
     <div class="inner">
       <p class="label">Produkter</p>
-      <h2 class="title">Ikke mere konsulentteater.<br>Et bedre næste skridt.</h2>
+      <h2 class="title">Erfaring er først værdifuld,<br>når den kan bruges.</h2>
       <p class="lead">Begynd småt, få klarhed og byg kun det, der faktisk skaber værdi.</p>
 
       <div class="cards">
-        <article class="card large featured">
-          <div>
-            <span class="tag">Fra første idé til første kunde</span>
-            <h3>Fra idé til virksomhed</h3>
-            <p>Et sammenhængende forløb, hvor konkurrentanalyse, forretningsmodel, ejerskab og aftaler, hjemmeside og lancering bliver bygget som én samlet sag.</p>
-          </div>
-          <a href="fra-ide-til-virksomhed.html" class="link">Se hele virksomhedsrejsen →</a>
-        </article>
-
         <article class="card large">
           <div>
             <span class="tag">For grupper, foreninger og komplekse projekter</span>
@@ -308,19 +317,19 @@
         <article class="card">
           <div>
             <span class="tag">For mindre virksomheder</span>
-            <h3>Flere kunder</h3>
-            <p>Find skarpere kundegrupper, bedre budskaber, nye samarbejdsmuligheder og konkrete søge- og indholdsidéer.</p>
+            <h3>TILLID-gennemgang</h3>
+            <p>En systematisk vurdering af virksomhedens troværdighed: Hvilke kvaliteter findes allerede, hvilke beviser mangler, og hvilke handlinger vil styrke kundernes tillid?</p>
           </div>
-          <a href="#kontakt" class="link">Book en kundesparring →</a>
+          <a href="#tillid" class="link">Se TILLID-modellen →</a>
         </article>
 
         <article class="card">
           <div>
-            <span class="tag">For virksomheder og organisationer</span>
-            <h3>AI-gennemgang</h3>
-            <p>Find de arbejdsgange, hvor AI kan spare tid, skabe overblik og forbedre kvaliteten uden at gøre organisationen mere kompliceret.</p>
+            <span class="tag">For ejendomsejere</span>
+            <h3>Ejendomme og udlejning</h3>
+            <p>Praktisk drift, lejerkontakt, markedsføring, fremvisninger og udvikling af erhvervsejendomme gennem LBC Facility Management.</p>
           </div>
-          <a href="#kontakt" class="link">Start med én arbejdsproces →</a>
+          <a href="#ejendomme" class="link">Se forretningsområdet →</a>
         </article>
 
         <article class="card">
@@ -335,6 +344,73 @@
     </div>
   </section>
 
+  <section class="section trust" id="tillid">
+    <div class="inner">
+      <div class="trust-intro">
+        <div>
+          <p class="label">Nyt produkt · TILLID-gennemgangen</p>
+          <h2 class="title">Kunder køber ikke kun kvalitet. De køber tegn på kvalitet.</h2>
+          <p class="lead">En service kan sjældent vurderes fuldt ud på forhånd. Derfor vælger kunder ud fra synlige tegn på kompetence, stabilitet og ordentlighed. Vi kortlægger virksomhedens tillidskapital og gør de stærkeste beviser tydelige.</p>
+        </div>
+        <div class="trust-model" aria-label="TILLID-modellens seks områder">
+          <article class="trust-item"><span class="trust-letter">T</span><h3>Transparens</h3><p>Ejerskab, priser, vilkår, kontaktveje og arbejdsprocesser.</p></article>
+          <article class="trust-item"><span class="trust-letter">I</span><h3>Identitet</h3><p>Rigtige mennesker, fysisk tilstedeværelse og virksomhedshistorie.</p></article>
+          <article class="trust-item"><span class="trust-letter">L</span><h3>Leveranceevne</h3><p>Cases, resultater, kompetencer og dokumenteret problemløsning.</p></article>
+          <article class="trust-item"><span class="trust-letter">L</span><h3>Langsigtethed</h3><p>Kontinuitet, investeringer og relationer, der holder over tid.</p></article>
+          <article class="trust-item"><span class="trust-letter">I</span><h3>Integritet</h3><p>Ordholdenhed, ærlig kommunikation og rimelig håndtering af fejl.</p></article>
+          <article class="trust-item"><span class="trust-letter">D</span><h3>Dokumentation</h3><p>Referencer, anmeldelser, omtale, billeder og målbare fakta.</p></article>
+        </div>
+      </div>
+      <div class="trust-delivery">
+        <article class="trust-box">
+          <span class="tag">Det får virksomheden</span>
+          <h3>Fra mavefornemmelse til handlingsplan.</h3>
+          <p>Gennemgangen samler det, virksomheden allerede gør godt, og viser hvor manglende beviser skaber unødig usikkerhed.</p>
+          <ul>
+            <li>Score og begrundelse på seks områder</li>
+            <li>Kontrol af hjemmeside og offentlige signaler</li>
+            <li>Prioriteret liste over forbedringer</li>
+            <li>Forslag til cases, fakta og dokumentation</li>
+          </ul>
+          <a class="btn btn-primary" style="margin-top:26px" href="mailto:waltham@me.com?subject=TILLID-gennemgang">Tal med os om en TILLID-gennemgang</a>
+        </article>
+        <div class="score-card">
+          <p class="label">En enkel første temperaturmåling</p>
+          <h3>Hvordan står jeres virksomhed?</h3>
+          <p style="color:#5e5a52;margin:8px 0 18px">Vurdér hvert område fra 0 til 5. Resultatet er kun en indikation – den egentlige værdi ligger i dokumentationen bag scoren.</p>
+          <label class="score-row"><span>Transparens</span><input class="trust-range" type="range" min="0" max="5" value="2"><output>2</output></label>
+          <label class="score-row"><span>Identitet</span><input class="trust-range" type="range" min="0" max="5" value="2"><output>2</output></label>
+          <label class="score-row"><span>Leveranceevne</span><input class="trust-range" type="range" min="0" max="5" value="2"><output>2</output></label>
+          <label class="score-row"><span>Langsigtethed</span><input class="trust-range" type="range" min="0" max="5" value="2"><output>2</output></label>
+          <label class="score-row"><span>Integritet</span><input class="trust-range" type="range" min="0" max="5" value="2"><output>2</output></label>
+          <label class="score-row"><span>Dokumentation</span><input class="trust-range" type="range" min="0" max="5" value="2"><output>2</output></label>
+          <div class="score-total"><span>Foreløbigt tillidsindeks</span><b id="trustScore">40</b><span>/ 100</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section property" id="ejendomme">
+    <div class="inner">
+      <div class="property-head">
+        <div>
+          <p class="label">Specialiseret forretningsområde</p>
+          <h2 class="title">Ejendomme skal fungere i virkeligheden – og kunne findes.</h2>
+        </div>
+        <div>
+          <p class="lead">Gennem LBC Facility Management arbejder vi med den praktiske kæde fra drift og lejerkontakt til markedsføring, fremvisning og udvikling.</p>
+          <a class="btn btn-dark" style="margin-top:24px" href="https://www.lbcfm.dk" target="_blank" rel="noopener">Besøg LBC Facility Management →</a>
+        </div>
+      </div>
+      <div class="property-grid">
+        <article class="property-card"><div><span class="tag">Ledige lokaler</span><h3>Kontorer i Nyborg</h3><p>Fleksible erhvervslokaler med mulighed for fremvisning og dialog om virksomhedens behov.</p></div><a class="link" href="https://www.lbcfm.dk" target="_blank" rel="noopener">Se aktuelle lokaler →</a></article>
+        <article class="property-card"><div><span class="tag">Facility management</span><h3>Drift og lejerkontakt</h3><p>Den løbende kontakt, opfølgning og koordinering, som får ejendommen til at fungere for både ejer og lejere.</p></div><a class="link" href="https://www.lbcfm.dk" target="_blank" rel="noopener">Læs om ydelserne →</a></article>
+        <article class="property-card"><div><span class="tag">Udvikling</span><h3>Synlighed og udlejning</h3><p>Præsentation, indhold, fremvisninger og konkrete forbedringer, der gør ledige kvadratmeter lettere at vælge.</p></div><a class="link" href="mailto:waltham@me.com?subject=Ejendomme og udlejning">Tal med os om en ejendom →</a></article>
+      </div>
+      <p class="property-note">LBC Facility Management er en selvstændig servicevirksomhed. Konkrete lejemål udbydes og udlejes af den enkelte ejendoms ejer.</p>
+    </div>
+  </section>
+
   <section class="section" id="vaerktoej">
     <div class="inner tool-wrap">
       <div>
@@ -344,8 +420,7 @@
           Du behøver ikke kende det rigtige fagudtryk. Skriv eller tal, som du ville forklare situationen til et andet menneske.
         </p>
         <p style="margin-top:24px;color:#5d5a52">
-          Den endelige version kan have flere målrettede assistenter: idétest, kundejagt,
-          AI-gennemgang og digitalt sagsrum. Denne prototype viser oplevelsen.
+          Værktøjet giver en første retning. En rigtig opgave begynder med, at vi afgrænser problemet, undersøger virkeligheden og aftaler et konkret resultat.
         </p>
       </div>
 
@@ -371,7 +446,7 @@
   <section class="section case" id="case">
     <div class="inner case-grid">
       <div>
-        <p class="label">Første demonstrationscase</p>
+        <p class="label">Udvalgt case</p>
         <h2 class="title">Bevar Nyborg Fjord</h2>
         <p class="lead">
           En omfattende lokal sag bliver gjort forståelig gennem temarapporter,
@@ -382,7 +457,6 @@
           organisationer, virksomheder og andre, som har brug for en fælles,
           dokumenteret virkelighed.
         </p>
-        <a class="case-link" href="https://www.bevarnyborgfjord.dk" target="_blank" rel="noopener">Besøg Bevar Nyborg Fjord ↗</a>
       </div>
       <div class="case-panel">
         <div>
@@ -478,18 +552,18 @@
           <div class="proof-stat"><b>Millioner</b><span>af gennemførte interview på tværs af Skandinavien</span></div>
           <div class="proof-stat"><b>Hundredvis</b><span>af medie-, PR- og kommunikationscases</span></div>
         </div>
-        <p class="press-note">Tallene skal kvalitetssikres mod InFacts dokumentation før offentlig lancering.</p>
+        <p class="press-note">Erfaringen spænder fra opbygning af InFact til nutidige projekter inden for virksomheder, ejendomme og digitale arbejdsmetoder.</p>
       </div>
       <div>
         <div class="press-wall">
-          <article class="press-card"><small>Eksempel · landsdækkende nyhed</small><h4>“Ny måling ændrer billedet af vælgernes holdning”</h4><p>InFact leverede datagrundlaget bag den offentlige samtale.</p></article>
-          <article class="press-card"><small>Eksempel · PR-case</small><h4>“8 ud af 10 ønsker en enklere løsning”</h4><p>En kunde brugte dokumentation til at gøre et abstrakt problem konkret.</p></article>
-          <article class="press-card"><small>Eksempel · lokal debat</small><h4>“Borgerne siger nej til planerne”</h4><p>Lokale stemmer blev samlet og gjort synlige i medierne.</p></article>
-          <article class="press-card"><small>Eksempel · forbrugere</small><h4>“Danskerne vil have mere gennemsigtighed”</h4><p>En undersøgelse gav en sag en klar og forståelig vinkel.</p></article>
-          <article class="press-card"><small>Eksempel · dagsorden</small><h4>“Flertal kræver handling nu”</h4><p>Spørgsmål, timing og formidling blev afgørende for gennemslaget.</p></article>
-          <article class="press-card"><small>Plads til rigtige forsider</small><h4>Udvalgte InFact-opslag indsættes her</h4><p>Med medie, dato, kilde og en kort forklaring af InFacts rolle.</p></article>
+          <article class="press-card"><small>Virksomhedsbygning</small><h4>InFact grundlagt i 2001</h4><p>Fra teknisk idé til en skandinavisk virksomhed inden for automatiserede interview og markedsindsigt.</p></article>
+          <article class="press-card"><small>Teknologi</small><h4>Automatiseret tovejstelefoni</h4><p>Tidlig udvikling af systemer, der kunne stille spørgsmål, indsamle svar og skabe beslutningsgrundlag hurtigt.</p></article>
+          <article class="press-card"><small>Markedsindsigt</small><h4>Millioner af interview</h4><p>Praktisk erfaring med spørgsmål, datakvalitet, timing og formidling af resultater.</p></article>
+          <article class="press-card"><small>Medier og kommunikation</small><h4>Data, der kunne forstås</h4><p>Mange års arbejde tæt på nyhedsmedier, organisationer og virksomheder med noget vigtigt at undersøge.</p></article>
+          <article class="press-card"><small>Ejendomme</small><h4>Fra strategi til daglig drift</h4><p>Udlejning, fremvisninger, lejerkontakt, vedligeholdelse og udvikling af erhvervsejendomme.</p></article>
+          <article class="press-card"><small>Nye arbejdsmetoder</small><h4>Komplekse sager gjort søgbare</h4><p>Digitale sagsrum, dokumentation og værktøjer, der skaber en fælles og anvendelig virkelighed.</p></article>
         </div>
-        <p class="press-note">Disse er visuelle pladsholdere. De kan erstattes af rigtige forsider og opslag, når materialet er samlet og brugsretten er afklaret.</p>
+        <p class="press-note">Konkrete cases og historiske dokumenter kan tilføjes løbende, når de er relevante for den opgave, kunden står med.</p>
       </div>
     </div>
   </section>
@@ -548,53 +622,61 @@
       </div>
       <div class="bio">
         <p>
-          Bag siden står Nikolai Waltham, iværksætter og praktisk problemløser med mange års erfaring fra virksomheder, teknologi, salg, ejendomme og udvikling af nye koncepter.
+          Waltham er grundlagt af Nikolai Waltham, iværksætter og praktisk problemløser med mange års erfaring fra virksomheder, teknologi, salg, ejendomme og udvikling af nye koncepter.
         </p>
         <p>
           Baggrunden er med for at skabe troværdighed — ikke for at gøre privatlivet til produktet.
           Fokus er på problemet, idéen og det næste brugbare skridt.
         </p>
-        <p><a href="om.html" style="color:var(--gold);font-weight:500">Læs historierne om Nikolai →</a></p>
       </div>
     </div>
   </section>
 
   <section class="newsletter" id="kontakt">
-    <p class="label">Én god idé ad gangen</p>
-    <h2>Få historier, værktøjer og åbne idéer.</h2>
+    <p class="label">Et konkret næste skridt</p>
+    <h2>Hvad prøver I at få til at virke?</h2>
     <p>
-      Tilmeld dig et roligt nyhedsbrev, eller brug mailen til at foreslå en samtale om en idé,
-      en virksomhed eller en kompliceret sag.
+      Skriv kort om virksomheden, ejendommen eller beslutningen. Så tager vi stilling til,
+      om en samtale giver mening – uden en lang salgsproces.
     </p>
-    <form class="form" onsubmit="event.preventDefault(); alert('Prototype: Her kobles nyhedsbrev eller kontaktformular på.');">
-      <input type="email" placeholder="Din e-mailadresse" required />
-      <button>Tilmeld</button>
-    </form>
-    <div class="cta-row" style="justify-content:center;margin-top:22px">
-      <a class="btn btn-secondary" href="mailto:waltham@me.com">Skriv om en samtale</a>
+    <div class="cta-row" style="justify-content:center;margin-top:30px">
+      <a class="btn btn-primary" href="mailto:waltham@me.com?subject=Uforpligtende samtale">Skriv om en samtale</a>
     </div>
   </section>
 
   <footer>
     <div class="foot">
-      <span>© 2026 Waltham. Praktisk intelligens, mennesker først.</span>
-      <span>Web · LinkedIn · Facebook · Nyhedsbrev</span>
+      <span>© 2026 Waltham. Strategi, tillid og praktisk gennemførelse.</span>
+      <span>Nyborg · Danmark · waltham.no</span>
     </div>
   </footer>
 
   <script>
     const nav=document.getElementById('nav');
-    const menu=document.querySelector('.menu');
-    const links=document.querySelector('.links');
     window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50));
-    menu.addEventListener('click',()=>{
-      const open=links.classList.toggle('open');
-      menu.setAttribute('aria-expanded',String(open));
+
+    const menuButton=document.getElementById('menuButton');
+    const mobilePanel=document.getElementById('mobilePanel');
+    menuButton.addEventListener('click',()=>{
+      const open=mobilePanel.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded',String(open));
+      menuButton.setAttribute('aria-label',open?'Luk menu':'Åbn menu');
     });
-    links.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
-      links.classList.remove('open');
-      menu.setAttribute('aria-expanded','false');
+    mobilePanel.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
+      mobilePanel.classList.remove('open');
+      menuButton.setAttribute('aria-expanded','false');
     }));
+
+    const trustRanges=[...document.querySelectorAll('.trust-range')];
+    function updateTrustScore(){
+      const total=trustRanges.reduce((sum,range)=>{
+        range.nextElementSibling.value=range.value;
+        return sum+Number(range.value);
+      },0);
+      document.getElementById('trustScore').textContent=Math.round(total/30*100);
+    }
+    trustRanges.forEach(range=>range.addEventListener('input',updateTrustScore));
+    updateTrustScore();
 
     function addBubble(text, cls){
       const body=document.getElementById('chatBody');
