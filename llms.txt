@@ -28,6 +28,7 @@
 - Anonymised concept case: turning a loosely described car problem into a workshop-ready fault report, relevant provider links and a user-approved service request ready to send.
 - Provider matching: helps local businesses describe specific problem expertise, verifiable trust signals, current contact routes and next actions so search engines and AI assistants can understand when the provider is relevant to a user's situation.
 - The Trust Bridge: a dedicated service that connects the company it knows itself to be with the company customers, search engines and AI assistants can actually find, understand and assess. It covers transparency, identity, delivery capability, continuity, integrity and documentation.
+- HC Ejendomme Trust case: shows how an established property company can possess real trust capital while leaving too little searchable and verifiable evidence for prospective tenants, search engines and AI assistants. The case distinguishes visual design from evidence, visibility and documented delivery capability.
 
 ## Recurring themes
 
@@ -45,6 +46,9 @@
 - https://waltham.no/tillidsbroen.html
 - https://waltham.no/no/tillitsbroen.html
 - https://waltham.no/en/the-trust-bridge.html
+- https://waltham.no/case-hc-ejendomme-tillid.html
+- https://waltham.no/no/case-hc-ejendomme-tillit.html
+- https://waltham.no/en/hc-ejendomme-trust-case.html
 
 ## Contact
 
