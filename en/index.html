@@ -150,6 +150,11 @@
     .form{max-width:620px;margin:30px auto 0;display:flex}
     .form input{flex:1;padding:16px;border:0}
     .form button{border:0;background:var(--gold);padding:0 25px}
+    .contact-options{max-width:980px;margin:46px auto 0;display:grid;grid-template-columns:.72fr 1.28fr;gap:18px;text-align:left}
+    .contact-direct,.message-box{border:1px solid rgba(255,255,255,.16);padding:30px;background:rgba(255,255,255,.035)}
+    .contact-direct h3{font-family:var(--display);font-size:34px;line-height:1.05;margin:12px 0}.contact-direct p{margin:0 0 24px}
+    .message-head{display:flex;align-items:center;gap:12px;margin-bottom:22px}.message-head .dot{width:9px;height:9px;border-radius:50%;background:#70c58b}.message-head strong,.message-head small{display:block}.message-head small{color:rgba(255,255,255,.55)}
+    .message-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}.message-form textarea{grid-column:1/-1;min-height:120px;resize:vertical}.message-form input,.message-form textarea{width:100%;border:1px solid rgba(255,255,255,.18);background:#fff;color:var(--ink);padding:14px;font:inherit}.message-form button{grid-column:1/-1;border:0;background:var(--gold);color:var(--ink);padding:15px;font-weight:600;cursor:pointer}.message-status{min-height:24px;margin:14px 0 0!important;color:var(--gold-2)!important}
     footer{background:#080807;color:rgba(255,255,255,.55);padding:45px var(--gutter);font-size:12px}
     .foot{max-width:var(--max);margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
@@ -190,7 +195,7 @@
       .links{display:none}.menu{display:block}
       .nav-actions{gap:12px}.language-switcher{padding-left:0;border-left:0}
       .links.open{display:flex;position:fixed;top:72px;left:0;right:0;flex-direction:column;gap:18px;padding:24px var(--gutter);background:rgba(244,241,234,.98);color:var(--ink);border-bottom:1px solid var(--line)}
-      .problem-grid,.tool-wrap,.case-grid,.about,.origin-grid,.proof-grid,.partners-grid{grid-template-columns:1fr}
+      .problem-grid,.tool-wrap,.case-grid,.about,.origin-grid,.proof-grid,.partners-grid,.contact-options{grid-template-columns:1fr}
       .case{background-position:58% center}
       .problem-grid>*,.tool-wrap>*,.case-grid>*,.about>*,.origin-grid>*,.proof-grid>*,.partners-grid>*{min-width:0}
       .card,.card.large{grid-column:span 12}
@@ -200,7 +205,7 @@
     @media(max-width:600px){
       h1{font-size:58px}
       .hero{padding-bottom:62px}
-      .form{flex-direction:column}.form button{padding:15px}
+      .form{flex-direction:column}.form button{padding:15px}.message-form{grid-template-columns:1fr}.message-form textarea,.message-form button{grid-column:1}
       .metrics,.proof-stats,.press-wall,.partner-types{grid-template-columns:1fr}
       .case-panel{padding:28px}
     }
@@ -632,6 +637,27 @@
     <div class="cta-row" style="justify-content:center;margin-top:22px">
       <a class="btn btn-secondary" href="mailto:waltham@me.com">Suggest a conversation</a>
     </div>
+    <div class="contact-options">
+      <div class="contact-direct">
+        <p class="label">Call directly</p>
+        <h3>Some things are easiest to clarify by voice.</h3>
+        <p>Call if you already know what you would like to discuss.</p>
+        <a class="btn btn-secondary" href="tel:+4560222544">+45 60 22 25 44</a>
+      </div>
+      <div class="message-box">
+        <div class="message-head"><span class="dot"></span><div><strong>Write a short enquiry</strong><small>You stay on the site. The message is sent securely from here.</small></div></div>
+        <form class="message-form" name="waltham-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-success="Thank you. Your message has been sent, and I will respond as soon as possible." data-error="The message could not be sent. Please call instead." onsubmit="submitContact(event)">
+          <input type="hidden" name="form-name" value="waltham-contact">
+          <input type="hidden" name="sprog" value="engelsk">
+          <p hidden><label>Do not fill in this field: <input name="bot-field"></label></p>
+          <input name="navn" autocomplete="name" placeholder="Your name" required>
+          <input name="telefon" type="tel" autocomplete="tel" placeholder="Your phone number" required>
+          <textarea name="besked" placeholder="What would you like help with?" required></textarea>
+          <button type="submit">Send message</button>
+        </form>
+        <p class="message-status" id="contactStatus" role="status" aria-live="polite"></p>
+      </div>
+    </div>
   </section>
 
   <footer>
@@ -674,6 +700,19 @@
       if(!text)return;
       addBubble(text,'user');input.value='';
       setTimeout(()=>addBubble('That makes sense. In a real version I would now ask 2–4 focused questions and turn the answers into an initial analysis of risks, opportunities and next steps.','bot'),350);
+    }
+    async function submitContact(e){
+      e.preventDefault();
+      const form=e.currentTarget;
+      const status=document.getElementById('contactStatus');
+      const button=form.querySelector('button');
+      button.disabled=true;status.textContent='Sending …';
+      try{
+        const response=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(form)).toString()});
+        if(!response.ok)throw new Error('Submission failed');
+        form.reset();status.textContent=form.dataset.success;
+      }catch(error){status.textContent=form.dataset.error}
+      finally{button.disabled=false}
     }
   </script>
 </body>
