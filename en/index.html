@@ -150,6 +150,8 @@
     .form{max-width:620px;margin:30px auto 0;display:flex}
     .form input{flex:1;padding:16px;border:0}
     .form button{border:0;background:var(--gold);padding:0 25px}
+    .call-box{max-width:760px;margin:34px auto 0;padding:26px 30px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.035);display:flex;align-items:center;justify-content:space-between;gap:28px;text-align:left}
+    .call-box h3{font-family:var(--display);font-size:30px;line-height:1.08;margin:0 0 7px}.call-box p{margin:0;color:rgba(255,255,255,.62)}
     footer{background:#080807;color:rgba(255,255,255,.55);padding:45px var(--gutter);font-size:12px}
     .foot{max-width:var(--max);margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
@@ -200,7 +202,7 @@
     @media(max-width:600px){
       h1{font-size:58px}
       .hero{padding-bottom:62px}
-      .form{flex-direction:column}.form button{padding:15px}
+      .form{flex-direction:column}.form button{padding:15px}.call-box{display:block}.call-box .btn{margin-top:20px}
       .metrics,.proof-stats,.press-wall,.partner-types{grid-template-columns:1fr}
       .case-panel{padding:28px}
     }
@@ -631,6 +633,10 @@
     </form>
     <div class="cta-row" style="justify-content:center;margin-top:22px">
       <a class="btn btn-secondary" href="mailto:waltham@me.com">Suggest a conversation</a>
+    </div>
+    <div class="call-box">
+      <div><h3>Sometimes a conversation is easier.</h3><p>Call directly if you already know what you would like to discuss.</p></div>
+      <a class="btn btn-secondary" href="tel:+4560222544">+45 60 22 25 44</a>
     </div>
   </section>
 
