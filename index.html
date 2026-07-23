@@ -138,11 +138,6 @@
     .form{max-width:620px;margin:30px auto 0;display:flex}
     .form input{flex:1;padding:16px;border:0}
     .form button{border:0;background:var(--gold);padding:0 25px}
-    .contact-options{max-width:980px;margin:46px auto 0;display:grid;grid-template-columns:.72fr 1.28fr;gap:18px;text-align:left}
-    .contact-direct,.message-box{border:1px solid rgba(255,255,255,.16);padding:30px;background:rgba(255,255,255,.035)}
-    .contact-direct h3{font-family:var(--display);font-size:34px;line-height:1.05;margin:12px 0}.contact-direct p{margin:0 0 24px}
-    .message-head{display:flex;align-items:center;gap:12px;margin-bottom:22px}.message-head .dot{width:9px;height:9px;border-radius:50%;background:#70c58b}.message-head strong,.message-head small{display:block}.message-head small{color:rgba(255,255,255,.55)}
-    .message-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}.message-form textarea{grid-column:1/-1;min-height:120px;resize:vertical}.message-form input,.message-form textarea{width:100%;border:1px solid rgba(255,255,255,.18);background:#fff;color:var(--ink);padding:14px;font:inherit}.message-form button{grid-column:1/-1;border:0;background:var(--gold);color:var(--ink);padding:15px;font-weight:600;cursor:pointer}.message-status{min-height:24px;margin:14px 0 0!important;color:var(--gold-2)!important}
     footer{background:#080807;color:rgba(255,255,255,.55);padding:45px var(--gutter);font-size:12px}
     .foot{max-width:var(--max);margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
@@ -204,7 +199,7 @@
     @media(max-width:900px){
       .links{display:none}.menu{display:block}
       .nav-actions{gap:12px}.language-switcher{padding-left:0;border-left:0}
-      .problem-grid,.tool-wrap,.case-grid,.about,.origin-grid,.proof-grid,.partners-grid,.trust-intro,.property-head,.contact-options{grid-template-columns:1fr}
+      .problem-grid,.tool-wrap,.case-grid,.about,.origin-grid,.proof-grid,.partners-grid,.trust-intro,.property-head{grid-template-columns:1fr}
       .card,.card.large{grid-column:span 12}
       .articles{grid-template-columns:1fr}
       .idea-grid,.trust-delivery{grid-template-columns:1fr}.press-wall{grid-template-columns:1fr 1fr}.property-grid{grid-template-columns:1fr}
@@ -212,7 +207,7 @@
     @media(max-width:600px){
       h1{font-size:58px}
       .hero{padding-bottom:62px}
-      .form{flex-direction:column}.form button{padding:15px}.message-form{grid-template-columns:1fr}.message-form textarea,.message-form button{grid-column:1}
+      .form{flex-direction:column}.form button{padding:15px}
       .metrics{grid-template-columns:1fr}
       .trust-model{grid-template-columns:1fr}.score-row{grid-template-columns:105px 1fr 24px}
     }
@@ -697,26 +692,8 @@
       Skriv kort om virksomheden, ejendommen eller beslutningen. Så tager vi stilling til,
       om en samtale giver mening – uden en lang salgsproces.
     </p>
-    <div class="contact-options">
-      <div class="contact-direct">
-        <p class="label">Ring direkte</p>
-        <h3>Nogle ting er lettest at afklare med stemmen.</h3>
-        <p>Ring, hvis du allerede ved, hvad du vil vende.</p>
-        <a class="btn btn-secondary" href="tel:+4560222544">+45 60 22 25 44</a>
-      </div>
-      <div class="message-box">
-        <div class="message-head"><span class="dot"></span><div><strong>Skriv en kort forespørgsel</strong><small>Du bliver på siden. Beskeden sendes sikkert herfra.</small></div></div>
-        <form class="message-form" name="waltham-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-success="Tak. Din besked er sendt, og jeg vender tilbage hurtigst muligt." data-error="Beskeden kunne ikke sendes. Ring gerne i stedet." onsubmit="submitContact(event)">
-          <input type="hidden" name="form-name" value="waltham-contact">
-          <input type="hidden" name="sprog" value="dansk">
-          <p hidden><label>Udfyld ikke dette felt: <input name="bot-field"></label></p>
-          <input name="navn" autocomplete="name" placeholder="Dit navn" required>
-          <input name="telefon" type="tel" autocomplete="tel" placeholder="Dit telefonnummer" required>
-          <textarea name="besked" placeholder="Hvad vil du gerne have hjælp til?" required></textarea>
-          <button type="submit">Send besked</button>
-        </form>
-        <p class="message-status" id="contactStatus" role="status" aria-live="polite"></p>
-      </div>
+    <div class="cta-row" style="justify-content:center;margin-top:30px">
+      <a class="btn btn-primary" href="mailto:waltham@me.com?subject=Uforpligtende samtale">Skriv om en samtale</a>
     </div>
   </section>
 
@@ -773,19 +750,6 @@
       if(!text)return;
       addBubble(text,'user');input.value='';
       setTimeout(()=>addBubble('Det giver mening. I en rigtig version ville jeg nu stille 2–4 målrettede spørgsmål og samle svarene i en første analyse med risici, muligheder og næste skridt.','bot'),350);
-    }
-    async function submitContact(e){
-      e.preventDefault();
-      const form=e.currentTarget;
-      const status=document.getElementById('contactStatus');
-      const button=form.querySelector('button');
-      button.disabled=true;status.textContent='Sender …';
-      try{
-        const response=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(form)).toString()});
-        if(!response.ok)throw new Error('Submission failed');
-        form.reset();status.textContent=form.dataset.success;
-      }catch(error){status.textContent=form.dataset.error}
-      finally{button.disabled=false}
     }
   </script>
 </body>
