@@ -1,24 +1,84 @@
 <!doctype html>
-<html lang="da">
+<html lang="nb">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Waltham</title>
-  <meta name="description" content="Waltham — idéer, projekter og virksomheder i bevægelse.">
-  <style>
-    * { box-sizing: border-box; }
-    html, body { width: 100%; height: 100%; margin: 0; background: #111; }
-    img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-    @media (max-width: 700px) { img { object-fit: contain; } }
-  </style>
+  <meta name="description" content="Waltham Consulting hjelper eiere og ledere med strategi, AI, bedre arbeidsmåter og prosjekter som har kjørt seg fast.">
+  <title>Waltham Consulting — Fra kompleksitet til fremdrift</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <img src="/assets/images/waltham-holding.jpeg" alt="Udsigt over vandet ved Lindholm">
+  <header class="site-header" id="top">
+    <a class="logo" href="#top" aria-label="Waltham Consulting, forsiden">Waltham<span>.</span><small>Consulting</small></a>
+    <button class="menu-button" aria-expanded="false" aria-controls="menu">Meny</button>
+    <nav id="menu" aria-label="Hovedmeny">
+      <a href="#tjenester">Tjenester</a><a href="#cases">Cases</a><a href="#innsikt">Innsikt</a><a href="#verktoy">Verktøy</a><a href="#om">Om oss</a><a class="nav-cta" href="#kontakt">Ta kontakt</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-grain"></div>
+      <div class="hero-content wrap">
+        <p class="eyebrow">Strategi · systemer · gjennomføring</p>
+        <h1>Vi gjør komplekse<br>utfordringer <em>håndterbare.</em></h1>
+        <p class="hero-lead">Waltham Consulting hjelper eiere og ledere med å se mulighetene, velge riktig retning og omsette ideer til løsninger som virker i praksis.</p>
+        <div class="buttons"><a class="button primary" href="#kontakt">Fortell oss hva dere står i</a><a class="button ghost" href="#tjenester">Se hva vi hjelper med</a></div>
+      </div>
+      <div class="hero-note">Erfaring fra entreprenørskap, markedsanalyse, digitalisering, eiendom og AI.</div>
+    </section>
+
+    <section class="intro section wrap">
+      <p class="label">Når vi skaper mest verdi</p>
+      <div class="split">
+        <h2>Dere trenger ikke enda en rapport. Dere trenger et bedre neste trekk.</h2>
+        <div class="copy"><p>Vi går inn der det er mange bevegelige deler, uklare prioriteringer eller en idé som ennå ikke har funnet sin form.</p><p>Vi kombinerer forretningsforståelse, praktisk problemløsning og nye digitale arbeidsmåter. Målet er alltid det samme: klarhet, fremdrift og målbar verdi.</p></div>
+      </div>
+      <div class="challenge-grid">
+        <article><span>01</span><h3>Når retningen er uklar</h3><p>Vi skiller muligheter fra distraksjoner og gjør valgene tydeligere.</p></article>
+        <article><span>02</span><h3>Når arbeidet tar for lang tid</h3><p>Vi finner flaskehalser og bygger enklere systemer rundt det som betyr mest.</p></article>
+        <article><span>03</span><h3>Når prosjektet har stoppet</h3><p>Vi skaper overblikk, samler partene og får arbeidet i bevegelse igjen.</p></article>
+      </div>
+    </section>
+
+    <section class="section dark" id="tjenester">
+      <div class="wrap"><p class="label">Tjenester</p><h2>Fra første gjennomgang<br>til fungerende løsning.</h2><p class="section-lead">Vi starter konsentrert. Når oppgaven krever flere fag, setter vi sammen riktig kapasitet fra vårt nettverk.</p>
+        <div class="service-grid">
+          <article class="service featured"><p class="kicker">Strategi og prioritering</p><h3>Strategisk gjennomgang</h3><p>En konsentrert vurdering av situasjonen, mulighetene og de viktigste beslutningene. Dere får tydelige prioriteringer og en realistisk handlingsplan.</p><a href="#kontakt">Bestill en innledende samtale →</a></article>
+          <article class="service"><p class="kicker">Arbeidsmåter og AI</p><h3>AI & systemgjennomgang</h3><p>Vi kartlegger tidstyver, manuelle prosesser og informasjonsflyt, og finner hvor AI, automatisering eller forenkling faktisk gir effekt.</p></article>
+          <article class="service"><p class="kicker">Fra mulighet til marked</p><h3>Idé- og forretningsutvikling</h3><p>Vi utfordrer antakelser, tester behovet og former et første tilbud, en prototype eller en vei til første kunde.</p></article>
+          <article class="service"><p class="kicker">Når noe står fast</p><h3>Prosjektredning</h3><p>Vi rydder i mål, ansvar, dokumentasjon og interesser, og etablerer et enkelt system for beslutninger og fremdrift.</p></article>
+          <article class="service"><p class="kicker">Erfarent, uavhengig motspill</p><h3>Ledersparring</h3><p>Løpende, fortrolig sparring for eiere og ledere som trenger ærlige spørsmål, nye perspektiver og praktisk dømmekraft.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cases" id="cases">
+      <div class="wrap"><p class="label">Utvalgte erfaringer og cases</p><h2>Vi bygger på det som er prøvd i virkeligheten.</h2>
+        <div class="case-feature">
+          <div><p class="kicker">Systemer · markedsinnsikt · skalering</p><h3>InFact</h3><p>InFact begynte med et konkret spørsmål: Hvordan kan omfattende datainnsamling gjøres raskere, mer tilgjengelig og mulig å styre fra hvor som helst?</p><p>Svaret ble et automatisert telefonisystem og en virksomhet som koblet teknologi, analyse og kommunikasjon. Meningsmålingene skapte innsikt for kundene, nyheter for mediene og et selvforsterkende momentum for selskapet. I dag lever InFact videre som et nordisk analyse- og kommunikasjonsbyrå.</p><dl><div><dt>Utfordring</dt><dd>Gjøre manuell datainnsamling skalerbar</dd></div><div><dt>Resultat</dt><dd>Et system og en virksomhet bygget for mer enn to tiår med markedsinnsikt</dd></div><div><dt>Prinsipp</dt><dd>Spør først. Forstå behovet. Bygg deretter.</dd></div></dl><a href="https://infact.no/" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:22px;color:var(--gold2);font-size:12px;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid currentColor">Besøk InFact.no →</a></div>
+          <figure><img src="assets/images/infact-vg-august-2011.jpg" alt="Presseoppslag basert på en InFact-måling"><figcaption>Dokumentert gjennom mange års bruk i norske medier.</figcaption></figure>
+        </div>
+        <div class="case-cards">
+          <article><p class="kicker">Kompleks sak · digitalt saksrom</p><h3>Bevar Nyborg Fjord</h3><p>En omfattende lokal plansak var fordelt på dokumenter, høringssvar, myndighetsavgjørelser, nyhetsartikler og ulike versjoner av historien. Det gjorde saken vanskelig å forstå — også for mennesker som ønsket å engasjere seg.</p><p>Vi samlet materialet i et digitalt saksrom med tydelig tidslinje, temaer, kilder og forklaringer. Resultatet er en åpen kunnskapsbase som gjør kompleks informasjon søkbar, etterprøvbar og lettere å handle på.</p><a class="case-link" href="https://bevarnyborgfjord.dk/" target="_blank" rel="noopener noreferrer">Se BevarNyborgFjord.dk →</a></article>
+          <article><p class="kicker">Eiendom · drift · utvikling</p><h3>Lindholm Business Center</h3><p>Praktisk utvikling og drift der utleie, kommunikasjon, fysiske forbedringer og daglige behov måtte sees som ett system.</p><a class="case-link" href="https://lbcfm.dk/" target="_blank" rel="noopener noreferrer">Se LBCFM.dk →</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section insight" id="innsikt"><div class="wrap"><p class="label">Innsikt</p><div class="split"><h2>Ideer blir mer verdifulle når de deles.</h2><p class="copy">Vi skriver om arbeidsmåter, AI, systemtenkning og erfaringer fra virkelige prosjekter. Kort, konkret og uten konsulentspråk.</p></div>
+      <div class="article-grid"><article><span>01 · Systemer</span><h3>Hvorfor en veltrimmet seilbåt er en god modell for en virksomhet</h3><a href="veltrimmet-seilbat.html">Les artikkelen →</a></article><article><span>02 · AI</span><h3>Den beste automatiseringen kan være å fjerne prosessen</h3><a href="#kontakt">Les snart →</a></article><article><span>03 · Momentum</span><h3>Hvordan små fordeler kan bygge noe langt større</h3><a href="#kontakt">Les snart →</a></article></div>
+    </div></section>
+
+    <section class="section tools" id="verktoy"><div class="wrap tool-layout"><div><p class="label">Verktøy</p><h2>Start med å gjøre utfordringen tydelig.</h2><p class="section-lead">Bruk vår enkle problemavklaring. Den gir et kort utgangspunkt for en bedre første samtale — uten registrering.</p></div>
+      <form class="diagnostic" id="diagnostic"><div class="progress"><span></span></div><p class="step-label">Steg <b id="stepNumber">1</b> av 3</p><fieldset data-step="1"><legend>Hva beskriver situasjonen best?</legend><label><input type="radio" name="situation" value="Vi har for mange muligheter og for lite retning">For mange muligheter, for lite retning</label><label><input type="radio" name="situation" value="En prosess tar for mye tid">En prosess tar for mye tid</label><label><input type="radio" name="situation" value="Et prosjekt har stoppet opp">Et prosjekt har stoppet opp</label></fieldset><fieldset data-step="2" hidden><legend>Hva vil dere helst ha oppnådd om 90 dager?</legend><textarea name="outcome" rows="4" placeholder="Beskriv et konkret resultat …"></textarea></fieldset><fieldset data-step="3" hidden><legend>Hva hindrer dere i å komme videre i dag?</legend><textarea name="blocker" rows="4" placeholder="For eksempel kapasitet, uklare valg, dokumentkaos …"></textarea></fieldset><div class="tool-actions"><button type="button" class="back" hidden>Tilbake</button><button type="button" class="next">Neste</button></div><div class="tool-result" hidden><p class="kicker">Deres utgangspunkt</p><p id="summary"></p><a href="#kontakt">Ta dette med til en uforpliktende samtale →</a></div></form>
+    </div></section>
+
+    <section class="section about" id="om"><div class="wrap about-grid"><div><p class="label">Om oss</p><h2>Et lite konsulentmiljø med et stort praktisk spenn.</h2><div class="copy"><p>Waltham Consulting er grunnlagt av Nikolai Waltham og bygger på flere tiår med entreprenørskap, markedsanalyse, digital utvikling, eiendom og praktisk problemløsning.</p><p>Vi arbeider som en fleksibel kjerne med et nettverk av spesialister. Det betyr at kunden møter få mennesker, men at oppgaven kan få den faglige bredden den trenger.</p><p>Vi lover ikke store transformasjoner på avstand. Vi setter oss inn i virkeligheten, finner den viktigste løftestangen og bygger videre derfra.</p></div></div><figure><img src="assets/images/nikolai-sejler.jpeg" alt="Nikolai Waltham på seiltur"><blockquote>«Vi er nysgjerrige nok til å spørre hva om — og praktiske nok til å få det til å virke.»</blockquote></figure></div></section>
+
+    <section class="contact" id="kontakt"><div class="wrap contact-grid"><div><p class="label">Kontakt</p><h2>Hva står dere i akkurat nå?</h2><p>En god første samtale skal gi verdi i seg selv. Fortell kort om situasjonen, så finner vi ut om og hvordan vi kan bidra.</p></div><div class="contact-card"><p class="kicker">Waltham Consulting</p><a class="mail" href="mailto:nikolai@waltham.no">nikolai@waltham.no</a><p>Nyborg · Oslo · digitalt</p><a class="button primary" href="mailto:nikolai@waltham.no?subject=Innledende%20samtale%20med%20Waltham%20Consulting">Avtal en samtale</a></div></div></section>
+  </main>
+  <footer><div class="wrap"><a class="logo" href="#top">Waltham<span>.</span><small>Consulting</small></a><p>Strategi, systemer og gjennomføring.</p><p>© <span id="year"></span> Waltham Consulting</p></div></footer>
+  <script src="js/main.js"></script>
 </body>
 </html>
