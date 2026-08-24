@@ -8,3 +8,4 @@
 @media(max-width:900px){.method-head{grid-template-columns:1fr}.method-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.method-grid{grid-template-columns:1fr}}
 .hero-tagline{font:400 clamp(24px,3vw,36px)/1.1 var(--display);color:var(--gold2);margin:26px 0 -8px}
+.collaboration{background:#d9cfbd}.collaboration .case-link{display:inline-block;color:#765a31;font-size:12px;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid currentColor}.collaboration .case-link:hover{color:var(--ink)}
