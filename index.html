@@ -10,26 +10,9 @@
   <script>
     (() => {
       const saved = localStorage.getItem("waltham-language");
-      const browserLanguage = (navigator.language || "").toLowerCase();
-      const destination = country => country === "DK" ? "/dk/" : country === "NO" ? "/no/" : country === "DE" ? "/de/" : "/en/";
-      const fallback = browserLanguage.startsWith("da") ? "DK" : /^(nb|nn|no)/.test(browserLanguage) ? "NO" : browserLanguage.startsWith("de") ? "DE" : "EN";
-      if (saved) {
-        if (saved !== "da") location.replace(saved === "nb" ? "/no/" : saved === "de" ? "/de/" : "/en/");
-        return;
-      }
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 1800);
-      fetch("https://ipapi.co/country_code/", { signal: controller.signal })
-        .then(response => response.ok ? response.text() : Promise.reject())
-        .then(country => {
-          clearTimeout(timeout);
-          const target = destination(country.trim().toUpperCase());
-          location.replace(target);
-        })
-        .catch(() => {
-          const target = destination(fallback);
-          location.replace(target);
-        });
+      const language = saved || (navigator.language || "da").toLowerCase();
+      const target = /^(nb|nn|no)/.test(language) ? "/no/" : language.startsWith("de") ? "/de/" : language.startsWith("en") ? "/en/" : "/dk/";
+      if (target !== "/dk/") location.replace(target);
     })();
   </script>
 </head>
@@ -123,5 +106,6 @@
   </main>
   <footer><div class="wrap"><a class="logo" href="#top">Waltham<span>.</span><small>Consulting</small></a><p>AI Enablement · AI Business Strategy · systemer · gennemførelse.</p><p>Waltham Consulting · CVR 41072334 · Etableret 2020</p><p>© <span id="year"></span> Waltham Consulting</p></div></footer>
   <script src="js/main.js"></script>
+  <script src="/js/cookie-notice.js"></script>
 </body>
 </html>
