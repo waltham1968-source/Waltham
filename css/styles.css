@@ -26,3 +26,4 @@ html{scroll-padding-top:90px}
 @media(max-width:900px){.wide-product{grid-column:auto}.wide-product ul{grid-template-columns:1fr}}
 @media(max-width:900px){.delivery-standard{grid-template-columns:1fr;gap:14px}}
 .product-meta{align-items:flex-end}.product-meta span{max-width:68%;line-height:1.45}.product-meta strong{white-space:nowrap}
+.contact-brand{display:flex;align-items:baseline;margin:0 0 14px;color:#fff;font:500 34px/1 var(--display);letter-spacing:.01em}.contact-brand span{color:var(--gold);margin-left:1px}.contact-brand small{margin-left:10px;color:#ffffff7a;font:500 8px/1 var(--body);letter-spacing:.22em;text-transform:uppercase}
