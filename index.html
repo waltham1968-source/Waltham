@@ -11,10 +11,10 @@
     (() => {
       const saved = localStorage.getItem("waltham-language");
       const browserLanguage = (navigator.language || "").toLowerCase();
-      const destination = country => country === "DK" ? "/dk/" : country === "NO" ? "/no/" : "/en/";
-      const fallback = browserLanguage.startsWith("da") ? "DK" : /^(nb|nn|no)/.test(browserLanguage) ? "NO" : "EN";
+      const destination = country => country === "DK" ? "/dk/" : country === "NO" ? "/no/" : country === "DE" ? "/de/" : "/en/";
+      const fallback = browserLanguage.startsWith("da") ? "DK" : /^(nb|nn|no)/.test(browserLanguage) ? "NO" : browserLanguage.startsWith("de") ? "DE" : "EN";
       if (saved) {
-        if (saved !== "da") location.replace(saved === "nb" ? "/no/" : "/en/");
+        if (saved !== "da") location.replace(saved === "nb" ? "/no/" : saved === "de" ? "/de/" : "/en/");
         return;
       }
       const controller = new AbortController();
@@ -39,7 +39,7 @@
     <button class="menu-button" aria-expanded="false" aria-controls="menu">Menu</button>
     <nav id="menu" aria-label="Hovedmenu">
       <a href="#tjenester">AI-strategi</a><a href="#metode">Metode</a><a href="#cases">Cases</a><a href="#innsikt">Logbog</a><a href="#verktoy">Værktøjer</a><a href="#om">Erfaring</a><a class="nav-cta" href="#kontakt">Kontakt</a>
-    </nav><div class="language-switcher" aria-label="Language"><a href="/dk/" data-lang="da" aria-current="page">DK</a><a href="/no/" data-lang="nb">NO</a><a href="/en/" data-lang="en">EN</a></div>
+    </nav><div class="language-switcher" aria-label="Language"><a href="/dk/" data-lang="da" aria-current="page">DK</a><a href="/no/" data-lang="nb">NO</a><a href="/en/" data-lang="en">EN</a><a href="/de/" data-lang="de">DE</a></div>
   </header>
 
   <main>
