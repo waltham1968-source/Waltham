@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Waltham tilbyder AI Enablement og hjælper ejere og ledere med at omsætte AI, automatisering og nye arbejdsmetoder til reel forretningsværdi.">
-  <title>Waltham — AI Enablement i praksis</title>
+  <meta name="description" content="Waltham hjælper ejere og ledere med at finde muligheder, bygge stærke beslutnings- og værdicases og føre dem ud i livet.">
+  <title>Waltham — Find muligheder. Byg casen. Få det til at ske.</title>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/logbook.css">
   <script>
@@ -24,11 +24,11 @@
         .then(country => {
           clearTimeout(timeout);
           const target = destination(country.trim().toUpperCase());
-          if (target !== "/dk/") location.replace(target);
+          location.replace(target);
         })
         .catch(() => {
           const target = destination(fallback);
-          if (target !== "/dk/") location.replace(target);
+          location.replace(target);
         });
     })();
   </script>
