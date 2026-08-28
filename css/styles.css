@@ -14,7 +14,7 @@
 @media(max-width:900px){.product-intro,.product-grid{grid-template-columns:1fr}.product-card{min-height:auto}}
 html{scroll-padding-top:90px;overflow-x:hidden}body{overflow-x:hidden}
 .site-header{gap:18px}.site-header .logo,.site-header .language-switcher{flex-shrink:0}.site-header nav{gap:clamp(13px,1.25vw,24px)}.site-header nav a{white-space:nowrap;flex-shrink:0}
-@media(max-width:1250px){.site-header nav{display:none;position:absolute;top:76px;left:0;right:0;padding:25px var(--gutter);background:var(--paper);color:var(--ink);flex-direction:column;align-items:flex-start}.site-header nav.open{display:flex}.menu-button{display:block}.language-switcher{margin-left:auto}}
+@media(max-width:1250px){.site-header nav{display:none;position:absolute;top:76px;left:0;right:0;padding:25px var(--gutter);background:var(--paper);color:var(--ink);flex-direction:column;align-items:flex-start}.site-header nav.open{display:flex}.menu-button{display:block;order:3;margin-left:4px}.language-switcher{margin-left:auto}}
 .market-intro>*{min-width:0}
 /* Compact localised Waltham Insight pages. Scoped away from market-entry pages. */
 body:not(.market-page) .market-nav{position:relative;background:#171d26;color:#fff}
