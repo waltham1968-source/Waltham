@@ -161,7 +161,7 @@ for locale in ("no", "en", "de"):
     market_html = market_path.read_text(encoding="utf-8").replace("../css/nordic-country.css", "../css/nordic-market-entry.css")
     market_path.write_text(market_html, encoding="utf-8")
     insight_path = ROOT / locale / "waltham-insight.html"
-    insight_html = insight_path.read_text(encoding="utf-8").replace('</head>', '<link rel="stylesheet" href="../css/waltham-insight.css"></head>', 1)
+    insight_html = insight_path.read_text(encoding="utf-8").replace('</head>', '<link rel="stylesheet" href="../css/waltham-insight.css"><link rel="stylesheet" href="../css/waltham-insight-localized.css"></head>', 1)
     insight_path.write_text(insight_html, encoding="utf-8")
 
 # Keep the Danish master copy intact; only add page-equivalent language routing.
