@@ -204,3 +204,10 @@ entries = "".join(f"  <url><loc>{url}</loc></url>\n" for url in new_urls if f"<l
 if entries:
     sitemap = sitemap.replace("</urlset>", entries + "</urlset>")
     sitemap_path.write_text(sitemap, encoding="utf-8")
+
+# Keep the shared identity attached after any page regeneration.
+for locale in ("dk", "no", "en", "de"):
+    for path in (ROOT / locale).glob("*.html"):
+        html = path.read_text(encoding="utf-8")
+        if 'class="logo"' in html and "brand-logo.css" not in html:
+            path.write_text(html.replace("</head>", '<link rel="stylesheet" href="../css/brand-logo.css"></head>', 1), encoding="utf-8")

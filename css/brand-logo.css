@@ -1,0 +1,151 @@
+/* Shared Waltham identity across all languages and page families. */
+.logo{
+  position:relative;
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:0!important;
+  min-width:118px;
+  font-size:0!important;
+  line-height:1;
+  text-decoration:none;
+}
+.logo::before{
+  content:"";
+  display:block;
+  width:118px;
+  height:49px;
+  flex:0 0 118px;
+  background:url("../assets/waltham-logo-blue.png") center top/118px 66px no-repeat;
+  filter:grayscale(1) brightness(3.15) contrast(.74);
+}
+.logo::after{
+  content:"WALTHAM";
+  position:absolute;
+  z-index:2;
+  inset:47px auto auto 9px;
+  width:102px;
+  color:#f4f6f8;
+  text-align:center;
+  font:600 10px/1 Inter,system-ui,sans-serif;
+  letter-spacing:.24em;
+}
+.logo>span{
+  display:block!important;
+  position:absolute;
+  z-index:1;
+  inset:0 auto auto 0;
+  width:118px;
+  height:49px;
+  pointer-events:none;
+  font-size:0;
+  background:linear-gradient(105deg,transparent 35%,#fff 48%,transparent 61%);
+  background-size:260% 100%;
+  -webkit-mask:url("../assets/waltham-logo-blue.png") center top/118px 66px no-repeat;
+  mask:url("../assets/waltham-logo-blue.png") center top/118px 66px no-repeat;
+  mix-blend-mode:screen;
+  opacity:.7;
+  animation:waltham-sun-pass 10s ease-in-out infinite;
+}
+.logo small{
+  position:relative;
+  z-index:2;
+  display:block!important;
+  margin-left:12px!important;
+  white-space:nowrap;
+  font:600 9px/1 Inter,system-ui,sans-serif!important;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+}
+
+/* Light navigation states keep the same proportions in dark gunmetal. */
+.site-header.scrolled .logo::before,
+.nav.scrolled .logo::before,
+html:has(link[href*="case-retail.css"]) .nav .logo::before{
+  filter:grayscale(1) brightness(.72) contrast(1.16);
+}
+.site-header.scrolled .logo::after,
+.nav.scrolled .logo::after,
+html:has(link[href*="case-retail.css"]) .nav .logo::after{color:#343a41}
+.site-header.scrolled .logo>span,
+.nav.scrolled .logo>span,
+html:has(link[href*="case-retail.css"]) .nav .logo>span{opacity:.22}
+
+.site-header{height:94px}
+.market-nav .wrap,.insight-nav .wrap,.venture-nav .wrap,.country-nav .wrap{
+  min-height:94px!important;
+  height:94px!important;
+}
+
+@keyframes waltham-sun-pass{
+  0%,28%{background-position:115% 0}
+  48%,100%{background-position:-55% 0}
+}
+@media(prefers-reduced-motion:reduce){.logo>span{animation:none;opacity:0}}
+@media(max-width:1600px){.site-header nav{top:94px}}
+@media(max-width:900px){
+  .market-nav .wrap,.insight-nav .wrap,.venture-nav .wrap,.country-nav .wrap{height:auto!important}
+}
+@media(max-width:560px){
+  .site-header{height:86px}
+  .site-header nav{top:86px}
+  .logo{min-width:104px}
+  .logo::before{width:104px;height:43px;flex-basis:104px;background-size:104px 58px}
+  .logo::after{inset:41px auto auto 8px;width:89px;font-size:9px;letter-spacing:.2em}
+  .logo>span{width:104px;height:43px;-webkit-mask-size:104px 58px;mask-size:104px 58px}
+  .logo small{margin-left:8px!important;font-size:8px!important}
+}
+
+/* The contact card uses the same identity at presentation scale. */
+.contact-card{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(220px,.78fr);
+  gap:clamp(36px,5vw,78px);
+  align-items:center!important;
+}
+.contact-details{
+  display:flex;
+  min-width:0;
+  flex-direction:column;
+  align-items:flex-start;
+}
+.contact-logo-large{
+  position:relative;
+  width:min(100%,360px);
+  aspect-ratio:1.78;
+  justify-self:end;
+}
+.contact-logo-large::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto;
+  height:73%;
+  background:url("../assets/waltham-logo-blue.png") center top/100% auto no-repeat;
+  filter:grayscale(1) brightness(3.15) contrast(.74);
+}
+.contact-logo-large::after{
+  content:"WALTHAM";
+  position:absolute;
+  inset:auto 7% 8%;
+  color:#f4f6f8;
+  text-align:center;
+  font:600 clamp(14px,1.45vw,20px)/1 Inter,system-ui,sans-serif;
+  letter-spacing:.3em;
+}
+.contact-logo-large>span{
+  position:absolute;
+  z-index:1;
+  inset:0 0 auto;
+  height:73%;
+  background:linear-gradient(105deg,transparent 35%,#fff 48%,transparent 61%);
+  background-size:260% 100%;
+  -webkit-mask:url("../assets/waltham-logo-blue.png") center top/100% auto no-repeat;
+  mask:url("../assets/waltham-logo-blue.png") center top/100% auto no-repeat;
+  mix-blend-mode:screen;
+  opacity:.7;
+  animation:waltham-sun-pass 10s ease-in-out infinite;
+}
+@media(prefers-reduced-motion:reduce){.contact-logo-large>span{animation:none;opacity:0}}
+@media(max-width:720px){
+  .contact-card{grid-template-columns:1fr;gap:30px}
+  .contact-logo-large{grid-row:1;justify-self:start;width:min(100%,270px)}
+}
