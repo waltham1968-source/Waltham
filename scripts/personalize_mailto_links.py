@@ -12,6 +12,7 @@ LANG = {
         "line": "Min henvendelse drejer sig om: {topic}. Jeg vil gerne høre, hvordan Waltham kan hjælpe.",
         "follow": "I må gerne kontakte mig for en indledende og uforpligtende afklaring.",
         "source": "Jeg henvender mig fra denne side:",
+        "confidential": "Jeg deler kun idéen eller situationen i overordnede træk i denne første e-mail. Hvis en vurdering kræver fortrolige detaljer, aftaler vi fortrolighed, før de deles.",
         "close": "Venlig hilsen",
     },
     "no": {
@@ -20,6 +21,7 @@ LANG = {
         "line": "Henvendelsen min gjelder: {topic}. Jeg vil gjerne høre hvordan Waltham kan hjelpe.",
         "follow": "Ta gjerne kontakt for en innledende og uforpliktende avklaring.",
         "source": "Jeg henvender meg fra denne siden:",
+        "confidential": "Jeg deler bare ideen eller situasjonen i overordnede trekk i denne første e-posten. Hvis en vurdering krever fortrolige detaljer, avtaler vi konfidensialitet før de deles.",
         "close": "Vennlig hilsen",
     },
     "en": {
@@ -28,6 +30,7 @@ LANG = {
         "line": "My enquiry concerns: {topic}. I would like to learn how Waltham could help.",
         "follow": "Please contact me for an initial, no-obligation conversation.",
         "source": "My enquiry comes from this page:",
+        "confidential": "I am sharing only a high-level description in this first email. If an assessment requires confidential details, we will agree confidentiality before they are disclosed.",
         "close": "Kind regards",
     },
     "de": {
@@ -36,6 +39,7 @@ LANG = {
         "line": "Meine Anfrage betrifft: {topic}. Ich möchte erfahren, wie Waltham helfen könnte.",
         "follow": "Bitte kontaktieren Sie mich für ein erstes unverbindliches Gespräch.",
         "source": "Meine Anfrage kommt von dieser Seite:",
+        "confidential": "In dieser ersten E-Mail beschreibe ich Idee oder Situation nur allgemein. Wenn eine Prüfung vertrauliche Einzelheiten erfordert, vereinbaren wir vor deren Offenlegung Vertraulichkeit.",
         "close": "Freundliche Grüße",
     },
 }
@@ -68,6 +72,7 @@ def replace_link(match, *, path, title, locale):
         text["hello"],
         text["line"].format(topic=topic),
         text["follow"],
+        text["confidential"],
         f"{text['source']}\n{url}",
         f"{text['close']}\n[Navn / Name]",
     ])
