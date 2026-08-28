@@ -98,7 +98,7 @@ html:has(link[href*="case-retail.css"]) .nav .logo>span{opacity:.22}
 /* The contact card uses the same identity at presentation scale. */
 .contact-card{
   display:grid!important;
-  grid-template-columns:minmax(0,1fr) minmax(220px,.78fr);
+  grid-template-columns:minmax(300px,1.12fr) minmax(280px,.88fr);
   gap:clamp(36px,5vw,78px);
   align-items:center!important;
 }
@@ -107,12 +107,18 @@ html:has(link[href*="case-retail.css"]) .nav .logo>span{opacity:.22}
   min-width:0;
   flex-direction:column;
   align-items:flex-start;
+  grid-column:2;
+  justify-self:end;
+  width:max-content;
+  max-width:100%;
 }
 .contact-logo-large{
   position:relative;
-  width:min(100%,360px);
+  grid-column:1;
+  grid-row:1;
+  width:min(100%,460px);
   aspect-ratio:1.78;
-  justify-self:end;
+  justify-self:start;
 }
 .contact-logo-large::before{
   content:"";
@@ -147,5 +153,6 @@ html:has(link[href*="case-retail.css"]) .nav .logo>span{opacity:.22}
 @media(prefers-reduced-motion:reduce){.contact-logo-large>span{animation:none;opacity:0}}
 @media(max-width:720px){
   .contact-card{grid-template-columns:1fr;gap:30px}
-  .contact-logo-large{grid-row:1;justify-self:start;width:min(100%,270px)}
+  .contact-logo-large{grid-column:1;grid-row:1;justify-self:start;width:min(100%,310px)}
+  .contact-details{grid-column:1;grid-row:2;justify-self:start;width:auto}
 }
