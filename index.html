@@ -9,10 +9,13 @@
   <link rel="stylesheet" href="css/logbook.css">
   <script>
     (() => {
+      const host = location.hostname.replace(/^www\./, "");
+      if (host === "waltham.no") return location.replace("/no/");
+      if (host === "waltham.dk") return location.replace("/dk/");
       const saved = localStorage.getItem("waltham-language");
       const language = saved || (navigator.language || "da").toLowerCase();
       const target = /^(nb|nn|no)/.test(language) ? "/no/" : language.startsWith("de") ? "/de/" : language.startsWith("en") ? "/en/" : "/dk/";
-      if (target !== "/dk/") location.replace(target);
+      if (location.pathname !== target) location.replace(target);
     })();
   </script>
 </head>
