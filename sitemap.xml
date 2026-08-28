@@ -150,4 +150,25 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url><loc>https://waltham.no/no/nordisk-markedsinngang.html</loc></url>
+  <url><loc>https://waltham.no/no/waltham-insight.html</loc></url>
+  <url><loc>https://waltham.no/no/marked-danmark.html</loc></url>
+  <url><loc>https://waltham.no/no/marked-norge.html</loc></url>
+  <url><loc>https://waltham.no/no/marked-sverige.html</loc></url>
+  <url><loc>https://waltham.no/no/marked-finland.html</loc></url>
+  <url><loc>https://waltham.no/no/marked-island.html</loc></url>
+  <url><loc>https://waltham.no/en/nordic-market-entry.html</loc></url>
+  <url><loc>https://waltham.no/en/waltham-insight.html</loc></url>
+  <url><loc>https://waltham.no/en/market-denmark.html</loc></url>
+  <url><loc>https://waltham.no/en/market-norway.html</loc></url>
+  <url><loc>https://waltham.no/en/market-sweden.html</loc></url>
+  <url><loc>https://waltham.no/en/market-finland.html</loc></url>
+  <url><loc>https://waltham.no/en/market-iceland.html</loc></url>
+  <url><loc>https://waltham.no/de/nordischer-markteintritt.html</loc></url>
+  <url><loc>https://waltham.no/de/waltham-insight.html</loc></url>
+  <url><loc>https://waltham.no/de/markt-daenemark.html</loc></url>
+  <url><loc>https://waltham.no/de/markt-norwegen.html</loc></url>
+  <url><loc>https://waltham.no/de/markt-schweden.html</loc></url>
+  <url><loc>https://waltham.no/de/markt-finnland.html</loc></url>
+  <url><loc>https://waltham.no/de/markt-island.html</loc></url>
 </urlset>
