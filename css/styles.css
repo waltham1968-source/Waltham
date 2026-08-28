@@ -16,6 +16,23 @@ html{scroll-padding-top:90px;overflow-x:hidden}body{overflow-x:hidden}
 .site-header{gap:18px}.site-header .logo,.site-header .language-switcher{flex-shrink:0}.site-header nav{gap:clamp(13px,1.25vw,24px)}.site-header nav a{white-space:nowrap;flex-shrink:0}
 @media(max-width:1250px){.site-header nav{display:none;position:absolute;top:76px;left:0;right:0;padding:25px var(--gutter);background:var(--paper);color:var(--ink);flex-direction:column;align-items:flex-start}.site-header nav.open{display:flex}.menu-button{display:block}.language-switcher{margin-left:auto}}
 .market-intro>*{min-width:0}
+/* Compact localised Waltham Insight pages. Scoped away from market-entry pages. */
+body:not(.market-page) .market-nav{position:relative;background:#171d26;color:#fff}
+body:not(.market-page) .market-nav .wrap{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+body:not(.market-page) .market-nav .back{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#d7bd91;white-space:nowrap}
+body:not(.market-page) .market-nav .language-switcher{margin-left:auto}
+body:not(.market-page) .market-hero{background:radial-gradient(circle at 76% 22%,#b5986a38,transparent 27%),linear-gradient(145deg,#202b38,#0c1016);color:#fff;padding:clamp(80px,10vw,140px) 0}
+body:not(.market-page) .market-hero .wrap{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);gap:clamp(38px,6vw,90px);align-items:center}
+body:not(.market-page) .market-hero-copy{min-width:0}
+body:not(.market-page) .market-hero h1{font:400 clamp(56px,6.6vw,104px)/.94 var(--display);letter-spacing:-.02em;margin:0;max-width:940px}
+body:not(.market-page) .market-hero .eyebrow{color:#d7bd91}
+body:not(.market-page) .market-hero .hero-lead{color:#ffffffbd;max-width:780px}
+body:not(.market-page) .market-hero-art{width:min(100%,610px);justify-self:end}
+body:not(.market-page) .country-cta{background:var(--deep);color:#fff}
+body:not(.market-page) .country-cta h2{color:#fff}
+body:not(.market-page) .country-cta p{color:#ffffffa8}
+body:not(.market-page) .country-cta .button{margin-top:18px}
+@media(max-width:900px){body:not(.market-page) .market-hero .wrap{grid-template-columns:1fr}body:not(.market-page) .market-hero-art{width:min(86vw,560px);justify-self:center}body:not(.market-page) .market-nav .wrap{flex-wrap:wrap;padding:14px 0}body:not(.market-page) .market-nav .back{width:100%;order:3}}
 .value-guarantee{margin:0 0 16px;padding:clamp(32px,5vw,58px);background:var(--deep);color:#fff;border-left:4px solid var(--gold)}.value-guarantee .label{margin-bottom:18px}.value-guarantee h3{font:400 clamp(38px,5vw,66px)/1.03 var(--display);color:var(--gold2);margin:0;max-width:950px}.value-guarantee>p:last-child{color:#ffffffa3;font-size:16px;max-width:780px;margin:24px 0 0}
 .wide-product{grid-column:1/-1;min-height:auto;background:#eee8dc}.wide-product>p:not(.product-question){max-width:900px}.wide-product ul{display:grid;grid-template-columns:repeat(2,1fr);gap:0 30px}.wide-product .product-cta{background:var(--gold);color:var(--ink)}
 .quick-product{background:#f8f4eb;border-color:var(--gold);box-shadow:inset 4px 0 var(--gold)}.quick-product .product-meta strong{font-size:28px}.quick-product .product-question{color:#765a31}
