@@ -171,4 +171,16 @@
   <url><loc>https://waltham.no/de/markt-schweden.html</loc></url>
   <url><loc>https://waltham.no/de/markt-finnland.html</loc></url>
   <url><loc>https://waltham.no/de/markt-island.html</loc></url>
+  <url>
+    <loc>https://waltham.dk/dk/ai-augmented-market-estimation.html</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://waltham.dk/en/ai-augmented-market-estimation.html</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

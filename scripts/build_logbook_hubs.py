@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 entries = {
     "dk": [
+        ("29. august 2026 · Nyhedsprodukt", "Hvad mener folk lige nu?", "En hurtig og billig befolkningspuls, hvor AI finder spørgsmålet, og rigtige mennesker leverer svaret.", "ai-augmented-market-estimation.html"),
         ("28. august 2026 · AI", "AI er ikke magi. Det er et meget godt arkivskab.", "Kvaliteten af svaret afhænger af materialet, strukturen og spørgsmålet.", "ai-er-ikke-magi.html"),
         ("27. juli 2026 · Systemer", "Hvorfor en veltrimmet sejlbåd er en god model for en virksomhed", "Små korrektioner, klar retning og løbende opmærksomhed.", "veltrimmet-sejlbaad.html"),
         ("27. juli 2026 · AI", "Den bedste automatisering kan være at fjerne processen", "Undersøg først, om arbejdsgangen overhovedet bør eksistere.", "bedste-automatisering.html"),
@@ -22,6 +23,7 @@ entries = {
         ("27. juli 2026 · Samarbeid", "Samarbeid skal gi mening for begge parter", "Begynn smått, skap synlig verdi og fortsett når det virker.", "samarbeid-skal-gi-mening.html"),
     ],
     "en": [
+        ("29 August 2026 · Market research", "AI-Augmented Market Estimation", "Official data, behavioural signals, AI inference and a smaller human sample in one more cost-efficient model.", "ai-augmented-market-estimation.html"),
         ("28 August 2026 · AI", "AI isn’t magic. It’s a very good filing cabinet.", "The quality of the answer depends on the material, the structure and the question.", "ai-is-not-magic.html"),
         ("27 July 2026 · Systems", "Why a well-trimmed sailboat is a good model for a business", "Small corrections, clear direction and continuous attention.", "well-trimmed-sailboat.html"),
         ("27 July 2026 · AI", "The best automation may be to remove the process", "First ask whether the workflow should exist at all.", "best-automation.html"),
@@ -88,6 +90,7 @@ if 'article-entry-nav' not in html:
 norwegian_sailing.write_text(html, encoding="utf-8")
 
 groups = [
+    (("dk","ai-augmented-market-estimation.html"),("en","ai-augmented-market-estimation.html")),
     (("dk","ai-er-ikke-magi.html"),("no","ai-er-ikke-magi.html"),("en","ai-is-not-magic.html")),
     (("dk","veltrimmet-sejlbaad.html"),("root","veltrimmet-seilbat.html"),("en","well-trimmed-sailboat.html")),
     (("dk","bedste-automatisering.html"),("no","beste-automatisering.html"),("en","best-automation.html")),
