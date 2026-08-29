@@ -103,7 +103,7 @@ function responseText(data) {
 
 async function findLeads(auditResult, market) {
   if (!process.env.OPENAI_API_KEY) return { enabled: false, leads: [], note: 'Lead-søk er ikke aktivert ennå.' };
-  const prompt = `Utfør en kort forretningssjekk av ${auditResult.url}. Bruk nettsøk. Finn maksimalt 5 reelle mulige kunder, distributører eller partnere i ${market}, 3 konkrete PR-/profileringsmuligheter og 3 konkrete AI-/automatiseringsmuligheter. Ta bare med leads med offentlig kilde-URL. Ikke oppdikt navn eller tall. Returner bare JSON: {"summary":"kort vurdering","leads":[{"name":"navn","type":"kunde|distributør|partner","reason":"kort grunn","source":"https://..."}],"prOpportunities":["konkret mulighet"],"aiOpportunities":["konkret mulighet"]}. NETTSTEDSTEKST: ${auditResult.pageText.slice(0, 5000)}`;
+  const prompt = `Utfør et kort B2B-søk for ${auditResult.url}. Finn maksimalt 5 reelle mulige kunder, distributører eller partnere i ${market}. Ta bare med virksomheter med offentlig kilde-URL. Ikke oppdikt navn eller tall. Returner bare JSON: {"summary":"kort vurdering","leads":[{"name":"navn","type":"kunde|distributør|partner","reason":"kort grunn","source":"https://..."}]}. NETTSTEDSTEKST: ${auditResult.pageText.slice(0, 4000)}`;
   const baseUrl = (process.env.OPENAI_BASE_URL || 'https://api.openai.com').replace(/\/$/, '');
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 35000);
@@ -118,9 +118,29 @@ async function findLeads(auditResult, market) {
   const raw = responseText(await response.json()).replace(/^```json\s*|\s*```$/g, '');
   const parsed = JSON.parse(raw);
   const leads = Array.isArray(parsed.leads) ? parsed.leads.filter(x => x?.name && /^https?:\/\//.test(x?.source || '')).slice(0, 20) : [];
-  const prOpportunities = Array.isArray(parsed.prOpportunities) ? parsed.prOpportunities.filter(Boolean).slice(0, 5) : [];
-  const aiOpportunities = Array.isArray(parsed.aiOpportunities) ? parsed.aiOpportunities.filter(Boolean).slice(0, 5) : [];
-  return { enabled: true, summary: parsed.summary || '', leads, prOpportunities, aiOpportunities };
+  return { enabled: true, summary: parsed.summary || '', leads };
+}
+
+async function findOpportunities(auditResult) {
+  if (!process.env.OPENAI_API_KEY) return { prOpportunities: [], aiOpportunities: [] };
+  const baseUrl = (process.env.OPENAI_BASE_URL || 'https://api.openai.com').replace(/\/$/, '');
+  const prompt = `Analyser den offentlige nettstedsteksten og finn nøyaktig 3 konkrete PR-/profileringsmuligheter og 3 konkrete AI-/automatiseringsmuligheter. Mulighetene skal være relevante for virksomheten, ikke generiske. Returner bare JSON: {"prOpportunities":["mulighet"],"aiOpportunities":["mulighet"]}. NETTSTED: ${auditResult.url}. TEKST: ${auditResult.pageText.slice(0, 5000)}`;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 22000);
+  try {
+    const response = await fetch(`${baseUrl}/v1/responses`, {
+      method: 'POST', signal: controller.signal,
+      headers: { 'authorization': `Bearer ${process.env.OPENAI_API_KEY}`, 'content-type': 'application/json' },
+      body: JSON.stringify({ model: process.env.OPENAI_MARKET_MODEL || 'gpt-5-mini', reasoning: { effort: 'low' }, max_output_tokens: 700, input: prompt }),
+    });
+    if (!response.ok) throw new Error('Mulighetssøket kunne ikke fullføres');
+    const raw = responseText(await response.json()).replace(/^```json\s*|\s*```$/g, '');
+    const parsed = JSON.parse(raw);
+    return {
+      prOpportunities: Array.isArray(parsed.prOpportunities) ? parsed.prOpportunities.filter(Boolean).slice(0, 3) : [],
+      aiOpportunities: Array.isArray(parsed.aiOpportunities) ? parsed.aiOpportunities.filter(Boolean).slice(0, 3) : [],
+    };
+  } finally { clearTimeout(timer); }
 }
 
 export default async req => {
@@ -142,19 +162,20 @@ export default async req => {
     const start = await safeUrl(raw);
     const page = await fetchPage(start);
     const result = audit(page.html, page.finalUrl);
-    let leadResult;
-    try { leadResult = await findLeads(result, market); }
-    catch { leadResult = { enabled: Boolean(process.env.OPENAI_API_KEY), leads: [], note: 'Lead-søket var midlertidig utilgjengelig.' }; }
+    const [leadResult, opportunityResult] = await Promise.all([
+      findLeads(result, market).catch(() => ({ enabled: Boolean(process.env.OPENAI_API_KEY), leads: [], note: 'Lead-søket var midlertidig utilgjengelig.' })),
+      findOpportunities(result).catch(() => ({ prOpportunities: [], aiOpportunities: [] })),
+    ]);
     return json({
       domain: new URL(result.url).hostname.replace(/^www\./, ''), market,
       websiteIssueCount: result.websiteIssues.length, websiteIssues: result.websiteIssues.slice(0, 2),
       socialIssueCount: result.socialIssues.length, socialIssues: result.socialIssues.slice(0, 2),
       signals: result.signals, leadCount: leadResult.leads.length,
       leadPreview: leadResult.leads.slice(0, 3), leadSearchEnabled: leadResult.enabled,
-      prOpportunityCount: leadResult.prOpportunities?.length || 0,
-      prOpportunityPreview: leadResult.prOpportunities?.slice(0, 1) || [],
-      aiOpportunityCount: leadResult.aiOpportunities?.length || 0,
-      aiOpportunityPreview: leadResult.aiOpportunities?.slice(0, 1) || [],
+      prOpportunityCount: opportunityResult.prOpportunities.length,
+      prOpportunityPreview: opportunityResult.prOpportunities.slice(0, 1),
+      aiOpportunityCount: opportunityResult.aiOpportunities.length,
+      aiOpportunityPreview: opportunityResult.aiOpportunities.slice(0, 1),
       summary: leadResult.summary || '', note: leadResult.note || '',
     });
   } catch (error) {
