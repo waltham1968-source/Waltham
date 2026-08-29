@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 entries = {
     "dk": [
+        ("29. august 2026 · Produktudvikling", "Én webadresse kan åbne en hel forretning", "Potentialesjekket forbinder offentlige signaler med konkrete muligheder, produkter og samarbejdspartnere.", "en-webadresse-kan-aabne-en-forretning.html"),
         ("29. august 2026 · Nyhedsprodukt", "Hvad mener folk lige nu?", "En hurtig og billig befolkningspuls, hvor AI finder spørgsmålet, og rigtige mennesker leverer svaret.", "ai-augmented-market-estimation.html"),
         ("28. august 2026 · AI", "AI er ikke magi. Det er et meget godt arkivskab.", "Kvaliteten af svaret afhænger af materialet, strukturen og spørgsmålet.", "ai-er-ikke-magi.html"),
         ("27. juli 2026 · Systemer", "Hvorfor en veltrimmet sejlbåd er en god model for en virksomhed", "Små korrektioner, klar retning og løbende opmærksomhed.", "veltrimmet-sejlbaad.html"),
@@ -16,6 +17,7 @@ entries = {
         ("27. juli 2026 · Samarbejde", "Samarbejde skal give mening for begge parter", "Start småt, skab synlig værdi og fortsæt, når det virker.", "samarbejde-skal-give-mening.html"),
     ],
     "no": [
+        ("29. august 2026 · Produktutvikling", "Én nettadresse kan åpne en hel forretning", "Potensialsjekken kobler offentlige signaler til konkrete muligheter, produkter og samarbeidspartnere.", "en-nettadresse-kan-apne-en-forretning.html"),
         ("29. august 2026 · Nyhetsprodukt", "Hva mener folk akkurat nå?", "En rask og rimelig befolkningspuls der AI finner spørsmålet, og virkelige mennesker gir svaret.", "ai-augmented-market-estimation.html"),
         ("28. august 2026 · AI", "AI er ikke magi. Det er et svært godt arkivskap.", "Kvaliteten på svaret avhenger av materialet, strukturen og spørsmålet.", "ai-er-ikke-magi.html"),
         ("27. juli 2026 · Systemer", "Hvorfor en veltrimmet seilbåt er en god modell for en virksomhet", "Små korrigeringer, tydelig retning og løpende oppmerksomhet.", "../veltrimmet-seilbat.html"),
@@ -24,6 +26,7 @@ entries = {
         ("27. juli 2026 · Samarbeid", "Samarbeid skal gi mening for begge parter", "Begynn smått, skap synlig verdi og fortsett når det virker.", "samarbeid-skal-gi-mening.html"),
     ],
     "en": [
+        ("29 August 2026 · Product development", "One web address can open an entire business", "The potential check connects public signals with concrete opportunities, products and partners.", "one-web-address-can-open-a-business.html"),
         ("29 August 2026 · News product", "What do people think right now?", "A fast and affordable population pulse where AI finds the question and real people provide the answer.", "ai-augmented-market-estimation.html"),
         ("28 August 2026 · AI", "AI isn’t magic. It’s a very good filing cabinet.", "The quality of the answer depends on the material, the structure and the question.", "ai-is-not-magic.html"),
         ("27 July 2026 · Systems", "Why a well-trimmed sailboat is a good model for a business", "Small corrections, clear direction and continuous attention.", "well-trimmed-sailboat.html"),
@@ -32,6 +35,7 @@ entries = {
         ("27 July 2026 · Collaboration", "Collaboration should make sense for both sides", "Start small, create visible value and continue when it works.", "collaboration-should-make-sense.html"),
     ],
     "de": [
+        ("29. August 2026 · Produktentwicklung", "Eine Webadresse kann ein ganzes Geschäft eröffnen", "Der Potenzialcheck verbindet öffentliche Signale mit konkreten Chancen, Produkten und Partnern.", "eine-webadresse-kann-ein-geschaeft-eroeffnen.html"),
         ("29. August 2026 · Nachrichtenprodukt", "Was denken die Menschen gerade?", "Ein schneller und kostengünstiger Bevölkerungspuls: KI findet die Frage, echte Menschen liefern die Antwort.", "ai-augmented-market-estimation.html"),
         ("28. August 2026 · KI", "KI ist keine Magie. Sie ist ein sehr guter Aktenschrank.", "Die Qualität der Antwort hängt vom Material, der Struktur und der Frage ab.", "../en/ai-is-not-magic.html"),
         ("27. Juli 2026 · Systeme", "Warum ein gut getrimmtes Segelboot ein gutes Unternehmensmodell ist", "Kleine Korrekturen, klare Richtung und kontinuierliche Aufmerksamkeit.", "../en/well-trimmed-sailboat.html"),
@@ -71,9 +75,10 @@ article_sets = {
     "dk": [x[3] for x in entries["dk"]],
     "no": [x[3] for x in entries["no"] if not x[3].startswith("../")],
     "en": [x[3] for x in entries["en"]],
+    "de": [x[3] for x in entries["de"] if not x[3].startswith("../")],
 }
-back_labels = {"dk":"← Tilbage til Logbogen", "no":"← Tilbake til Loggboken", "en":"← Back to the Journal"}
-all_labels = {"dk":"Se alle noter i Logbogen", "no":"Se alle notater i Loggboken", "en":"See every entry in the Journal"}
+back_labels = {"dk":"← Tilbage til Logbogen", "no":"← Tilbake til Loggboken", "en":"← Back to the Journal", "de":"← Zurück zum Logbuch"}
+all_labels = {"dk":"Se alle noter i Logbogen", "no":"Se alle notater i Loggboken", "en":"See every entry in the Journal", "de":"Alle Einträge im Logbuch ansehen"}
 for lang, filenames in article_sets.items():
     for filename in filenames:
         path = ROOT/lang/filename
@@ -92,6 +97,7 @@ if 'article-entry-nav' not in html:
 norwegian_sailing.write_text(html, encoding="utf-8")
 
 groups = [
+    (("dk","en-webadresse-kan-aabne-en-forretning.html"),("no","en-nettadresse-kan-apne-en-forretning.html"),("en","one-web-address-can-open-a-business.html"),("de","eine-webadresse-kann-ein-geschaeft-eroeffnen.html")),
     (("dk","ai-augmented-market-estimation.html"),("no","ai-augmented-market-estimation.html"),("en","ai-augmented-market-estimation.html"),("de","ai-augmented-market-estimation.html")),
     (("dk","ai-er-ikke-magi.html"),("no","ai-er-ikke-magi.html"),("en","ai-is-not-magic.html")),
     (("dk","veltrimmet-sejlbaad.html"),("root","veltrimmet-seilbat.html"),("en","well-trimmed-sailboat.html")),
@@ -115,8 +121,9 @@ sequences = {
     "dk": [("dk",x[3]) for x in entries["dk"]],
     "no": [("no",x[3]) if not x[3].startswith("../") else ("root","veltrimmet-seilbat.html") for x in entries["no"]],
     "en": [("en",x[3]) for x in entries["en"]],
+    "de": [("de",x[3]) for x in entries["de"] if not x[3].startswith("../")],
 }
-direction = {"dk":("← Nyere note","Alle noter","Ældre note →"),"no":("← Nyere notat","Alle notater","Eldre notat →"),"en":("← Newer entry","All entries","Older entry →")}
+direction = {"dk":("← Nyere note","Alle noter","Ældre note →"),"no":("← Nyere notat","Alle notater","Eldre notat →"),"en":("← Newer entry","All entries","Older entry →"),"de":("← Neuerer Eintrag","Alle Einträge","Älterer Eintrag →")}
 for lang, sequence in sequences.items():
     newer_label, all_label, older_label = direction[lang]
     for index, (locale, filename) in enumerate(sequence):
