@@ -111,7 +111,7 @@ async function findLeads(auditResult, market) {
   try { response = await fetch(`${baseUrl}/v1/responses`, {
     method: 'POST',
     headers: { 'authorization': `Bearer ${process.env.OPENAI_API_KEY}`, 'content-type': 'application/json' },
-    body: JSON.stringify({ model: process.env.OPENAI_MARKET_MODEL || 'gpt-5-mini', reasoning: { effort: 'minimal' }, max_output_tokens: 1200, tools: [{ type: 'web_search', search_context_size: 'low' }], input: prompt }),
+    body: JSON.stringify({ model: process.env.OPENAI_MARKET_MODEL || 'gpt-5-mini', reasoning: { effort: 'low' }, max_output_tokens: 1200, tools: [{ type: 'web_search', search_context_size: 'low' }], input: prompt }),
     signal: controller.signal,
   }); } finally { clearTimeout(timer); }
   if (!response.ok) throw new Error('Lead-søket kunne ikke fullføres');
