@@ -103,7 +103,7 @@ function responseText(data) {
 
 async function findLeads(auditResult, market) {
   if (!process.env.OPENAI_API_KEY) return { enabled: false, leads: [], note: 'Lead-søk er ikke aktivert ennå.' };
-  const prompt = `Du utfører en rask, innledende nordisk B2B-markedssjekk. Bruk nettsøk. Basert på teksten fra ${auditResult.url}, finn inntil 8 reelle virksomheter i ${market} som kan være mulige kunder, distributører eller partnere. Ta bare med virksomheter du kan dokumentere med en offentlig kilde-URL. Ikke oppdikt navn eller tall. Returner kun JSON med formen {"summary":"kort vurdering","leads":[{"name":"navn","type":"kunde|distributør|partner","reason":"kort grunn","source":"https://..."}]}. NETTSTEDSTEKST: ${auditResult.pageText.slice(0, 8000)}`;
+  const prompt = `Du utfører en rask, innledende forretningssjekk. Bruk nettsøk. Basert på teksten fra ${auditResult.url}, finn inntil 8 reelle virksomheter i ${market} som kan være mulige kunder, distributører eller partnere. Finn også inntil 5 konkrete PR-/profileringsmuligheter og inntil 5 konkrete AI-/automatiseringsmuligheter som kan utledes fra virksomhetens offentlige nettsted. Ta bare med leads du kan dokumentere med en offentlig kilde-URL. Ikke oppdikt navn eller tall. Returner kun JSON med formen {"summary":"kort vurdering","leads":[{"name":"navn","type":"kunde|distributør|partner","reason":"kort grunn","source":"https://..."}],"prOpportunities":["konkret mulighet"],"aiOpportunities":["konkret mulighet"]}. NETTSTEDSTEKST: ${auditResult.pageText.slice(0, 8000)}`;
   const baseUrl = (process.env.OPENAI_BASE_URL || 'https://api.openai.com').replace(/\/$/, '');
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 35000);
@@ -118,7 +118,9 @@ async function findLeads(auditResult, market) {
   const raw = responseText(await response.json()).replace(/^```json\s*|\s*```$/g, '');
   const parsed = JSON.parse(raw);
   const leads = Array.isArray(parsed.leads) ? parsed.leads.filter(x => x?.name && /^https?:\/\//.test(x?.source || '')).slice(0, 20) : [];
-  return { enabled: true, summary: parsed.summary || '', leads };
+  const prOpportunities = Array.isArray(parsed.prOpportunities) ? parsed.prOpportunities.filter(Boolean).slice(0, 5) : [];
+  const aiOpportunities = Array.isArray(parsed.aiOpportunities) ? parsed.aiOpportunities.filter(Boolean).slice(0, 5) : [];
+  return { enabled: true, summary: parsed.summary || '', leads, prOpportunities, aiOpportunities };
 }
 
 export default async req => {
@@ -149,6 +151,10 @@ export default async req => {
       socialIssueCount: result.socialIssues.length, socialIssues: result.socialIssues.slice(0, 2),
       signals: result.signals, leadCount: leadResult.leads.length,
       leadPreview: leadResult.leads.slice(0, 3), leadSearchEnabled: leadResult.enabled,
+      prOpportunityCount: leadResult.prOpportunities?.length || 0,
+      prOpportunityPreview: leadResult.prOpportunities?.slice(0, 1) || [],
+      aiOpportunityCount: leadResult.aiOpportunities?.length || 0,
+      aiOpportunityPreview: leadResult.aiOpportunities?.slice(0, 1) || [],
       summary: leadResult.summary || '', note: leadResult.note || '',
     });
   } catch (error) {
