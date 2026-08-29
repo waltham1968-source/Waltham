@@ -15,6 +15,7 @@ locales = {
         "descs": ["Research, markedsanalyse, meningsmålinger og menneskelig verifikasjon.", "Markedsvurdering, kundekartlegging og praktisk inngang til Norden.", "Praktisk AI-rådgivning, automatisering og avgrensede tester.", "Digitale sider, rapporter og beslutningsmateriale som gjør komplekse ting tydelige."],
         "cta": "Ikke sikker på kategorien?", "cta_h": "Begynn med spørsmålet — ikke produktnavnet.", "cta_p": "Beskriv kort hva dere trenger å forstå, beslutte, forbedre eller forklare. Vi foreslår det minste meningsfulle stedet å begynne.", "contact": "Send en fortrolig forespørsel",
         "menu": "Produkter", "all": "Se alle konkrete produkter og priser", "overview": "Se produktfamilier, leveranser og priser →",
+        "pulse_read": "Les om modellen →", "family_links": [("waltham-insight.html", "Utforsk Waltham Insight →"), ("nordisk-markedsinngang.html", "Utforsk Waltham Nordic →"), ("index.html#tjenester", "Utforsk Waltham AI →"), ("mailto:waltham@me.com?subject=Waltham%20Studio", "Fortell hva dere skal forklare →")],
     },
     "en": {
         "file": "products.html", "html": "en", "title": "Products & pricing", "back": "← Back to Waltham",
@@ -24,6 +25,7 @@ locales = {
         "descs": ["Research, market analysis, polling and human verification.", "Market assessment, customer mapping and practical Nordic market entry.", "Practical AI advice, automation and focused tests.", "Digital pages, reports and decision material that make complex things clear."],
         "cta": "Not sure about the category?", "cta_h": "Begin with the question — not the product name.", "cta_p": "Briefly describe what you need to understand, decide, improve or explain. We will suggest the smallest meaningful place to begin.", "contact": "Send a confidential enquiry",
         "menu": "Products", "all": "See all specific products and prices", "overview": "See product families, deliverables and pricing →",
+        "pulse_read": "Read about the model →", "family_links": [("waltham-insight.html", "Explore Waltham Insight →"), ("nordic-market-entry.html", "Explore Waltham Nordic →"), ("index.html#tjenester", "Explore Waltham AI →"), ("mailto:waltham@me.com?subject=Waltham%20Studio", "Tell us what you need to explain →")],
     },
     "de": {
         "file": "produkte.html", "html": "de", "title": "Produkte & Preise", "back": "← Zurück zu Waltham",
@@ -33,6 +35,7 @@ locales = {
         "descs": ["Recherche, Marktanalyse, Meinungsumfragen und menschliche Verifikation.", "Marktbewertung, Kundenmapping und praktischer Eintritt in nordische Märkte.", "Praktische KI-Beratung, Automatisierung und fokussierte Tests.", "Digitale Seiten, Berichte und Entscheidungsmaterial, das Komplexes klar macht."],
         "cta": "Nicht sicher, welche Kategorie passt?", "cta_h": "Beginnen Sie mit der Frage — nicht mit dem Produktnamen.", "cta_p": "Beschreiben Sie kurz, was Sie verstehen, entscheiden, verbessern oder erklären möchten. Wir schlagen den kleinsten sinnvollen Ausgangspunkt vor.", "contact": "Vertrauliche Anfrage senden",
         "menu": "Produkte", "all": "Alle konkreten Produkte und Preise ansehen", "overview": "Produktfamilien, Leistungen und Preise ansehen →",
+        "pulse_read": "Mehr über das Modell →", "family_links": [("waltham-insight.html", "Waltham Insight entdecken →"), ("nordischer-markteintritt.html", "Waltham Nordic entdecken →"), ("index.html#leistungen", "Waltham AI entdecken →"), ("mailto:waltham@me.com?subject=Waltham%20Studio", "Beschreiben Sie, was erklärt werden soll →")],
     },
 }
 
@@ -50,12 +53,13 @@ for lang, c in locales.items():
     sections = []
     for i, anchor in enumerate(anchors):
         cards = "".join(
-            f'<article class="family-product-featured"><span>{kind}</span><h3>{name}</h3><p>{c["descs"][i]}</p><b>{price}</b></article>'
+            f'<article class="family-product-featured"><span>{kind}</span><h3>{name}</h3><p>{c["descs"][i]}</p><b>{price}</b><a href="ai-augmented-market-estimation.html">{c["pulse_read"]}</a></article>'
             if name == "Waltham Population Pulse"
             else f'<article><span>{kind}</span><h3>{name}</h3><p>{c["descs"][i]}</p><b>{price}</b></article>'
             for name, kind, price in products[i]
         )
-        sections.append(f'<section class="product-family-section{" family-alt" if i % 2 else ""}" id="{anchor}"><div class="wrap"><div class="family-heading"><div><p class="label">Waltham {c["families"][i][0]}</p><h2>{c["headings"][i]}</h2></div><p>{c["descs"][i]}</p></div><div class="family-products">{cards}</div></div></section>')
+        family_href, family_label = c["family_links"][i]
+        sections.append(f'<section class="product-family-section{" family-alt" if i % 2 else ""}" id="{anchor}"><div class="wrap"><div class="family-heading"><div><p class="label">Waltham {c["families"][i][0]}</p><h2>{c["headings"][i]}</h2></div><p>{c["descs"][i]}</p></div><div class="family-products">{cards}</div><a class="family-link" href="{family_href}">{family_label}</a></div></section>')
     page = f'''<!doctype html><html lang="{c["html"]}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Waltham {c["title"]}: Insight, Nordic, AI and Studio."><title>{c["title"]} — Waltham</title><link rel="stylesheet" href="../css/styles.css"><link rel="stylesheet" href="../css/brand-logo.css"></head><body class="product-hub-page"><header class="product-hub-nav"><div class="wrap"><a class="logo" href="index.html">Waltham<span>.</span><small>Consulting</small></a><a class="back" href="index.html">{c["back"]}</a></div></header><main><section class="product-hub-hero"><div class="wrap"><p class="eyebrow">{c["title"]}</p><h1>{c["hero"]}</h1><p>{c["lead"]}</p></div></section><nav class="product-family-nav wrap" aria-label="{c["title"]}">{nav}</nav>{''.join(sections)}<section class="product-hub-cta"><div class="wrap"><div><p class="label">{c["cta"]}</p><h2>{c["cta_h"]}</h2><p>{c["cta_p"]}</p></div><a class="button primary" href="index.html#kontakt">{c["contact"]}</a></div></section></main><footer><div class="wrap"><a class="logo" href="index.html">Waltham<span>.</span><small>Consulting</small></a><p>Insight · Nordic · AI · Studio</p></div></footer><script src="/js/cookie-notice.js"></script></body></html>'''
     (ROOT / lang / c["file"]).write_text(page, encoding="utf-8")
 
