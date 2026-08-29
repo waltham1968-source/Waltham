@@ -24,6 +24,21 @@ const privateIp = ip => {
     value.startsWith("fea") || value.startsWith("feb") || value.startsWith("::ffff:127.");
 };
 
+const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+async function lookupWithRetry(host) {
+  let lastError;
+  for (const delay of [0, 180, 450]) {
+    if (delay) await wait(delay);
+    try { return await dns.lookup(host, { all: true }); }
+    catch (error) {
+      lastError = error;
+      if (!['EBUSY', 'EAI_AGAIN', 'ETIMEOUT'].includes(error.code)) break;
+    }
+  }
+  if (['ENOTFOUND', 'ENODATA'].includes(lastError?.code)) throw new Error('Vi kunne ikke finde dette domæne. Kontrollér stavningen og prøv igen.');
+  throw new Error('Hjemmesiden kunne ikke nås lige nu. Prøv igen om et øjeblik.');
+}
+
 async function safeUrl(raw) {
   const candidate = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
   const url = new URL(candidate);
@@ -31,7 +46,7 @@ async function safeUrl(raw) {
   if (url.port && !['80', '443'].includes(url.port)) throw new Error('Porten er ikke tillatt');
   const host = url.hostname.replace(/\.$/, '');
   if (host === 'localhost' || host.endsWith('.local') || host.endsWith('.internal')) throw new Error('Adressen er ikke offentlig');
-  const addresses = net.isIP(host) ? [host] : (await dns.lookup(host, { all: true })).map(item => item.address);
+  const addresses = net.isIP(host) ? [host] : (await lookupWithRetry(host)).map(item => item.address);
   if (!addresses.length || addresses.some(privateIp)) throw new Error('Adressen er ikke offentlig');
   url.hash = '';
   return url;
