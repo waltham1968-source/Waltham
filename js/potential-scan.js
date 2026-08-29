@@ -6,7 +6,7 @@ document.querySelectorAll('.potential-scan').forEach(form => {
     en: { working:'We are examining the business…', failed:'The analysis could not be completed.', found:'Initial opportunities found for', leads:'potential customers and partners', web:'website, Google or social improvements', ai:'AI and automation opportunities', pr:'PR and profile opportunities', note:'Get the full assessment with every finding, priorities and recommended next steps.', cta:'Get the full assessment', retry:'Please try again in a moment.' },
     de: { working:'Wir untersuchen das Unternehmen…', failed:'Die Analyse konnte nicht abgeschlossen werden.', found:'Erste Chancen gefunden für', leads:'mögliche Kunden und Partner', web:'Verbesserungen für Website, Google oder soziale Medien', ai:'KI- und Automatisierungschancen', pr:'PR- und Profilierungschancen', note:'Erhalten Sie die vollständige Bewertung mit allen Ergebnissen, Prioritäten und nächsten Schritten.', cta:'Vollständige Bewertung erhalten', retry:'Bitte versuchen Sie es gleich noch einmal.' },
   }[locale];
-  const input = form.querySelector('input[type="url"]');
+  const input = form.querySelector('input[inputmode="url"]');
   const button = form.querySelector('button');
   const status = form.parentElement.querySelector('.potential-status');
   const result = form.parentElement.querySelector('.potential-results');
