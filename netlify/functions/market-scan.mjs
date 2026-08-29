@@ -3,7 +3,13 @@ import net from "node:net";
 
 const json = (data, status = 200) => new Response(JSON.stringify(data), {
   status,
-  headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" },
+  headers: {
+    "content-type": "application/json; charset=utf-8",
+    "cache-control": "no-store",
+    "access-control-allow-origin": "*",
+    "access-control-allow-methods": "POST, OPTIONS",
+    "access-control-allow-headers": "content-type",
+  },
 });
 
 const privateIp = ip => {
@@ -116,6 +122,14 @@ async function findLeads(auditResult, market) {
 }
 
 export default async req => {
+  if (req.method === 'OPTIONS') return new Response(null, {
+    status: 204,
+    headers: {
+      'access-control-allow-origin': '*',
+      'access-control-allow-methods': 'POST, OPTIONS',
+      'access-control-allow-headers': 'content-type',
+    },
+  });
   if (req.method !== 'POST') return json({ error: 'Kun POST er tillatt' }, 405);
   try {
     const body = await req.json();
