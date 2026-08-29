@@ -97,13 +97,17 @@ function responseText(data) {
 
 async function findLeads(auditResult, market) {
   if (!process.env.OPENAI_API_KEY) return { enabled: false, leads: [], note: 'Lead-søk er ikke aktivert ennå.' };
-  const prompt = `Du utfører en innledende nordisk B2B-markedssjekk. Bruk nettsøk. Basert på teksten fra ${auditResult.url}, finn inntil 20 reelle virksomheter i ${market} som kan være mulige kunder, distributører eller partnere. Ta bare med virksomheter du kan dokumentere med en offentlig kilde-URL. Ikke oppdikt navn eller tall. Returner kun JSON med formen {"summary":"kort vurdering","leads":[{"name":"navn","type":"kunde|distributør|partner","reason":"kort grunn","source":"https://..."}]}. NETTSTEDSTEKST: ${auditResult.pageText}`;
+  const prompt = `Du utfører en rask, innledende nordisk B2B-markedssjekk. Bruk nettsøk. Basert på teksten fra ${auditResult.url}, finn inntil 8 reelle virksomheter i ${market} som kan være mulige kunder, distributører eller partnere. Ta bare med virksomheter du kan dokumentere med en offentlig kilde-URL. Ikke oppdikt navn eller tall. Returner kun JSON med formen {"summary":"kort vurdering","leads":[{"name":"navn","type":"kunde|distributør|partner","reason":"kort grunn","source":"https://..."}]}. NETTSTEDSTEKST: ${auditResult.pageText.slice(0, 8000)}`;
   const baseUrl = (process.env.OPENAI_BASE_URL || 'https://api.openai.com').replace(/\/$/, '');
-  const response = await fetch(`${baseUrl}/v1/responses`, {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 35000);
+  let response;
+  try { response = await fetch(`${baseUrl}/v1/responses`, {
     method: 'POST',
     headers: { 'authorization': `Bearer ${process.env.OPENAI_API_KEY}`, 'content-type': 'application/json' },
-    body: JSON.stringify({ model: process.env.OPENAI_MARKET_MODEL || 'gpt-5-mini', tools: [{ type: 'web_search' }], input: prompt }),
-  });
+    body: JSON.stringify({ model: process.env.OPENAI_MARKET_MODEL || 'gpt-5-mini', reasoning: { effort: 'low' }, max_output_tokens: 1600, tools: [{ type: 'web_search', search_context_size: 'low' }], input: prompt }),
+    signal: controller.signal,
+  }); } finally { clearTimeout(timer); }
   if (!response.ok) throw new Error('Lead-søket kunne ikke fullføres');
   const raw = responseText(await response.json()).replace(/^```json\s*|\s*```$/g, '');
   const parsed = JSON.parse(raw);
