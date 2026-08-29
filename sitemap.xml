@@ -183,5 +183,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url><loc>https://waltham.no/no/ai-augmented-market-estimation.html</loc><lastmod>2026-08-29</lastmod></url>
+  <url><loc>https://waltham.dk/de/ai-augmented-market-estimation.html</loc><lastmod>2026-08-29</lastmod></url>
   <url><loc>https://waltham.dk/dk/produkter.html</loc></url>
+  <url><loc>https://waltham.no/no/produkter.html</loc></url>
+  <url><loc>https://waltham.dk/en/products.html</loc></url>
+  <url><loc>https://waltham.dk/de/produkte.html</loc></url>
 </urlset>

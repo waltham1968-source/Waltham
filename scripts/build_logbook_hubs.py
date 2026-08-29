@@ -16,6 +16,7 @@ entries = {
         ("27. juli 2026 · Samarbejde", "Samarbejde skal give mening for begge parter", "Start småt, skab synlig værdi og fortsæt, når det virker.", "samarbejde-skal-give-mening.html"),
     ],
     "no": [
+        ("29. august 2026 · Nyhetsprodukt", "Hva mener folk akkurat nå?", "En rask og rimelig befolkningspuls der AI finner spørsmålet, og virkelige mennesker gir svaret.", "ai-augmented-market-estimation.html"),
         ("28. august 2026 · AI", "AI er ikke magi. Det er et svært godt arkivskap.", "Kvaliteten på svaret avhenger av materialet, strukturen og spørsmålet.", "ai-er-ikke-magi.html"),
         ("27. juli 2026 · Systemer", "Hvorfor en veltrimmet seilbåt er en god modell for en virksomhet", "Små korrigeringer, tydelig retning og løpende oppmerksomhet.", "../veltrimmet-seilbat.html"),
         ("27. juli 2026 · AI", "Den beste automatiseringen kan være å fjerne prosessen", "Undersøk først om arbeidsflyten i det hele tatt bør eksistere.", "beste-automatisering.html"),
@@ -23,7 +24,7 @@ entries = {
         ("27. juli 2026 · Samarbeid", "Samarbeid skal gi mening for begge parter", "Begynn smått, skap synlig verdi og fortsett når det virker.", "samarbeid-skal-gi-mening.html"),
     ],
     "en": [
-        ("29 August 2026 · Market research", "AI-Augmented Market Estimation", "Official data, behavioural signals, AI inference and a smaller human sample in one more cost-efficient model.", "ai-augmented-market-estimation.html"),
+        ("29 August 2026 · News product", "What do people think right now?", "A fast and affordable population pulse where AI finds the question and real people provide the answer.", "ai-augmented-market-estimation.html"),
         ("28 August 2026 · AI", "AI isn’t magic. It’s a very good filing cabinet.", "The quality of the answer depends on the material, the structure and the question.", "ai-is-not-magic.html"),
         ("27 July 2026 · Systems", "Why a well-trimmed sailboat is a good model for a business", "Small corrections, clear direction and continuous attention.", "well-trimmed-sailboat.html"),
         ("27 July 2026 · AI", "The best automation may be to remove the process", "First ask whether the workflow should exist at all.", "best-automation.html"),
@@ -31,6 +32,7 @@ entries = {
         ("27 July 2026 · Collaboration", "Collaboration should make sense for both sides", "Start small, create visible value and continue when it works.", "collaboration-should-make-sense.html"),
     ],
     "de": [
+        ("29. August 2026 · Nachrichtenprodukt", "Was denken die Menschen gerade?", "Ein schneller und kostengünstiger Bevölkerungspuls: KI findet die Frage, echte Menschen liefern die Antwort.", "ai-augmented-market-estimation.html"),
         ("28. August 2026 · KI", "KI ist keine Magie. Sie ist ein sehr guter Aktenschrank.", "Die Qualität der Antwort hängt vom Material, der Struktur und der Frage ab.", "../en/ai-is-not-magic.html"),
         ("27. Juli 2026 · Systeme", "Warum ein gut getrimmtes Segelboot ein gutes Unternehmensmodell ist", "Kleine Korrekturen, klare Richtung und kontinuierliche Aufmerksamkeit.", "../en/well-trimmed-sailboat.html"),
         ("27. Juli 2026 · KI", "Die beste Automatisierung kann darin bestehen, den Prozess abzuschaffen", "Zuerst prüfen, ob der Arbeitsablauf überhaupt existieren sollte.", "../en/best-automation.html"),
@@ -42,7 +44,7 @@ copy = {
     "dk": ("da", "Logbog", "Noter fra arbejdet med at skabe bevægelse.", "Observationer, erfaringer og idéer om virksomheder, teknologi, markeder og mennesker — samlet ét sted.", "Læs notatet", "Alle noter er skrevet undervejs. Kort, konkret og uden konsulentsprog."),
     "no": ("nb", "Loggbok", "Notater fra arbeidet med å skape bevegelse.", "Observasjoner, erfaringer og ideer om virksomheter, teknologi, markeder og mennesker — samlet på ett sted.", "Les notatet", "Alle notater er skrevet underveis. Kort, konkret og uten konsulentspråk."),
     "en": ("en", "Journal", "Notes from the work of creating momentum.", "Observations, experience and ideas about business, technology, markets and people — collected in one place.", "Read the entry", "Written along the way. Short, concrete and without consulting jargon."),
-    "de": ("de", "Logbuch", "Notizen aus der Arbeit, Dinge in Bewegung zu bringen.", "Beobachtungen, Erfahrungen und Ideen zu Unternehmen, Technologie, Märkten und Menschen — an einem Ort gesammelt.", "Auf Englisch lesen", "Unterwegs geschrieben. Kurz, konkret und ohne Beraterjargon."),
+    "de": ("de", "Logbuch", "Notizen aus der Arbeit, Dinge in Bewegung zu bringen.", "Beobachtungen, Erfahrungen und Ideen zu Unternehmen, Technologie, Märkten und Menschen — an einem Ort gesammelt.", "Eintrag lesen", "Unterwegs geschrieben. Kurz, konkret und ohne Beraterjargon."),
 }
 
 names = {"dk":"logbog.html", "no":"loggbok.html", "en":"journal.html", "de":"logbuch.html"}
@@ -90,7 +92,7 @@ if 'article-entry-nav' not in html:
 norwegian_sailing.write_text(html, encoding="utf-8")
 
 groups = [
-    (("dk","ai-augmented-market-estimation.html"),("en","ai-augmented-market-estimation.html")),
+    (("dk","ai-augmented-market-estimation.html"),("no","ai-augmented-market-estimation.html"),("en","ai-augmented-market-estimation.html"),("de","ai-augmented-market-estimation.html")),
     (("dk","ai-er-ikke-magi.html"),("no","ai-er-ikke-magi.html"),("en","ai-is-not-magic.html")),
     (("dk","veltrimmet-sejlbaad.html"),("root","veltrimmet-seilbat.html"),("en","well-trimmed-sailboat.html")),
     (("dk","bedste-automatisering.html"),("no","beste-automatisering.html"),("en","best-automation.html")),
@@ -99,7 +101,7 @@ groups = [
 ]
 url_for = lambda locale, filename: f'/{filename}' if locale == "root" else f'/{locale}/{filename}'
 path_for = lambda locale, filename: ROOT/filename if locale == "root" else ROOT/locale/filename
-lang_code = {"dk":"DK", "no":"NO", "root":"NO", "en":"EN"}
+lang_code = {"dk":"DK", "no":"NO", "root":"NO", "en":"EN", "de":"DE"}
 for group in groups:
     switch = '<nav class="article-language" aria-label="Language">' + ''.join(f'<a href="{url_for(locale, filename)}">{lang_code[locale]}</a>' for locale,filename in group) + '</nav>'
     for locale, filename in group:
