@@ -57,5 +57,6 @@
     addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>30));button.addEventListener('click',()=>{const open=menu.classList.toggle('open');button.setAttribute('aria-expanded',open)});menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{menu.classList.remove('open');button.setAttribute('aria-expanded','false')}));document.querySelector('#year').textContent=new Date().getFullYear();
   </script>
   <script src="/js/cookie-notice.js"></script>
+<script src="/js/menu-dismiss.js" defer></script>
 </body>
 </html>
