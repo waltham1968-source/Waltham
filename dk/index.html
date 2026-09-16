@@ -8,12 +8,13 @@
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/brand-logo.css">
   <link rel="stylesheet" href="../css/consulting-home.css">
+  <link rel="stylesheet" href="/css/advisory-pages.css">
 </head>
 <body id="top" class="consulting-home">
   <header class="site-header">
     <a class="logo" href="#top" aria-label="Waltham Consulting, forsiden">Waltham<span>.</span><small>Consulting</small></a>
     <button class="menu-button" aria-expanded="false" aria-controls="menu">Menu</button>
-    <nav id="menu" aria-label="Hovedmenu"><a href="#arbejde">Hvad vi gør</a><a href="/dk/nordisk-markedsindgang">Nordisk markedsindgang</a><a href="#projekter">Udvalgte projekter</a><a href="#tilgang">Tilgang</a><a href="/dk/ai-visibility-check">AI Visibility Check</a><a class="nav-cta" href="#kontakt">Kontakt</a></nav>
+    <nav id="menu" aria-label="Hovedmenu"><a href="#arbejde">Hvad vi gør</a><a href="/dk/nordisk-markedsindgang">Nordisk markedsindgang</a><a href="#projekter">Udvalgte projekter</a><a href="#tilgang">Tilgang</a><a href="/dk/ai-visibility-check">AI Visibility Check</a><a href="/dk/om-os">Om os</a><a class="nav-cta" href="#kontakt">Kontakt</a></nav>
     <div class="language-switcher" aria-label="Language"><a href="/dk/" data-lang="da" aria-current="page">DK</a><a href="/no/" data-lang="nb">NO</a><a href="/en/" data-lang="en">EN</a><a href="/de/" data-lang="de">DE</a></div>
   </header>
 
@@ -29,8 +30,8 @@
 
     <section class="section consulting-intro" id="arbejde"><div class="wrap">
       <p class="label">Hvad Waltham arbejder med</p>
-      <div class="split split-copy-only"><div class="copy"><p>Waltham er et lille, uafhængigt rådgivningshus. Vi går ind i situationer, hvor retningen ikke er indlysende: en idé, der skal afprøves, en virksomhed med uudnyttet potentiale eller en teknologi, der skal omsættes til praktisk værdi.</p><p>AI er et vigtigt værktøj i arbejdet, men aldrig udgangspunktet. Vi begynder med forretningen, menneskene og det spørgsmål, der faktisk skal besvares.</p></div></div>
-      <div class="focus-grid"><article><span>01</span><h3>Business Development</h3><p>Muligheder, koncepter og beslutningsgrundlag, der kan flytte en virksomhed fra tanke til handling.</p></article><article><span>02</span><h3>AI &amp; Technology</h3><p>Nye værktøjer omsat til enkle løsninger, bedre arbejdsgange og tydelig forretningsværdi.</p></article><article><span>03</span><h3>Projects &amp; Ventures</h3><p>Tidlige idéer undersøgt, bygget og testet hurtigt — før der investeres mere end nødvendigt.</p></article></div>
+      <div class="split split-copy-only"><div class="copy"><p>Waltham er et uafhængigt rådgivningshus. Vi går ind i situationer, hvor retningen ikke er indlysende: en idé, der skal afprøves, en virksomhed med uudnyttet potentiale eller en teknologi, der skal omsættes til praktisk værdi.</p><p>AI er et vigtigt værktøj i arbejdet, men aldrig udgangspunktet. Vi begynder med forretningen, menneskene og det spørgsmål, der faktisk skal besvares.</p></div></div>
+      <div class="focus-grid focus-grid-four"><article><span>01</span><h3>Business Development</h3><p>Muligheder, koncepter og beslutningsgrundlag, der kan flytte en virksomhed fra tanke til handling.</p></article><article><span>02</span><h3>AI &amp; Technology</h3><p>Nye værktøjer omsat til enkle løsninger, bedre arbejdsgange og tydelig forretningsværdi.</p></article><article><span>03</span><h3>Projects &amp; Ventures</h3><p>Tidlige idéer undersøgt, bygget og testet hurtigt — før der investeres mere end nødvendigt.</p></article><article><span>04</span><h3>Fastlåste situationer</h3><p>Overblik, afklaring og konkrete næste skridt, når samarbejder eller beslutninger er kørt fast.</p><a class="advisory-link" href="/dk/fastlaaste-situationer">Find en vej videre →</a></article></div>
     </div></section>
 
     <section class="section selected-work" id="projekter"><div class="wrap">
@@ -56,5 +57,6 @@
     addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>30));button.addEventListener('click',()=>{const open=menu.classList.toggle('open');button.setAttribute('aria-expanded',open)});menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{menu.classList.remove('open');button.setAttribute('aria-expanded','false')}));document.querySelector('#year').textContent=new Date().getFullYear();
   </script>
   <script src="/js/cookie-notice.js"></script>
+<script src="/js/menu-dismiss.js" defer></script>
 </body>
 </html>
