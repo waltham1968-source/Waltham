@@ -2,6 +2,7 @@
 const $=s=>document.querySelector(s), form=$('#check'), status=$('#status'), results=$('#results'); let report;
 const text=(selector,value)=>$(selector).textContent=value;
 const list=(selector,items)=>$(selector).replaceChildren(...items.map(value=>{const li=document.createElement('li');li.textContent=value;return li;}));
+const hostLabel=data=>{const finalHost=new URL(data.url).hostname;const submittedHost=new URL(data.submittedUrl||data.url).hostname;return submittedHost===finalHost?finalHost:`${submittedHost} → ${finalHost}`;};
 const header=$('.site-header'),menu=$('#menu'),menuButton=$('.menu-button');
 addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>30));
 menuButton.addEventListener('click',()=>{const open=menu.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));});
@@ -13,7 +14,7 @@ form.addEventListener('submit',async event=>{
   const response=await fetch('/api/ai-visibility',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(form))),signal:controller.signal});
   if(!response.headers.get('content-type')?.includes('application/json'))throw new Error('Analysetjenesten er ikke tilgængelig på denne visning. Åbn siden på en server med Walthams analysefunktion.');
   const data=await response.json();if(!response.ok)throw new Error(response.status===429?'Der er kø ved tjekket. Vent tre minutter og prøv igen.':data.error||'Tjekket kunne ikke gennemføres.');report=data;
-  text('#result-domain',`${new URL(data.url).hostname} · ${new Date(data.checkedAt).toLocaleString('da-DK')}`);
+  text('#result-domain',`${hostLabel(data)} · ${new Date(data.checkedAt).toLocaleString('da-DK')}`);
   text('#score',data.score.toLocaleString('da-DK'));text('#score-summary',data.summary);text('#risk',data.risk);text('#coverage',`Datadækning: ${data.coverage} % af den fulde model. Risikoen gælder kun de målte dele.`);
   const failed=data.checks.filter(c=>c.pass===false),unknown=data.checks.filter(c=>c.pass===null);
   list('#actions',[...failed.map(c=>c.action),...unknown.map(c=>`Få afklaret: ${c.label.toLowerCase()}.`),'Undersøg faktiske AI-svar på relevante kundespørgsmål.'].slice(0,3));
