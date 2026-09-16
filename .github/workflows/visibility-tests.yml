@@ -11,4 +11,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: node --test tests/visibility.test.mjs
+      - run: node --test tests/*.test.mjs
+      - run: python3 scripts/check-localized-pages.py

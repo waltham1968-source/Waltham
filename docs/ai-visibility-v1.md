@@ -1,6 +1,8 @@
 # Waltham AI Visibility Score v1.0
 
-First functioning prototype, Danish page `/dk/ai-visibility-check`, linked from all four language homepages. Shares existing fonts, logo, colours and navigation patterns. Other languages intentionally link to the Danish prototype.
+The prototype is available in Danish, Norwegian Bokmål, English and German at `/{dk,no,en,de}/ai-visibility-check`. About and business-deadlock pages are also localized. Language switching preserves the current page family. Static content, forms, API errors and report text are localized; original website excerpts and user input are preserved and labelled. Scores are independent of interface language.
+
+Run `python3 scripts/localize-pages.py` to rebuild translations from the Danish pages and reviewed `scripts/locales` sources. Run `python3 scripts/check-localized-pages.py` to verify routing, metadata and language switching. The shared message module is used by both browser and Netlify handler. API locale supports `da`, `nb`, `en`, `de` (plus `dk`/`no` aliases), defaults to Danish, and falls back to Accept-Language for errors before JSON can be parsed.
 
 ## Model
 
@@ -22,7 +24,7 @@ User supplies desired attributes. Prototype displays the page's own description 
 
 ## Implementation and operation
 
-Node 20+ native modules, no added dependencies. Netlify Function `POST /api/ai-visibility`; request `{url, company?, offering?, market?, desired?}`. The same handler runs locally with `node scripts/preview-visibility.mjs`; open localhost:4173/dk/ai-visibility-check. Unit tests: `node --test tests/visibility.test.mjs`.
+Node 20+ native modules, no added dependencies. Netlify Function `POST /api/ai-visibility`; request `{url, company?, offering?, market?, desired?}`. The same handler runs locally with `node scripts/preview-visibility.mjs`; open localhost:4173/dk/ai-visibility-check. Unit tests: `node --test tests/*.test.mjs`.
 
 Public HTTP(S) only. Resolved addresses are validated and pinned to the outbound connection; redirect destinations are validated again. Private, loopback, mapped IPv6 and reserved address ranges are blocked. Fixed crawler identity, bounded redirects, 7-second request timeouts, 1 MB body cap, no cookies/credentials forwarded. Netlify per-IP/domain throttling: 5 checks per 180 seconds. No result database, no model calls and no submission of contact details. Platform request logs may still exist. Browser uses textContent for fetched strings and supports keyboard focus, loading, error and result states, reduced motion and JSON export.
 
