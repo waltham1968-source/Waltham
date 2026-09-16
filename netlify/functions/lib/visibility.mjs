@@ -62,7 +62,7 @@ export function allowed(text,bot,path='/') {
 const decode=text=>text.replace(/&#(x[0-9a-f]+|[0-9]+);/gi,(_,v)=>{const n=v[0].toLowerCase()==='x'?parseInt(v.slice(1),16):Number(v);return n>0&&n<=0x10ffff?String.fromCodePoint(n):' ';}).replace(/&(?:oslash|aring|aelig|Oslash|Aring|AElig|quot|apos|amp|nbsp);/g,m=>({'&oslash;':'ø','&aring;':'å','&aelig;':'æ','&Oslash;':'Ø','&Aring;':'Å','&AElig;':'Æ','&quot;':'"','&apos;':"'",'&amp;':'&','&nbsp;':' '}[m]));
 const clean=text=>decode(text).replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,' ').replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,' ').replace(/<[^>]*>/g,' ').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim();
 const attrs=tag=>Object.fromEntries([...tag.matchAll(/([\w:-]+)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/g)].map(m=>[m[1].toLowerCase(),m[2]??m[3]??m[4]]));
-export function analyze({page,robots,sitemap,profile={}}){
+export function analyze({page,robots,sitemap,profile={},submittedUrl=page.url}){
   const html=page.text,text=clean(html), lower=text.toLocaleLowerCase('da');
   const title=clean(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]||'');
   const metas=[...html.matchAll(/<meta\b[^>]*>/gi)].map(m=>attrs(m[0]));
@@ -94,7 +94,7 @@ export function analyze({page,robots,sitemap,profile={}}){
   const score=Number((1+9*earned/weight).toFixed(1));
   const desired=String(profile.desired||'').split(/[,;\n]/).map(s=>s.trim()).filter(Boolean).slice(0,6);
   const perception=desired.map(term=>({term,found:searchable.includes(term.toLowerCase())}));
-  return {version:'1.0',url:page.url,checkedAt:new Date().toISOString(),score,scoreStatus:'Foreløbig',coverage:weight,risk:score<4?'High':score<7?'Medium':'Low',title,description,checks,bots,
+  return {version:'1.0',submittedUrl,url:page.url,checkedAt:new Date().toISOString(),score,scoreStatus:'Foreløbig',coverage:weight,risk:score<4?'High':score<7?'Medium':'Low',title,description,checks,bots,
     summary:'Et første billede af hjemmesidens tilgængelighed og tydelighed. Scoren dokumenterer ikke, om AI anbefaler virksomheden.',
     presence:{status:'Ikke målt',questions:[`Hvilke virksomheder kan hjælpe med ${profile.offering||'[ydelse]'} i ${profile.market||'[område]'}?`,`Hvem vil du anbefale til ${profile.offering||'[ydelse]'} for ${profile.market||'[målgruppe]'}, og hvorfor?`,`Hvilke alternativer er der til ${profile.company||title||'[virksomheden]'}?`],competitors:[]},
     perception:{status:desired.length?'Indledende tekstmatch':'Mangler ønsket billede',observed:description||title||text.slice(0,250),comparisons:perception,note:'Ordmatch er et samtalegrundlag, ikke en vurdering af kundernes faktiske opfattelse. En fuld vurdering kræver virksomhedens mål og en kvalitativ gennemgang.'},
