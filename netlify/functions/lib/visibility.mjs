@@ -3,6 +3,15 @@ import https from 'node:https';
 import http from 'node:http';
 import net from 'node:net';
 
+const MAX_PAGE_BYTES=3_000_000;
+const REQUEST_TIMEOUT_MS=10000;
+const FETCH_HEADERS={
+  'user-agent':'Mozilla/5.0 (compatible; WalthamVisibilityCheck/1.1; +https://waltham.dk/dk/ai-visibility-check)',
+  'accept':'text/html,application/xhtml+xml,application/xml;q=0.9,text/plain;q=0.8,*/*;q=0.5',
+  'accept-language':'da-DK,da;q=0.9,en;q=0.7',
+  'accept-encoding':'identity'
+};
+
 // Resolve once and pin the approved address to the connection (including redirects).
 export function publicAddress(ip) {
   if (net.isIP(ip) === 6) return /^2[0-9a-f]{3}:/i.test(ip) && !/^2001:(?:0:|db8:|10:|20:)/i.test(ip) && !/^2002:/i.test(ip);
@@ -19,22 +28,23 @@ export function normalize(raw) {
 }
 export async function readPublic(raw, redirects=0) {
   const url=normalize(String(raw));
-  if(redirects>3) throw new Error('For mange viderestillinger.');
+  if(redirects>5) throw new Error('For mange viderestillinger.');
   const host=url.hostname.replace(/^\[|\]$/g,'');
   const addresses=await dns.lookup(host,{all:true});
-  if (!addresses.length || addresses.some(x=>!publicAddress(x.address))) throw new Error('Adressen skal være offentligt tilgængelig.');
-  const address=addresses[0];
+  const publicAddresses=addresses.filter(x=>publicAddress(x.address));
+  if (!publicAddresses.length) throw new Error('Adressen skal være offentligt tilgængelig.');
+  const address=publicAddresses.find(x=>x.family===4)||publicAddresses[0];
   const result=await new Promise((resolve,reject)=>{
     const request=(url.protocol==='https:'?https:http).get(url,{
-      headers:{'user-agent':'WalthamVisibilityCheck/1.0 (+https://waltham.dk)','accept-encoding':'identity'},
+      headers:FETCH_HEADERS,
       lookup:(_host,options,cb)=>options.all?cb(null,[address]):cb(null,address.address,address.family)
     },response=>{
       let bytes=0; const chunks=[];
-      response.on('data',chunk=>{bytes+=chunk.length;if(bytes>1_000_000)request.destroy(new Error('Siden er for stor til dette hurtige tjek.'));else chunks.push(chunk);});
+      response.on('data',chunk=>{bytes+=chunk.length;if(bytes>MAX_PAGE_BYTES)request.destroy(new Error('Siden er meget stor. Vi kunne ikke hente nok indhold til et hurtigt førstetjek.'));else chunks.push(chunk);});
       response.on('error',reject);
       response.on('end',()=>resolve({status:response.statusCode,headers:response.headers,text:Buffer.concat(chunks).toString('utf8'),url:url.href}));
     });
-    const timer=setTimeout(()=>request.destroy(new Error('Hjemmesiden svarede ikke inden for tidsgrænsen.')),7000);
+    const timer=setTimeout(()=>request.destroy(new Error('Hjemmesiden svarede ikke inden for tidsgrænsen.')),REQUEST_TIMEOUT_MS);
     request.on('error',reject); request.on('close',()=>clearTimeout(timer));
   });
   if([301,302,303,307,308].includes(result.status) && result.headers.location) return readPublic(new URL(result.headers.location,url).href,redirects+1);
