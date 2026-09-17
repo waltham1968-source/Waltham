@@ -90,7 +90,7 @@ export function analyze({page,robots,sitemap,profile={},submittedUrl=page.url}){
   const botnames=['OAI-SearchBot','Claude-SearchBot','PerplexityBot','Googlebot','bingbot'];
   const bots=Object.fromEntries(botnames.map(b=>[b,robotKnown?allowed(robots.status===200?robots.text:'',b,new URL(page.url).pathname+new URL(page.url).search):null]));
   const checks=[];
-  const add=(area,label,pass,weight,evidence,action)=>checks.push({area,label,pass,weight,evidence,action});
+  const add=(area,label,pass,weight,evidence,action)=>checks.push({id:['readable','crawlers','indexable','sitemap','identity','offering','market','entity'][checks.length],area,label,pass,weight,evidence,action});
   add('access','Indhold kan læses',text.split(/\s+/).length>=100,10,`${text.split(/\s+/).length} ord i den hentede side.`,'Gør virksomhedens vigtigste indhold læsbart uden interaktion.');
   add('access','Adgang for søgetjenester',robotKnown?Object.values(bots).every(Boolean):null,20,robotKnown?Object.entries(bots).map(([b,v])=>`${b}: ${v?'tilladt':'begrænset'}`).join(' · '):'Adgangsregler kunne ikke verificeres.','Gennemgå adgangsreglerne for søgetjenester. Et bevidst fravalg kan være korrekt.');
   add('access','Siden må vises i søgeresultater',!noindex,5,noindex?'Der er fundet en regel, som begrænser indeksering.':'Ingen noindex-regel fundet i den hentede side eller svarheader.','Undersøg, om udelukkelsen fra søgeresultater er tilsigtet.');
