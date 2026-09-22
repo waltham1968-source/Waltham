@@ -72,6 +72,50 @@ export function allowed(text,bot,path='/') {
 const decode=text=>text.replace(/&#(x[0-9a-f]+|[0-9]+);/gi,(_,v)=>{const n=v[0].toLowerCase()==='x'?parseInt(v.slice(1),16):Number(v);return n>0&&n<=0x10ffff?String.fromCodePoint(n):' ';}).replace(/&(?:oslash|aring|aelig|Oslash|Aring|AElig|quot|apos|amp|nbsp);/g,m=>({'&oslash;':'ø','&aring;':'å','&aelig;':'æ','&Oslash;':'Ø','&Aring;':'Å','&AElig;':'Æ','&quot;':'"','&apos;':"'",'&amp;':'&','&nbsp;':' '}[m]));
 const clean=text=>decode(text).replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,' ').replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,' ').replace(/<[^>]*>/g,' ').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim();
 const attrs=tag=>Object.fromEntries([...tag.matchAll(/([\w:-]+)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/g)].map(m=>[m[1].toLowerCase(),m[2]??m[3]??m[4]]));
+const excerpt=(value,max=240)=>value.length>max?`${value.slice(0,max).trimEnd()}…`:value;
+export function describeImpression(html,{url,title,description,business,profile={}}){
+  const headings=[...html.matchAll(/<h([1-3])\b[^>]*>([\s\S]*?)<\/h\1>/gi)].map(m=>({level:Number(m[1]),text:clean(m[2])})).filter(x=>x.text);
+  const h1=headings.find(x=>x.level===1)?.text||'';
+  const sections=headings.filter(x=>x.level>1 && x.text.length>=4 && x.text.length<=95 && !/^(about|om os|om oss|kontakt|contact|menu|learn more|læs mere|les mer|our impact|vores mission|our mission|our mission in action|portfolio(?: highlights)?|referencer|references)$/i.test(x.text)).slice(0,8);
+  const paragraphs=[...html.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)].map(m=>clean(m[1])).filter(x=>x.length>=45 && x.length<=900);
+  const identity=business?.name?String(business.name):profile.company && clean(html).toLocaleLowerCase().includes(profile.company.toLocaleLowerCase())?profile.company:title.split(/\s+[|—–-]\s+/)[0];
+  const mainMessage=description||paragraphs[0]||h1||'';
+  const offerCandidates=sections.map(x=>x.text).filter(x=>!/^\d|^(why|hvorfor|hvordan|how|what|hvad|case|blog|news|nyheder|nyheter)/i.test(x)).slice(0,5);
+  const desired=String(profile.desired||'').split(/[,;\n]/).map(x=>x.trim()).filter(Boolean).slice(0,6);
+  const sourceText=clean(html).toLocaleLowerCase();
+  return {
+    scope:'single-page-text',identity:excerpt(identity||'',120),headline:excerpt(h1,180),mainMessage:excerpt(mainMessage,300),openingText:excerpt(paragraphs[0]||'',300),offerCandidates,
+    evidence:[...(h1?[{kind:'heading',text:excerpt(h1,180),url}]:[]),...(description?[{kind:'description',text:excerpt(description,300),url}]:[]),...sections.slice(0,5).map(x=>({kind:'section',text:x.text,url}))],
+    questions:[...(!identity?['identity']:[]),...(!description?['description']:[]),...(!offerCandidates.length?['offer']:[]),...(offerCandidates.length>=4?['priority']:[])],
+    desired:desired.map(term=>({term,status:sourceText.includes(term.toLocaleLowerCase())?'visible':'unverified'}))
+  };
+}
+export function internalPages(html,base,max=3){
+  const origin=new URL(base).origin,seen=new Set([new URL(base).pathname]);const pages=[];
+  for(const match of html.matchAll(/<a\b[^>]*\bhref\s*=\s*["']([^"']+)["']/gi)){
+    try{
+      const url=new URL(decode(match[1]),base);url.hash='';url.search='';
+      if(url.origin!==origin || seen.has(url.pathname) || /\.(?:pdf|jpg|jpeg|png|webp|svg|zip|xml|txt)$/i.test(url.pathname))continue;
+      seen.add(url.pathname);pages.push(url.href);if(pages.length>=max)break;
+    }catch{}
+  }
+  return pages;
+}
+export function pageRecommendations(page,profile={}){
+  const html=page.text,metas=[...html.matchAll(/<meta\b[^>]*>/gi)].map(m=>attrs(m[0]));
+  const title=clean(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]||'');
+  const description=decode(metas.find(m=>m.name?.toLowerCase()==='description')?.content||'').trim();
+  const heading=clean(html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1]||'');
+  const text=clean(html).toLocaleLowerCase();const tasks=[];
+  if(!title)tasks.push({priority:1,code:'title'});
+  if(!description)tasks.push({priority:1,code:'description'});
+  if(!heading)tasks.push({priority:1,code:'heading'});
+  if(!/mailto:|tel:/i.test(html))tasks.push({priority:2,code:'contact'});
+  if(describeImpression(html,{url:page.url,title,description,profile}).offerCandidates.length>=4)tasks.push({priority:2,code:'priorityOffer'});
+  const desired=String(profile.desired||'').split(/[,;\n]/).map(x=>x.trim()).filter(Boolean).slice(0,6);
+  if(desired.length && desired.every(x=>!text.includes(x.toLocaleLowerCase())))tasks.push({priority:2,code:'desired'});
+  return {url:page.url,title:title||new URL(page.url).pathname,tasks};
+}
 export function analyze({page,robots,sitemap,profile={},submittedUrl=page.url}){
   const html=page.text,text=clean(html), lower=text.toLocaleLowerCase('da');
   const title=clean(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]||'');
@@ -104,7 +148,8 @@ export function analyze({page,robots,sitemap,profile={},submittedUrl=page.url}){
   const score=Number((1+9*earned/weight).toFixed(1));
   const desired=String(profile.desired||'').split(/[,;\n]/).map(s=>s.trim()).filter(Boolean).slice(0,6);
   const perception=desired.map(term=>({term,found:searchable.includes(term.toLowerCase())}));
-  return {version:'1.0',submittedUrl,url:page.url,checkedAt:new Date().toISOString(),score,scoreStatus:'Foreløbig',coverage:weight,risk:score<4?'High':score<7?'Medium':'Low',title,description,checks,bots,
+  return {version:'2.0',submittedUrl,url:page.url,checkedAt:new Date().toISOString(),score,scoreStatus:'Foreløbig',coverage:weight,risk:score<4?'High':score<7?'Medium':'Low',title,description,checks,bots,
+    impression:describeImpression(html,{url:page.url,title,description,business,profile}),
     summary:'Et første billede af hjemmesidens tilgængelighed og tydelighed. Scoren dokumenterer ikke, om AI anbefaler virksomheden.',
     presence:{status:'Ikke målt',questions:[`Hvilke virksomheder kan hjælpe med ${profile.offering||'[ydelse]'} i ${profile.market||'[område]'}?`,`Hvem vil du anbefale til ${profile.offering||'[ydelse]'} for ${profile.market||'[målgruppe]'}, og hvorfor?`,`Hvilke alternativer er der til ${profile.company||title||'[virksomheden]'}?`],competitors:[]},
     perception:{status:desired.length?'Indledende tekstmatch':'Mangler ønsket billede',observed:description||title||text.slice(0,250),comparisons:perception,note:'Ordmatch er et samtalegrundlag, ikke en vurdering af kundernes faktiske opfattelse. En fuld vurdering kræver virksomhedens mål og en kvalitativ gennemgang.'},

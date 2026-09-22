@@ -1,5 +1,13 @@
 # Waltham AI Visibility Score v1.0
 
+## V2 first impression extension
+
+The check now returns `version: "2.0"` and a separate `impression` object. It extracts the business name, leading heading, page description, opening paragraph and prominent section headings from the submitted page. It shows possible offerings, questions that remain unresolved, and whether the user's desired terms appear in the readable text. The result links back to the source page. The four localized result pages present this in place of the older perception word comparison.
+
+V2 also samples up to three same-origin internal pages linked from the submitted page and returns page-specific tasks for missing title, description, heading, contact path, absent exact desired terms, or several competing offer headings. Failed or blocked sample pages are omitted. A Google panel reports observed Googlebot permission and noindex signals. If `GOOGLE_PLACES_API_KEY` is configured, Places Text Search (New) can supply review count and rating, but only when the returned place's website host exactly matches the checked website; otherwise the count remains unverified. This is a billable Enterprise SKU. Google AI-answer mentions and search position remain explicitly unverified without appropriate source data or a documented answer panel. A provisional DKK 9,500 analysis price is shown with checkout disabled until the commercial terms and payment destination are approved.
+
+This is a source-backed, text-based first impression, not a live language-model response or a measured customer perception. An absent exact phrase is marked *unverified*, never as proof that the intended meaning is missing. Several apparent offerings trigger a question about priority, not an assertion that the business is unclear. The existing visibility score and 70% maximum coverage are unchanged; first impression has no score weight. A future semantic assessment would require a model service, repeatable prompts, human review and explicit handling of public page text sent to that service.
+
 First functioning prototype, Danish page `/dk/ai-visibility-check`, linked from all four language homepages. Shares existing fonts, logo, colours and navigation patterns. Other languages intentionally link to the Danish prototype.
 
 ## Model

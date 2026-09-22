@@ -1,6 +1,7 @@
 import {language,translator} from '../../js/visibility-copy.mjs';
 import {localizeReport} from './lib/visibility-locale.mjs';
-import {normalize,readPublic,allowed,analyze} from './lib/visibility.mjs';
+import {normalize,readPublic,allowed,analyze,internalPages,pageRecommendations} from './lib/visibility.mjs';
+import {googleReviews} from './lib/google-places.mjs';
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store'}});
 const technicalError=(error,t)=>{
   const message=String(error?.message||'');
@@ -28,7 +29,17 @@ export default async req=>{
     const declared=robots?.status===200?robots.text.match(/^\s*sitemap:\s*(https?:\/\/\S+)/im)?.[1]:null;
     const sitemapUrl=declared||new URL('/sitemap.xml',page.url).href;
     const sitemap=await readPublic(sitemapUrl).catch(()=>null);
-    return json(localizeReport(analyze({page,robots,sitemap,profile,submittedUrl}),locale,profile));
+    const report=analyze({page,robots,sitemap,profile,submittedUrl});
+    const candidates=internalPages(page.text,page.url,3);
+    const extra=await Promise.all(candidates.map(async candidate=>{
+      if(robots?.status===200 && !allowed(robots.text,'WalthamVisibilityCheck',new URL(candidate).pathname))return null;
+      try{const result=await readPublic(candidate);return result.status===200 && new URL(result.url).origin===new URL(page.url).origin && /text\/html|application\/xhtml\+xml/i.test(result.headers['content-type']||'')?result:null;}catch{return null;}
+    }));
+    report.pages=[page,...extra.filter(Boolean)].map(p=>pageRecommendations(p,profile));
+    report.google={searchCrawlerAllowed:report.bots.Googlebot,indexable:report.checks.find(c=>c.id==='indexable')?.pass??null,reviewsCount:null,reviewsRating:null,reviewsUrl:null,aiMentionsCount:null,searchPresence:null};
+    const place=await googleReviews({name:profile.company||report.impression.identity,siteUrl:page.url,key:process.env.GOOGLE_PLACES_API_KEY});
+    if(place){report.google.reviewsCount=place.count;report.google.reviewsRating=place.rating;report.google.reviewsUrl=place.url;}
+    return json(localizeReport(report,locale,profile));
   }catch(error){return json({error:error instanceof SyntaxError?t('failed'):technicalError(error,t)},error instanceof SyntaxError?400:422);}
 };
 export const config={path:'/api/ai-visibility',rateLimit:{windowLimit:5,windowSize:180,aggregateBy:['ip','domain']}};

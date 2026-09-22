@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {publicAddress,normalize,allowed,analyze} from '../netlify/functions/lib/visibility.mjs';
+import {publicAddress,normalize,allowed,analyze,internalPages,pageRecommendations} from '../netlify/functions/lib/visibility.mjs';
 import handler from '../netlify/functions/ai-visibility.mjs';
 test('reject private, reserved and mapped addresses',()=>{
  for(const ip of ['127.0.0.1','10.1.1.1','169.254.169.254','172.16.0.1','192.168.1.1','100.64.0.1','::1','::ffff:127.0.0.1','::ffff:7f00:1','fe80::1','fc00::1','2001:db8::1','198.18.0.1'])assert.equal(publicAddress(ip),false,ip);
@@ -18,3 +18,16 @@ test('training restrictions do not reduce score',()=>{const r=analyze({page,robo
 test('HTML masquerading as robots is unknown; invalid schema is not business identity',()=>{const r=analyze({page:{...page,text:'<h1>x</h1><script type="application/ld+json">invalid</script>'},robots:{status:200,text:'<html>error</html>'},sitemap:{status:200,text:'<html>error</html>'}});assert.equal(r.coverage,50);assert.equal(r.checks.find(c=>c.label==='Virksomheden er identificeret').pass,false);});
 test('handler rejects wrong methods and malformed payload',async()=>{assert.equal((await handler(new Request('http://localhost'))).status,405);assert.equal((await handler(new Request('http://localhost',{method:'POST',body:'{'}))).status,400);});
 test('Danish HTML entities and metadata geography are decoded',()=>{const r=analyze({page:{...page,text:'<h1>Fr&#xF8;rup</h1><meta name="description" content="Vi ligger p&#xE5; &#xD8;stfyn">'},robots:{status:404,text:''},sitemap:{status:403,text:'denied'},profile:{company:'Frørup',market:'Fyn'}});assert.equal(r.description,'Vi ligger på Østfyn');assert.equal(r.checks.find(c=>c.label==='Virksomheden er identificeret').pass,true);assert.match(r.checks.find(c=>c.label==='Virksomheden er identificeret').evidence,/findes/);assert.equal(r.checks.find(c=>c.label.includes('Geografi')).pass,true);assert.equal(r.checks.find(c=>c.label.includes('Oversigt')).pass,null);});
+test('v2 first impression preserves evidence and flags several possible offerings',()=>{
+ const html='<title>On-Ramp AS | Management-for-Hire Services</title><meta name="description" content="An investment platform developing technology companies."><h1>Architecting Tomorrow’s Markets</h1><h2>Leadership</h2><h2>Strategic Investments</h2><h2>SaaS &amp; Digital Solutions</h2><h2>Venture Incubation</h2><p>We invest in ventures and develop software with founders.</p>';
+ const r=analyze({page:{...page,text:html},robots:{status:404,text:''},sitemap:{status:404,text:''},profile:{desired:'software, local advice'}});
+ assert.equal(r.version,'2.0');assert.equal(r.impression.identity,'On-Ramp AS');assert.equal(r.impression.offerCandidates.length,4);
+ assert.ok(r.impression.questions.includes('priority'));assert.equal(r.impression.desired[0].status,'visible');assert.equal(r.impression.desired[1].status,'unverified');
+ assert.equal(r.impression.evidence[0].url,'https://example.com/');
+});
+test('page tasks are tied to sampled same-origin pages',()=>{
+ const links='<a href="/services">Services</a><a href="https://elsewhere.test/">External</a><a href="/about#team">About</a>';
+ assert.deepEqual(internalPages(links,'https://example.com/',3),['https://example.com/services','https://example.com/about']);
+ const report=pageRecommendations({url:'https://example.com/services',text:'<h1>Our services</h1><h2>Consulting</h2>'});
+ assert.equal(report.url,'https://example.com/services');assert.ok(report.tasks.some(x=>x.code==='description'));assert.ok(report.tasks.some(x=>x.code==='title'));
+});
