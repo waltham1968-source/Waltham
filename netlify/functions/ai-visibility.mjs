@@ -36,9 +36,10 @@ export default async req=>{
       try{const result=await readPublic(candidate);return result.status===200 && new URL(result.url).origin===new URL(page.url).origin && /text\/html|application\/xhtml\+xml/i.test(result.headers['content-type']||'')?result:null;}catch{return null;}
     }));
     report.pages=[page,...extra.filter(Boolean)].map(p=>pageRecommendations(p,profile));
-    report.google={searchCrawlerAllowed:report.bots.Googlebot,indexable:report.checks.find(c=>c.id==='indexable')?.pass??null,reviewsCount:null,reviewsRating:null,reviewsUrl:null,aiMentionsCount:null,searchPresence:null};
-    const place=await googleReviews({name:profile.company||report.impression.identity,siteUrl:page.url,key:process.env.GOOGLE_PLACES_API_KEY});
-    if(place){report.google.reviewsCount=place.count;report.google.reviewsRating=place.rating;report.google.reviewsUrl=place.url;}
+    const placeKey=process.env.GOOGLE_PLACES_API_KEY;
+    report.google={searchCrawlerAllowed:report.bots.Googlebot,indexable:report.checks.find(c=>c.id==='indexable')?.pass??null,reviewsCount:null,reviewsRating:null,reviewsUrl:null,reviewsStatus:placeKey?'unverified':'not_configured',aiMentionsCount:null,searchPresence:null};
+    const place=await googleReviews({name:profile.company||report.impression.identity,siteUrl:page.url,key:placeKey});
+    if(place){report.google.reviewsCount=place.count;report.google.reviewsRating=place.rating;report.google.reviewsUrl=place.url;report.google.reviewsStatus='verified';}
     return json(localizeReport(report,locale,profile));
   }catch(error){return json({error:error instanceof SyntaxError?t('failed'):technicalError(error,t)},error instanceof SyntaxError?400:422);}
 };
