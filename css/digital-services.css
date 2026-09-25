@@ -1,0 +1,38 @@
+.product-hub-nav .wrap{height:auto;min-height:94px;gap:24px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}
+.product-page-links{display:flex;align-items:center;justify-content:flex-end;gap:24px;flex-wrap:wrap}
+.product-languages{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.05em}
+.product-languages a{display:inline-flex;align-items:center;justify-content:center;min-width:36px;min-height:44px;color:#fff;border-bottom:2px solid transparent}
+.product-languages a[aria-current="page"]{color:var(--gold2);border-bottom-color:var(--gold2)}
+.product-languages a:hover{color:var(--gold2)}
+.product-page-links a:focus-visible,.digital-offers a:focus-visible,.service-intro a:focus-visible{outline:2px solid var(--gold);outline-offset:5px}
+.digital-services-hero{padding:clamp(60px,9vw,110px) 0}
+.digital-services-hero h1{font-size:clamp(50px,7vw,88px);max-width:950px;line-height:.98}
+.digital-services-hero .services-lead{max-width:750px;color:#ffffffbf;font-size:clamp(17px,2vw,21px)}
+.product-hub-hero.digital-services-hero .services-note{max-width:760px;margin-top:26px;color:#ffffffa8;font-size:14px}
+.digital-services-hero .buttons{margin-top:28px}
+.digital-services-hero .button.ghost{color:#fff}
+.service-intro{background:#e9e2d5;border-bottom:1px solid var(--line);padding:35px 0}
+.service-intro .wrap{display:flex;justify-content:space-between;align-items:center;gap:30px}
+.service-intro .label{margin-bottom:8px;color:#765a31}
+.service-intro h2{font-size:clamp(28px,3vw,42px);line-height:1.1}
+.service-intro p:not(.label){margin:12px 0 0;max-width:760px;color:#514f48}
+.service-intro .button{flex-shrink:0;border:1px solid #765a31}
+.digital-offers{padding:clamp(45px,7vw,90px) 0}
+.offer-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.offer-card{display:flex;flex-direction:column;min-width:0;padding:clamp(25px,4vw,46px);background:#fff;border:1px solid var(--line);border-top:3px solid var(--gold);scroll-margin-top:24px}
+.offer-card .offer-step{color:#765a31;font-size:11px;letter-spacing:.11em;text-transform:uppercase;margin:0 0 26px}
+.offer-card h2{font-size:clamp(34px,4vw,48px);line-height:1.04;overflow-wrap:anywhere}
+.offer-card .offer-description{color:#514f48;max-width:42em;margin:20px 0 24px}
+.offer-card .offer-price{font:400 clamp(34px,4vw,46px)/1.2 var(--display);margin:0;color:var(--ink)}
+.offer-price small{font:400 14px/1.5 var(--body)}
+.offer-card .offer-price-note{margin:6px 0 24px;font-size:12px;color:#6c6961}
+.offer-card ul{padding:0;margin:0 0 28px;list-style:none;border-top:1px solid var(--line)}
+.offer-card li{padding:12px 0 12px 23px;position:relative;border-bottom:1px solid var(--line);font-size:14px}
+.offer-card li:before{content:"✓";position:absolute;left:0;color:#765a31}
+.offer-card .button{align-self:flex-start;margin-top:auto}
+.services-footnote{max-width:840px;margin:30px 0 0;color:#6c6961;font-size:13px}
+.services-fit .wrap{display:grid;grid-template-columns:1fr auto;align-items:center;gap:50px}
+.services-fit h2{font-size:clamp(38px,5vw,60px);max-width:850px}
+.services-fit .button{white-space:normal}
+@media(max-width:760px){.offer-grid{grid-template-columns:1fr}.service-intro .wrap,.services-fit .wrap{display:flex;flex-direction:column;align-items:flex-start}.product-hub-nav .wrap{gap:10px}.product-page-links{gap:12px}.product-hub-nav .back{max-width:190px}.digital-services-hero h1{font-size:clamp(44px,9vw,68px)}}
+@media(max-width:560px){.product-hub-nav .wrap{padding-top:14px;padding-bottom:14px}.product-page-links{width:100%;justify-content:space-between}.product-hub-nav .back{max-width:55%;font-size:10px}.product-languages{gap:2px}.product-languages a{min-width:30px}.offer-card{padding:26px}.offer-card h2{font-size:38px}.digital-services-hero{padding:50px 0}.service-intro .button{max-width:100%;white-space:normal}}
