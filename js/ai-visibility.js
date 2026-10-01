@@ -1,8 +1,13 @@
+import {premiumMailto} from './premium-contact.mjs';
 import {language,translator} from './visibility-copy.mjs';
 (()=>{
 const locale=language(document.documentElement.lang),t=translator(locale),formats={da:'da-DK',nb:'nb-NO',en:'en-GB',de:'de-DE'};
 const $=s=>document.querySelector(s),form=$('#check'),status=$('#status'),results=$('#results');let report;
 const text=(selector,value)=>$(selector).textContent=value;
+const updatePremium=()=>document.querySelectorAll('[data-premium-contact]').forEach(a=>{a.href=premiumMailto($('#website').value,locale);});
+$('#website').addEventListener('input',updatePremium);
+document.querySelectorAll('[data-premium-contact]').forEach(a=>a.addEventListener('click',updatePremium));
+updatePremium();
 const list=(selector,items)=>$(selector).replaceChildren(...items.map(value=>{const li=document.createElement('li');li.textContent=value;return li;}));
 const hostLabel=data=>{const finalHost=new URL(data.url).hostname;const submittedHost=new URL(data.submittedUrl||data.url).hostname;return submittedHost===finalHost?finalHost:`${submittedHost} → ${finalHost}`;};
 const impressionCopy={
