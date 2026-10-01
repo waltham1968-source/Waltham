@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, statSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -20,7 +20,7 @@ for (const [locale, lang, hub, page, label] of locales) {
     const overview = read(locale + '/' + hub);
     const services = read(locale + '/' + page);
     assert.ok(home.includes('href="/' + locale + '/' + hub + '">' + label + '</a>'));
-    assert.ok(overview.includes('href="' + page + '"'));
+    for (const id of serviceIds) assert.ok(overview.includes('id="' + id + '"'), 'overview retains ' + id);
     for (const name of ['Digital Opportunity Scan', 'Market Intelligence Sprint', 'AI Opportunity Review']) {
       assert.ok(overview.includes('<h3>' + name + '</h3>'), name + ' preserved');
     }
@@ -45,7 +45,8 @@ for (const [locale, lang, hub, page, label] of locales) {
       assert.equal((html.match(/aria-current="page"/g) || []).length, 1);
       for (const [other, otherLang, otherHub, otherPage] of locales) {
         const target = filename === hub ? otherHub : otherPage;
-        assert.ok(html.includes('href="../' + other + '/' + target + '"'), other);
+        const links = [...html.matchAll(/<a[^>]+href="([^"]+)"/g)].map(m => new URL(m[1], 'https://www.waltham.dk/' + locale + '/' + filename).pathname);
+        assert.ok(links.includes('/' + other + '/' + target), other);
         if (filename === page) assert.ok(html.includes('hreflang="' + otherLang + '"'));
       }
     }
@@ -59,7 +60,9 @@ for (const [locale, lang, hub, page, label] of locales) {
         const href = match[1];
         if (/^(https?:|mailto:|tel:|data:)/.test(href)) continue;
         const [path, fragment] = href.split('#');
-        const target = path ? resolve(path.startsWith('/') ? root : dirname(resolve(root, source)), path.replace(/^\//, '')) : resolve(root, source);
+        let target = path ? resolve(path.startsWith('/') ? root : dirname(resolve(root, source)), path.replace(/^\//, '')) : resolve(root, source);
+        if (!existsSync(target) && existsSync(target + '.html')) target += '.html';
+        if (existsSync(target) && statSync(target).isDirectory()) target = resolve(target, 'index.html');
         assert.ok(existsSync(target), source + ' → ' + href);
         if (fragment) assert.ok(readFileSync(target, 'utf8').includes('id="' + fragment + '"'), source + ' → missing #' + fragment);
       }
