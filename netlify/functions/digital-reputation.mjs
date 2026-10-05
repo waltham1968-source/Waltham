@@ -25,8 +25,8 @@ export default async req => {
     });
     if(!response.ok) {
       const failure=await response.json().catch(()=>({}));
-      const knownCodes=['insufficient_quota','invalid_api_key','model_not_found','rate_limit_exceeded','unsupported_parameter'];
-      console.error('Personal visibility provider failure', {status:response.status,code:knownCodes.includes(failure.error?.code)?failure.error.code:'other',type:failure.error?.type==='invalid_request_error'?'invalid_request_error':'other'});
+      const identifier=value=>typeof value==='string' && /^[a-z_]{1,64}$/.test(value)?value:'other';
+      console.error('Personal visibility provider failure', {status:response.status,code:identifier(failure.error?.code),type:identifier(failure.error?.type)});
       return json({error:'unavailable'},502);
     }
     return json(personVisibilityReport(await response.json(),person));
