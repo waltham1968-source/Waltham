@@ -12,10 +12,10 @@ const locales = [
   ['de', 'de', 'produkte.html', 'digitale-leistungen.html', 'Produkte und Leistungen'],
 ];
 const read = path => readFileSync(resolve(root, path), 'utf8');
-const serviceIds = ['ai-visibility', 'clearer-website', 'ai-clarity', 'google-profile'];
+const serviceIds = ['ai-visibility', 'clearer-website', 'ai-clarity', 'google-profile', 'advisory-sparring'];
 
 for (const [locale, lang, hub, page, label] of locales) {
-  test(locale + ': menu, overview and four services stay connected', () => {
+  test(locale + ': menu, overview and five services stay connected', () => {
     const home = read(locale + '/index.html');
     const overview = read(locale + '/' + hub);
     const services = read(locale + '/' + page);
@@ -26,8 +26,8 @@ for (const [locale, lang, hub, page, label] of locales) {
     }
     assert.equal((overview.match(/class="core-offer-grid"/g) || []).length, 1);
     assert.ok(services.includes('<html lang="' + lang + '">'));
-    assert.equal((services.match(/class="offer-card"/g) || []).length, 4);
-    assert.equal((services.match(/<li>/g) || []).length, 16);
+    assert.equal((services.match(/class="offer-card"/g) || []).length, 5);
+    assert.equal((services.match(/<li>/g) || []).length, 20);
     for (const id of serviceIds) assert.ok(services.includes('id="' + id + '"'));
     for (const amount of ['9500', '19500', '7500', '995', '1495']) {
       assert.ok(!services.replace(/[.,]/g, '').includes(amount), 'removed price ' + amount);
@@ -35,7 +35,7 @@ for (const [locale, lang, hub, page, label] of locales) {
     }
     assert.doesNotMatch(services, /class="offer-price(?:-note)?"|DKK/);
     assert.doesNotMatch(overview, /class="offer-price(?:-note)?"|DKK/);
-    assert.equal((services.match(/mailto:waltham@me.com/g) || []).length, 5);
+    assert.equal((services.match(/mailto:waltham@me.com/g) || []).length, 6);
     assert.doesNotMatch(services, /ovdal|mathias/i);
     assert.ok(services.includes('href="' + hub + '"'));
     assert.ok(read('sitemap.xml').includes('/' + locale + '/' + page));
