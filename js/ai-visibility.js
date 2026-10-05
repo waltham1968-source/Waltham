@@ -1,3 +1,4 @@
+import {recordVisibilityUse} from './visibility-usage.mjs';
 import {premiumMailto} from './premium-contact.mjs';
 import {language,translator} from './visibility-copy.mjs';
 (()=>{
@@ -27,7 +28,7 @@ addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>30));
 menuButton.addEventListener('click',()=>{const open=menu.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));});
 menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');menuButton.setAttribute('aria-expanded','false');}));
 form.addEventListener('submit',async event=>{
- event.preventDefault();const button=form.querySelector('[type=submit]');button.disabled=true;results.hidden=true;status.className='';status.textContent=t('loading');form.setAttribute('aria-busy','true');
+ event.preventDefault();void recordVisibilityUse($('#website').value).catch(()=>console.warn('Visibility usage could not be recorded.'));const button=form.querySelector('[type=submit]');button.disabled=true;results.hidden=true;status.className='';status.textContent=t('loading');form.setAttribute('aria-busy','true');
  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),45000);
  try{
   const response=await fetch('/api/ai-visibility',{method:'POST',headers:{'content-type':'application/json','accept-language':locale},body:JSON.stringify({...Object.fromEntries(new FormData(form)),locale}),signal:controller.signal});
