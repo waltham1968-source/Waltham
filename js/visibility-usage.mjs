@@ -13,7 +13,7 @@ export function usagePayload(raw, now = new Date()) {
 
 export async function recordVisibilityUse(raw, send = fetch) {
   const body = usagePayload(raw);
-  const response = await send('/', {
+  const response = await send('/no/ai-visibility-check', {
     method: 'POST',
     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
     body: body.toString(),

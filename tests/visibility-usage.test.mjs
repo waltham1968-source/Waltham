@@ -12,7 +12,7 @@ test('records hostname and time without path, query, fragment or contact data', 
 });
 test('submits to native form storage and reports rejection', async () => {
  await recordVisibilityUse('example.com', async (url, options) => {
-  assert.equal(url, '/');
+  assert.equal(url, '/no/ai-visibility-check');
   assert.equal(new URLSearchParams(options.body).get('form-name'), 'visibility-usage');
   return {ok: true};
  });
