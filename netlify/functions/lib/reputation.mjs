@@ -17,6 +17,13 @@ const sourceUrl = raw => {
     url.hash='';return url.href;
   }catch{return null;}
 };
+// Keep contact details out of report text, including when a provider repeats them.
+export function publicReportText(value, limit=800) {
+  return String(value||'').replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi,'[…]')
+    .replace(/(?:\+\d{1,3}[ .-]?)?(?:\d[ .-]?){8,14}\d?/g,match=>/^\d{4}-\d{2}-\d{2}[ .-]?$/.test(match)?match:'[…]')
+    .replace(/\b[\p{L}’'-]*(?:vej|veien|vegen|gade|gata|gate|street|road|straße|strasse)\s+\d{1,4}[a-z]?(?:[, ]+\d{4,5})?/giu,'[…]')
+    .slice(0,limit);
+}
 export function visibilityScore(count) {
   const thresholds=[0,1,2,3,4,6,8,10,12,15];
   return thresholds.reduce((score,threshold,index)=>count>=threshold?index+1:score,1);
@@ -42,7 +49,7 @@ export function personVisibilityReport(response, person) {
     const kind=['profile','article','social','podcast','event','register','other'].includes(item.kind)?item.kind:'other';
     const ownership=['own','third_party','unknown'].includes(item.ownership)?item.ownership:'unknown';
     const publishedAt=typeof item.publishedAt==='string' && /^\d{4}(?:-\d{2}(?:-\d{2})?)?$/.test(item.publishedAt)?item.publishedAt:null;
-    return [{url,kind,ownership,publishedAt,title:String(item.title||new URL(url).hostname).slice(0,250),observation:String(item.observation||'').slice(0,800),match,identityEvidence:String(item.identityEvidence||'').slice(0,500)}];
+    return [{url,kind,ownership,publishedAt,title:publicReportText(item.title||new URL(url).hostname,250),observation:publicReportText(item.observation),match,identityEvidence:publicReportText(item.identityEvidence,500)}];
   });
   if(parsed.findings.length&&!findings.length)throw new Error('unverified sources');
   const matched=findings.filter(item=>item.match==='matched');
@@ -52,7 +59,7 @@ export function personVisibilityReport(response, person) {
   const score=ambiguous?null:visibilityScore(domainCount);
   const profileUrls=(Array.isArray(parsed.profile?.sources)?parsed.profile.sources:[]).map(sourceUrl).filter(url=>matched.some(item=>item.url===url));
   const profile=profileUrls.length&&String(parsed.profile?.label||'').trim()?{
-    label:String(parsed.profile.label).slice(0,150),description:String(parsed.profile.description||'').slice(0,600),sources:[...new Set(profileUrls)]
+    label:publicReportText(parsed.profile.label,150),description:publicReportText(parsed.profile.description,600),sources:[...new Set(profileUrls)]
   }:null;
   return {score,domainCount,mentionCount:matched.filter(item=>item.ownership==='third_party').length,ownCount:matched.filter(item=>item.ownership==='own').length,matchedCount:matched.length,uncertainCount:findings.filter(item=>item.match==='uncertain').length,
     profile,profileStatus:profile?(new Set(profile.sources.map(url=>new URL(url).hostname.replace(/^www\./,''))).size>=2?'corroborated':'limited'):'unclear',findings};

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {validatePerson,personVisibilityReport,visibilityScore} from '../netlify/functions/lib/reputation.mjs';
+import {validatePerson,personVisibilityReport,visibilityScore,publicReportText} from '../netlify/functions/lib/reputation.mjs';
 import handler from '../netlify/functions/digital-reputation.mjs';
 import {readFileSync} from 'node:fs';
 test('self-search validates names, optional context and explicit acknowledgement',()=>{
@@ -84,4 +84,11 @@ test('mention categories, ownership and sourced dates preserve identity separati
  assert.equal(report.findings[0].publishedAt,'2024-05-06');assert.equal(report.findings[1].publishedAt,null);
  const unqualified=personVisibilityReport(searchResponse([finding]),{context:'',criteria:{period:'2020–2026',topics:'AI'}});
  assert.equal(unqualified.score,null);assert.equal(unqualified.mentionCount,0);
+});
+
+test('provider contact details are removed from report text',()=>{
+ const text=publicReportText('Advisor in Nyborg, Fjordvej 8, 5800 Nyborg. Contact nikolai@example.com or +45 60 22 25 44.');
+ assert.doesNotMatch(text,/Fjordvej|example.com|60 22 25 44/);
+ assert.ok(text.includes('Advisor in Nyborg'));
+ assert.equal(publicReportText('Published 2024-03-10, 25 years experience.'),'Published 2024-03-10, 25 years experience.');
 });
