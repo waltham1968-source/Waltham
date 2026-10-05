@@ -30,9 +30,11 @@ for (const [locale, lang, hub, page, label] of locales) {
     assert.equal((services.match(/<li>/g) || []).length, 16);
     for (const id of serviceIds) assert.ok(services.includes('id="' + id + '"'));
     for (const amount of ['9500', '19500', '7500', '995', '1495']) {
-      assert.ok(services.replace(/[.,]/g, '').includes(amount), 'price ' + amount);
+      assert.ok(!services.replace(/[.,]/g, '').includes(amount), 'removed price ' + amount);
+      assert.ok(!overview.replace(/[.,]/g, '').includes(amount), 'removed overview price ' + amount);
     }
-    assert.ok(services.includes('DKK'));
+    assert.doesNotMatch(services, /class="offer-price(?:-note)?"|DKK/);
+    assert.doesNotMatch(overview, /class="offer-price(?:-note)?"|DKK/);
     assert.equal((services.match(/mailto:waltham@me.com/g) || []).length, 5);
     assert.doesNotMatch(services, /ovdal|mathias/i);
     assert.ok(services.includes('href="' + hub + '"'));
