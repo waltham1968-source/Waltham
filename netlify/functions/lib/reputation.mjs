@@ -2,7 +2,13 @@ export function validatePerson(input) {
   const name = typeof input.name === 'string' ? input.name.trim().replace(/\s+/g, ' ') : '';
   const context = typeof input.context === 'string' ? input.context.trim() : '';
   if (input.self !== true || name.length < 3 || name.length > 120 || !/^[\p{L}\p{M} .’'\-]+$/u.test(name) || context.length > 120) throw new Error('invalid');
-  return {name, context, locale: ['nb','da','en','de'].includes(input.locale) ? input.locale : 'nb'};
+  const criteria={};
+  for(const key of ['aliases','places','organizations','roles','usernames','websites','topics','period']){
+    const value=input.criteria?.[key];
+    if(value!==undefined && (typeof value!=='string'||value.length>160))throw new Error('invalid criteria');
+    if(value?.trim())criteria[key]=value.trim();
+  }
+  return {name, context, criteria, locale: ['nb','da','en','de'].includes(input.locale) ? input.locale : 'nb'};
 }
 const sourceUrl = raw => {
   try {
@@ -27,13 +33,16 @@ export function personVisibilityReport(response, person) {
   const parsed=JSON.parse(raw);
   if(!Array.isArray(parsed.findings))throw new Error('invalid report');
   const seen=new Set();
-  const findings=parsed.findings.slice(0,30).flatMap(item=>{
+  const findings=parsed.findings.slice(0,40).flatMap(item=>{
     const url=sourceUrl(item.url);
     if(!url||!known.has(url)||seen.has(url)||!['matched','uncertain','namesake'].includes(item.match))return [];
     seen.add(url);
     // A full-name match alone cannot establish that the hit belongs to this user.
-    const match=item.match==='matched'&&(!person.context||!String(item.identityEvidence||'').trim())?'uncertain':item.match;
-    return [{url,title:String(item.title||new URL(url).hostname).slice(0,250),observation:String(item.observation||'').slice(0,800),match,identityEvidence:String(item.identityEvidence||'').slice(0,500)}];
+    const match=item.match==='matched'&&(!(person.context||Object.entries(person.criteria||{}).some(([key,value])=>key!=='period'&&key!=='topics'&&value))||!String(item.identityEvidence||'').trim())?'uncertain':item.match;
+    const kind=['profile','article','social','podcast','event','register','other'].includes(item.kind)?item.kind:'other';
+    const ownership=['own','third_party','unknown'].includes(item.ownership)?item.ownership:'unknown';
+    const publishedAt=typeof item.publishedAt==='string' && /^\d{4}(?:-\d{2}(?:-\d{2})?)?$/.test(item.publishedAt)?item.publishedAt:null;
+    return [{url,kind,ownership,publishedAt,title:String(item.title||new URL(url).hostname).slice(0,250),observation:String(item.observation||'').slice(0,800),match,identityEvidence:String(item.identityEvidence||'').slice(0,500)}];
   });
   if(parsed.findings.length&&!findings.length)throw new Error('unverified sources');
   const matched=findings.filter(item=>item.match==='matched');
@@ -45,6 +54,6 @@ export function personVisibilityReport(response, person) {
   const profile=profileUrls.length&&String(parsed.profile?.label||'').trim()?{
     label:String(parsed.profile.label).slice(0,150),description:String(parsed.profile.description||'').slice(0,600),sources:[...new Set(profileUrls)]
   }:null;
-  return {score,domainCount,matchedCount:matched.length,uncertainCount:findings.filter(item=>item.match==='uncertain').length,
+  return {score,domainCount,mentionCount:matched.filter(item=>item.ownership==='third_party').length,ownCount:matched.filter(item=>item.ownership==='own').length,matchedCount:matched.length,uncertainCount:findings.filter(item=>item.match==='uncertain').length,
     profile,profileStatus:profile?(new Set(profile.sources.map(url=>new URL(url).hostname.replace(/^www\./,''))).size>=2?'corroborated':'limited'):'unclear',findings};
 }

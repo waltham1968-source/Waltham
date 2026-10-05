@@ -28,3 +28,9 @@ referanser til treff i samme identitetsklynge. Én kilde gir begrenset grunnlag;
 flere nettsteder gir samstemt profil, men ikke en garanti for rett identitet.
 Dette er Walthams foreløpige målemodell for et begrenset søk, ikke en validert
 universell skala. URL-er som ikke finnes i søkeverktøyets egne kilder avvises.
+
+
+## Public mentions and optional search criteria
+Eight optional public fields: name variants, places, organizations, roles, social usernames, websites/profile links, topics/projects and preferred period. All are bounded to 160 characters and passed as untrusted data. Empty criteria retain the original simple flow. No names or criteria are added to the usage log.
+
+The search covers profiles, articles/interviews, public social posts, podcasts/video, event/speaker pages and professional registers. Up to eight built-in tool calls and 6,000 output tokens per request; broader search can cost more than the earlier basic estimate. The 55-second provider timeout still applies. Up to 20 diverse findings are requested; results are not exhaustive and inaccessible/login-only content is excluded. Source URLs must still be returned by the actual provider search. Each finding has a kind, ownership (own/third_party/unknown) and optional sourced publication date. Third-party and own counts include likely matches only. Topics and period alone do not establish identity. Filters act on returned results and do not trigger extra paid searches.

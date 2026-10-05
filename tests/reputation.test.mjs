@@ -36,11 +36,11 @@ test('configured handler searches with storage disabled and preserves cited sour
    assert.equal(url,'https://api.openai.com/v1/responses');
    const payload=JSON.parse(options.body);
    assert.equal(payload.store,false);assert.equal(payload.tool_choice,'required');
-   assert.equal(payload.tools[0].type,'web_search');
-   assert.deepEqual(JSON.parse(payload.input),{name:'Test Person',context:'Oslo'});
+   assert.equal(payload.tools[0].type,'web_search');assert.equal(payload.max_tool_calls,8);
+   assert.deepEqual(JSON.parse(payload.input),{name:'Test Person',context:'Oslo',criteria:{organizations:'Example Ltd'}});
    return new Response(JSON.stringify({status:'completed',output:[{type:'web_search_call',status:'completed'},{type:'message',content:[{type:'output_text',text:JSON.stringify({profile:{label:'Advisor',description:'Public professional profile',sources:['https://example.com']},findings:[{url:'https://example.com',title:'Profile',observation:'Advisor in Oslo',match:'matched',identityEvidence:'Oslo'}]}),annotations:[{type:'url_citation',url:'https://example.com',title:'Profile',start_index:8,end_index:11}]}]}]}));
   };
-  const response=await handler(new Request('https://example.com/api/digital-reputation',{method:'POST',body:JSON.stringify({name:'Test Person',context:'Oslo',self:true,locale:'nb'})}));
+  const response=await handler(new Request('https://example.com/api/digital-reputation',{method:'POST',body:JSON.stringify({name:'Test Person',context:'Oslo',criteria:{organizations:'Example Ltd'},self:true,locale:'nb'})}));
   assert.equal(response.status,200);assert.equal(response.headers.get('cache-control'),'no-store');
   assert.equal((await response.json()).findings[0].url,'https://example.com/');
  }finally{globalThis.fetch=previousFetch;if(previousKey===undefined)delete process.env.OPENAI_API_KEY;else process.env.OPENAI_API_KEY=previousKey;}
@@ -68,4 +68,20 @@ test('profile is sourced from the matched identity only',()=>{
 });
 test('visibility reaches ten only with broad sourced coverage, and never falls outside one to ten',()=>{
  assert.equal(visibilityScore(0),1);assert.equal(visibilityScore(15),10);assert.equal(visibilityScore(200),10);
+});
+
+test('additional public criteria are bounded and passed as data',()=>{
+ const person=validatePerson({name:'Test Person',self:true,criteria:{aliases:' Test Example ',organizations:'Example Ltd',period:'2020–2026',ignored:'not sent'}});
+ assert.deepEqual(person.criteria,{aliases:'Test Example',organizations:'Example Ltd',period:'2020–2026'});
+ assert.throws(()=>validatePerson({name:'Test Person',self:true,criteria:{aliases:'x'.repeat(161)}}));
+ assert.throws(()=>validatePerson({name:'Test Person',self:true,criteria:{roles:['advisor']}}));
+});
+test('mention categories, ownership and sourced dates preserve identity separation',()=>{
+ const finding={...hit('https://news.example/article'),kind:'article',ownership:'third_party',publishedAt:'2024-05-06'};
+ const own={...hit('https://own.example/profile'),kind:'profile',ownership:'own',publishedAt:'not a date'};
+ const report=personVisibilityReport(searchResponse([finding,own, {...hit('https://other.example/person','namesake'),kind:'social',ownership:'third_party'}]),{context:'',criteria:{organizations:'Example Ltd'}});
+ assert.equal(report.score,3);assert.equal(report.mentionCount,1);assert.equal(report.ownCount,1);
+ assert.equal(report.findings[0].publishedAt,'2024-05-06');assert.equal(report.findings[1].publishedAt,null);
+ const unqualified=personVisibilityReport(searchResponse([finding]),{context:'',criteria:{period:'2020–2026',topics:'AI'}});
+ assert.equal(unqualified.score,null);assert.equal(unqualified.mentionCount,0);
 });
