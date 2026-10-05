@@ -23,8 +23,13 @@ export default async req => {
         input:JSON.stringify({name:person.name,context:person.context})
       })
     });
-    if(!response.ok) return json({error:'unavailable'},502);
+    if(!response.ok) {
+      const failure=await response.json().catch(()=>({}));
+      const knownCodes=['insufficient_quota','invalid_api_key','model_not_found','rate_limit_exceeded','unsupported_parameter'];
+      console.error('Personal visibility provider failure', {status:response.status,code:knownCodes.includes(failure.error?.code)?failure.error.code:'other',type:failure.error?.type==='invalid_request_error'?'invalid_request_error':'other'});
+      return json({error:'unavailable'},502);
+    }
     return json(personVisibilityReport(await response.json(),person));
-  } catch {return json({error:'unavailable'},502);}
+  } catch (error) {console.error('Personal visibility failure', {kind:error?.name==='TimeoutError'?'timeout':'response_processing'});return json({error:'unavailable'},502);}
 };
 export const config={path:'/api/digital-reputation',rateLimit:{windowLimit:3,windowSize:300,aggregateBy:['ip','domain']}};
