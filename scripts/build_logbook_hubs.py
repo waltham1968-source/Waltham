@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 entries = {
     "dk": [
+        ('6. oktober 2026 · AI', 'Når kunden spørger ChatGPT, bliver jeres virksomhed så anbefalet?', 'Kundernes søgning flytter fra klassisk Google-søgning mod samtaler med AI-assistenter. Markedspladsmodellen forklarer, hvad det betyder for jeres virksomhed.', 'markedsplassmodellen.html'),
         ("29. august 2026 · Produktudvikling", "Én webadresse kan åbne en hel forretning", "Potentialesjekket forbinder offentlige signaler med konkrete muligheder, produkter og samarbejdspartnere.", "en-webadresse-kan-aabne-en-forretning.html"),
         ("29. august 2026 · Nyhedsprodukt", "Hvad mener folk lige nu?", "En hurtig og billig befolkningspuls, hvor AI finder spørgsmålet, og rigtige mennesker leverer svaret.", "ai-augmented-market-estimation.html"),
         ("28. august 2026 · AI", "AI er ikke magi. Det er et meget godt arkivskab.", "Kvaliteten af svaret afhænger af materialet, strukturen og spørgsmålet.", "ai-er-ikke-magi.html"),
@@ -17,6 +18,7 @@ entries = {
         ("27. juli 2026 · Samarbejde", "Samarbejde skal give mening for begge parter", "Start småt, skab synlig værdi og fortsæt, når det virker.", "samarbejde-skal-give-mening.html"),
     ],
     "no": [
+        ('6. oktober 2026 · AI', 'Når kunden spør ChatGPT, blir virksomheten din anbefalt?', 'Kundenes søk flytter fra klassiske Google-søk mot samtaler med AI-assistenter. Markedsplassmodellen forklarer hva det betyr for virksomheten din.', 'markedsplassmodellen.html'),
         ("29. august 2026 · Produktutvikling", "Én nettadresse kan åpne en hel forretning", "Potensialsjekken kobler offentlige signaler til konkrete muligheter, produkter og samarbeidspartnere.", "en-nettadresse-kan-apne-en-forretning.html"),
         ("29. august 2026 · Nyhetsprodukt", "Hva mener folk akkurat nå?", "En rask og rimelig befolkningspuls der AI finner spørsmålet, og virkelige mennesker gir svaret.", "ai-augmented-market-estimation.html"),
         ("28. august 2026 · AI", "AI er ikke magi. Det er et svært godt arkivskap.", "Kvaliteten på svaret avhenger av materialet, strukturen og spørsmålet.", "ai-er-ikke-magi.html"),
@@ -45,8 +47,8 @@ entries = {
 }
 
 copy = {
-    "dk": ("da", "Logbog", "Noter fra arbejdet med at skabe bevægelse.", "Observationer, erfaringer og idéer om virksomheder, teknologi, markeder og mennesker — samlet ét sted.", "Læs notatet", "Alle noter er skrevet undervejs. Kort, konkret og uden konsulentsprog."),
-    "no": ("nb", "Loggbok", "Notater fra arbeidet med å skape bevegelse.", "Observasjoner, erfaringer og ideer om virksomheter, teknologi, markeder og mennesker — samlet på ett sted.", "Les notatet", "Alle notater er skrevet underveis. Kort, konkret og uten konsulentspråk."),
+    "dk": ("da", "Logbog", "Noter fra arbejdet med at skabe bevægelse.", "Observationer, erfaringer og idéer om virksomheder, teknologi, markeder og mennesker — samlet ét sted.", "Læs notatet", "Artikler, modeller, lærebøger og produkter fra arbejdet med Waltham. Nye bidrag samles her med det seneste først."),
+    "no": ("nb", "Loggbok", "Notater fra arbeidet med å skape bevegelse.", "Observasjoner, erfaringer og ideer om virksomheter, teknologi, markeder og mennesker — samlet på ett sted.", "Les notatet", "Artikler, modeller, lærebøker og produkter fra arbeidet med Waltham. Nye bidrag samles her, med det nyeste først."),
     "en": ("en", "Journal", "Notes from the work of creating momentum.", "Observations, experience and ideas about business, technology, markets and people — collected in one place.", "Read the entry", "Written along the way. Short, concrete and without consulting jargon."),
     "de": ("de", "Logbuch", "Notizen aus der Arbeit, Dinge in Bewegung zu bringen.", "Beobachtungen, Erfahrungen und Ideen zu Unternehmen, Technologie, Märkten und Menschen — an einem Ort gesammelt.", "Eintrag lesen", "Unterwegs geschrieben. Kurz, konkret und ohne Beraterjargon."),
 }
@@ -60,7 +62,13 @@ for lang, items in entries.items():
     cards = "".join(f'<article><span>{date}</span><h2>{title}</h2><p>{desc}</p><a href="{href}">{action} →</a></article>' for date,title,desc,href in items)
     switches = "".join(f'<a href="/{code}/{names[code]}" lang="{copy[code][0]}"' + (' aria-current="page"' if code==lang else '') + f'>{code.upper()}</a>' for code in ("dk","no","en","de"))
     page = f'''<!doctype html><html lang="{html_lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="{lead}"><title>{label} — Waltham</title><link rel="canonical" href="{public_url(lang)}">''' + "".join(f'<link rel="alternate" hreflang="{copy[c][0]}" href="{public_url(c)}">' for c in ("dk","no","en","de")) + f'''<link rel="stylesheet" href="../css/styles.css"><link rel="stylesheet" href="../css/brand-logo.css"><link rel="stylesheet" href="../css/logbook.css?v=5"></head><body class="logbook-page"><header class="logbook-nav"><div class="wrap"><a class="logo" href="index.html">Waltham<span>.</span><small>Consulting</small></a><nav class="language-switcher" aria-label="Language">{switches}</nav><a class="back" href="index.html">← Waltham</a></div></header><main><section class="logbook-hero"><div class="wrap"><p class="eyebrow">Waltham {label}</p><h1>{heading}</h1><p>{lead}</p></div></section><section class="logbook-index"><div class="wrap"><div class="logbook-register"><b>{label}</b><span>01 — fortløbende</span></div><p class="logbook-note">{note}</p><div class="logbook-list">{cards}</div></div></section></main><footer><div class="wrap"><a class="logo" href="index.html">Waltham<span>.</span><small>Consulting</small></a><p>{label} · Waltham Consulting</p></div></footer><script src="/js/cookie-notice.js"></script></body></html>'''
-    (ROOT/lang/names[lang]).write_text(page, encoding="utf-8")
+    index_path = ROOT/lang/names[lang]
+    if index_path.exists():
+        old = index_path.read_text(encoding="utf-8")
+        sections = re.findall(r'<section class="logbook-index">.*?</section>', old)
+        if len(sections) > 1:
+            page = page.replace("</main>", "".join(sections[1:]) + "</main>")
+    index_path.write_text(page, encoding="utf-8")
 
 # Add the permanent logbook destination to each home-page menu.
 for lang in ("dk","no","en","de"):
