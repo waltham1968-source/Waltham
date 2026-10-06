@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 entries = {
     "dk": [
+        ('6. oktober 2026 · AI · English', 'A great website is a seaworthy yacht.', 'But it still needs a course and a way to be found. A maritime perspective on visibility, direction and customer understanding.', '../en/a-seaworthy-website.html'),
         ('6. oktober 2026 · AI', 'Når kunden spørger ChatGPT, bliver jeres virksomhed så anbefalet?', 'Kundernes søgning flytter fra klassisk Google-søgning mod samtaler med AI-assistenter. Markedspladsmodellen forklarer, hvad det betyder for jeres virksomhed.', 'markedsplassmodellen.html'),
         ("29. august 2026 · Produktudvikling", "Én webadresse kan åbne en hel forretning", "Potentialesjekket forbinder offentlige signaler med konkrete muligheder, produkter og samarbejdspartnere.", "en-webadresse-kan-aabne-en-forretning.html"),
         ("29. august 2026 · Nyhedsprodukt", "Hvad mener folk lige nu?", "En hurtig og billig befolkningspuls, hvor AI finder spørgsmålet, og rigtige mennesker leverer svaret.", "ai-augmented-market-estimation.html"),
@@ -18,6 +19,7 @@ entries = {
         ("27. juli 2026 · Samarbejde", "Samarbejde skal give mening for begge parter", "Start småt, skab synlig værdi og fortsæt, når det virker.", "samarbejde-skal-give-mening.html"),
     ],
     "no": [
+        ('6. oktober 2026 · AI · English', 'A great website is a seaworthy yacht.', 'But it still needs a course and a way to be found. A maritime perspective on visibility, direction and customer understanding.', '../en/a-seaworthy-website.html'),
         ('6. oktober 2026 · AI', 'Når kunden spør ChatGPT, blir virksomheten din anbefalt?', 'Kundenes søk flytter fra klassiske Google-søk mot samtaler med AI-assistenter. Markedsplassmodellen forklarer hva det betyr for virksomheten din.', 'markedsplassmodellen.html'),
         ("29. august 2026 · Produktutvikling", "Én nettadresse kan åpne en hel forretning", "Potensialsjekken kobler offentlige signaler til konkrete muligheter, produkter og samarbeidspartnere.", "en-nettadresse-kan-apne-en-forretning.html"),
         ("29. august 2026 · Nyhetsprodukt", "Hva mener folk akkurat nå?", "En rask og rimelig befolkningspuls der AI finner spørsmålet, og virkelige mennesker gir svaret.", "ai-augmented-market-estimation.html"),
@@ -28,6 +30,7 @@ entries = {
         ("27. juli 2026 · Samarbeid", "Samarbeid skal gi mening for begge parter", "Begynn smått, skap synlig verdi og fortsett når det virker.", "samarbeid-skal-gi-mening.html"),
     ],
     "en": [
+        ('6 October 2026 · Visibility · English', 'A great website is a seaworthy yacht.', 'But it still needs a course and a way to be found. A maritime perspective on visibility, direction and customer understanding.', 'a-seaworthy-website.html'),
         ("29 August 2026 · Product development", "One web address can open an entire business", "The potential check connects public signals with concrete opportunities, products and partners.", "one-web-address-can-open-a-business.html"),
         ("29 August 2026 · News product", "What do people think right now?", "A fast and affordable population pulse where AI finds the question and real people provide the answer.", "ai-augmented-market-estimation.html"),
         ("28 August 2026 · AI", "AI isn’t magic. It’s a very good filing cabinet.", "The quality of the answer depends on the material, the structure and the question.", "ai-is-not-magic.html"),
