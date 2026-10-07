@@ -8,6 +8,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 entries = {
     "dk": [
+        ('7. oktober 2026 · AI · Markedsanalyse · English', 'Could AI Search Create a New Golden Age for Market Research?', 'Kan AI-søgning skabe en ny guldalder for markedsanalyse? Om at forstå mennesket bag spørgsmålet og gøre virksomhedens relevans tydelig.', '../en/ai-search-market-research.html'),
+        ('6. oktober 2026 · AI · Kundeservice', 'Måske skal AI ikke tage telefonen', 'Hybrid kundeservice: mennesket tager relationen, AI tager arbejdet omkring den.', 'maaske-skal-ai-ikke-tage-telefonen.html'),
         ('6. oktober 2026 · AI · English', 'A great website is a seaworthy yacht.', 'But it still needs a course and a way to be found. A maritime perspective on visibility, direction and customer understanding.', '../en/a-seaworthy-website.html'),
         ('6. oktober 2026 · AI', 'Når kunden spørger ChatGPT, bliver jeres virksomhed så anbefalet?', 'Kundernes søgning flytter fra klassisk Google-søgning mod samtaler med AI-assistenter. Markedspladsmodellen forklarer, hvad det betyder for jeres virksomhed.', 'markedsplassmodellen.html'),
         ("29. august 2026 · Produktudvikling", "Én webadresse kan åbne en hel forretning", "Potentialesjekket forbinder offentlige signaler med konkrete muligheder, produkter og samarbejdspartnere.", "en-webadresse-kan-aabne-en-forretning.html"),
@@ -19,6 +21,7 @@ entries = {
         ("27. juli 2026 · Samarbejde", "Samarbejde skal give mening for begge parter", "Start småt, skab synlig værdi og fortsæt, når det virker.", "samarbejde-skal-give-mening.html"),
     ],
     "no": [
+        ('7. oktober 2026 · AI · Markedsanalyse · English', 'Could AI Search Create a New Golden Age for Market Research?', 'Kan AI-søk skape en ny gullalder for markedsanalyse? Om å forstå mennesket bak spørsmålet og gjøre virksomhetens relevans tydelig.', '../en/ai-search-market-research.html'),
         ('6. oktober 2026 · AI · English', 'A great website is a seaworthy yacht.', 'But it still needs a course and a way to be found. A maritime perspective on visibility, direction and customer understanding.', '../en/a-seaworthy-website.html'),
         ('6. oktober 2026 · AI', 'Når kunden spør ChatGPT, blir virksomheten din anbefalt?', 'Kundenes søk flytter fra klassiske Google-søk mot samtaler med AI-assistenter. Markedsplassmodellen forklarer hva det betyr for virksomheten din.', 'markedsplassmodellen.html'),
         ("29. august 2026 · Produktutvikling", "Én nettadresse kan åpne en hel forretning", "Potensialsjekken kobler offentlige signaler til konkrete muligheter, produkter og samarbeidspartnere.", "en-nettadresse-kan-apne-en-forretning.html"),
@@ -30,6 +33,7 @@ entries = {
         ("27. juli 2026 · Samarbeid", "Samarbeid skal gi mening for begge parter", "Begynn smått, skap synlig verdi og fortsett når det virker.", "samarbeid-skal-gi-mening.html"),
     ],
     "en": [
+        ('7 October 2026 · AI Search · Market Research', 'Could AI Search Create a New Golden Age for Market Research?', 'AI search gives market research a new role: understanding the person behind the question and helping businesses explain when they are a good fit.', 'ai-search-market-research.html'),
         ('6 October 2026 · Visibility · English', 'A great website is a seaworthy yacht.', 'But it still needs a course and a way to be found. A maritime perspective on visibility, direction and customer understanding.', 'a-seaworthy-website.html'),
         ("29 August 2026 · Product development", "One web address can open an entire business", "The potential check connects public signals with concrete opportunities, products and partners.", "one-web-address-can-open-a-business.html"),
         ("29 August 2026 · News product", "What do people think right now?", "A fast and affordable population pulse where AI finds the question and real people provide the answer.", "ai-augmented-market-estimation.html"),
@@ -83,7 +87,7 @@ for lang in ("dk","no","en","de"):
 
 # Give every existing journal article a stable way back to its archive.
 article_sets = {
-    "dk": [x[3] for x in entries["dk"]],
+    "dk": [x[3] for x in entries["dk"] if not x[3].startswith("../")],
     "no": [x[3] for x in entries["no"] if not x[3].startswith("../")],
     "en": [x[3] for x in entries["en"]],
     "de": [x[3] for x in entries["de"] if not x[3].startswith("../")],
@@ -129,8 +133,8 @@ for group in groups:
         path.write_text(html, encoding="utf-8")
 
 sequences = {
-    "dk": [("dk",x[3]) for x in entries["dk"]],
-    "no": [("no",x[3]) if not x[3].startswith("../") else ("root","veltrimmet-seilbat.html") for x in entries["no"]],
+    "dk": [("dk",x[3]) for x in entries["dk"] if not x[3].startswith("../")],
+    "no": [("no",x[3]) if not x[3].startswith("../") else ("root","veltrimmet-seilbat.html") for x in entries["no"] if not x[3].startswith("../en/")],
     "en": [("en",x[3]) for x in entries["en"]],
     "de": [("de",x[3]) for x in entries["de"] if not x[3].startswith("../")],
 }
