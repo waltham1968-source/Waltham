@@ -27,3 +27,8 @@ No paid search or AI provider integration was added. This update establishes the
 ## Validation
 
 Run `node --test tests/visibility*.test.mjs` on Node 20+. The suite covers the scoring denominator, missing data, zero scores, not-relevant exclusions, fractional panel results, immutable weights, evidence requirements, failed/duplicate AI runs, source statuses, sampled-path restrictions, localization and all four customer pages. Local preview: `node scripts/preview-visibility.mjs`.
+
+## External research and cross-page review — 8 October 2026
+The crawl prioritizes about/contact/customer/team/service pages, up to nine linked pages. Explicit founding statements are compared across inspected pages; differing milestones are flagged for clarification rather than assigning a true year. Copyright years are excluded.
+A separate `/api/ai-visibility-research` request uses the existing OpenAI web-search integration. Retained findings must cite consulted URLs. Registers, Google Maps, reviews, professional associations, social profiles and customer evidence are searched; found statuses without retained matching citations become inconclusive. Missing configuration/timeouts are surfaced explicitly. This bounded investigation cannot guarantee that all relevant sources were found. It supplements the 18-checkpoint score; it does not silently turn model findings into scored checkpoints or measured AI visibility. Google Maps totals still require a host-matched Places result. Web search may provide cached evidence, so date-sensitive certifications must be verified directly before a definitive report.
+The OneHouse editorial report and homepage concept are under `/forslag/onehouse/`, excluded from indexing. They are proposals on Waltham, not changes to OneHouse's domain.

@@ -79,7 +79,7 @@ export function describeImpression(html,{url,title,description,business,profile=
   const h1=headings.find(x=>x.level===1)?.text||'';
   const sections=headings.filter(x=>x.level>1 && x.text.length>=4 && x.text.length<=95 && !/^(about|om os|om oss|kontakt|contact|menu|learn more|læs mere|les mer|our impact|vores mission|our mission|our mission in action|portfolio(?: highlights)?|referencer|references)$/i.test(x.text)).slice(0,8);
   const paragraphs=[...html.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)].map(m=>clean(m[1])).filter(x=>x.length>=45 && x.length<=900);
-  const identity=business?.name?String(business.name):profile.company && clean(html).toLocaleLowerCase().includes(profile.company.toLocaleLowerCase())?profile.company:title.split(/\s+[|—–-]\s+/)[0];
+  const identity=business?.name?String(business.name):profile.company && clean(html).toLocaleLowerCase().includes(profile.company.toLocaleLowerCase())?profile.company:(title.split(/\s+[|—–-]\s+/).find(part=>/\b(?:A\/S|Ltd|GmbH|Inc)\b/i.test(part))||title.split(/\s+[|—–-]\s+/)[0]);
   const mainMessage=description||paragraphs[0]||h1||'';
   const offerCandidates=sections.map(x=>x.text).filter(x=>!/^\d|^(why|hvorfor|hvordan|how|what|hvad|case|blog|news|nyheder|nyheter)/i.test(x)).slice(0,5);
   const desired=String(profile.desired||'').split(/[,;\n]/).map(x=>x.trim()).filter(Boolean).slice(0,6);
@@ -200,7 +200,7 @@ export function analyze({page,robots,sitemap,profile={},submittedUrl=page.url,pa
   report.pages=pages.map(p=>pageRecommendations(p,profile));
   report.sample={attempted:attemptedPages,read:pages.map(p=>p.url)};
   report.aiPanel={plannedQuestions:[],plannedCount:0,validCount:0,mentionCount:null,complete:false};
-  report.limitations=['Forsiden og op til tre linkede sider undersøges som en stikprøve.','Tilladelse i crawlregler beviser ikke et faktisk besøg eller en placering.','Faglige vurderinger og eksterne kilder kræver dokumenteret gennemgang.','Observeret AI-synlighed og forståelse udgør 16 %; faktiske AI-svar er endnu ikke målt.'];
+  report.limitations=['Forsiden og op til ni udvalgte sider undersøges som en stikprøve.','Tilladelse i crawlregler beviser ikke et faktisk besøg eller en placering.','Faglige vurderinger og eksterne kilder kræver dokumenteret gennemgang.','Observeret AI-synlighed og forståelse udgør 16 %; faktiske AI-svar er endnu ikke målt.'];
   return finalizeScore(report);
 }
 

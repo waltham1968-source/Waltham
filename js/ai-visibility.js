@@ -36,7 +36,9 @@ form.addEventListener('submit',async event=>{
   if(!response.headers.get('content-type')?.includes('application/json'))throw new Error(t('unavailable'));
   const data=await response.json();if(!response.ok)throw new Error(data.error||t('failed'));report=data;
   status.textContent=locale==='nb'?'Undersøker eksterne kilder og sammenligner opplysninger …':locale==='da'?'Undersøger eksterne kilder og sammenligner oplysninger …':locale==='de'?'Externe Quellen werden untersucht …':'Researching external sources and comparing facts …';
-  try {const researchResponse=await fetch('/api/ai-visibility-research',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({url:data.url,company:$('#company')?.value||'',locale}),signal:controller.signal});data.research=await researchResponse.json();}catch{data.research={status:'unavailable',findings:[]};}
+  try {const researchResponse=await fetch('/api/ai-visibility-research',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({url:data.url,company:$('#company')?.value||'',locale}),signal:controller.signal});data.research=await researchResponse.json();
+    for(const finding of data.research.findings||[]){const source=data.sources.find(s=>s.group===finding.group);if(source){source.status='verified';source.statusLabel=t('source.verified');source.url=finding.sources[0];source.meaning=finding.meaning;source.observation=finding.observation;source.date=data.research.checkedAt;}}
+}catch{data.research={status:'unavailable',findings:[]};}
 
   text('#result-domain',`${hostLabel(data)} · ${new Date(data.checkedAt).toLocaleString(formats[locale])}`);
   text('#score',data.score===null?'—':data.score.toLocaleString(formats[locale]));text('#score-status',data.scoreStatus);text('#score-summary',data.summary);text('#risk',data.riskLabel||t(data.risk));text('#coverage',t('coverage',data));
