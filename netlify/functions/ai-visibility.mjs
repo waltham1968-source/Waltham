@@ -29,7 +29,7 @@ export default async req=>{
     const declared=robots?.status===200?robots.text.match(/^\s*sitemap:\s*(https?:\/\/\S+)/im)?.[1]:null;
     const sitemapUrl=declared||new URL('/sitemap.xml',page.url).href;
     const sitemap=await readPublic(sitemapUrl).catch(()=>null);
-    const candidates=internalPages(page.text,page.url,3);
+    const candidates=internalPages(page.text,page.url,9);
     const extra=await Promise.all(candidates.map(async candidate=>{
       if(robots?.status===200 && !allowed(robots.text,'WalthamVisibilityCheck',new URL(candidate).pathname))return null;
       try{const result=await readPublic(candidate);return result.status===200 && new URL(result.url).origin===new URL(page.url).origin && /text\/html|application\/xhtml\+xml/i.test(result.headers['content-type']||'')?result:null;}catch{return null;}

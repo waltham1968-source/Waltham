@@ -97,10 +97,11 @@ export function internalPages(html,base,max=3){
     try{
       const url=new URL(decode(match[1]),base);url.hash='';url.search='';
       if(url.origin!==origin || seen.has(url.pathname) || /\.(?:pdf|jpg|jpeg|png|webp|svg|zip|xml|txt)$/i.test(url.pathname))continue;
-      seen.add(url.pathname);pages.push(url.href);if(pages.length>=max)break;
+      seen.add(url.pathname);pages.push(url.href);
     }catch{}
   }
-  return pages;
+  const priority=url=>/om-|about|kontakt|contact/.test(url)?0:/kund|customer|case|team|medarbejder/.test(url)?1:/ydelse|service|raadgivning|rådgivning/.test(url)?2:3;
+  return pages.sort((a,b)=>priority(a)-priority(b)).slice(0,max);
 }
 export function pageRecommendations(page,profile={}){
   const html=page.text,metas=[...html.matchAll(/<meta\b[^>]*>/gi)].map(m=>attrs(m[0]));
@@ -194,9 +195,17 @@ export function analyze({page,robots,sitemap,profile={},submittedUrl=page.url,pa
   // Identity, semantic content, people, external reputation and AI observations need reviewed sources.
   // A missing schema tag or keyword never means the business lacks the corresponding capability.
   report.sources=sourceInventory(pages,report.checkedAt);
+  report.inconsistencies=historyConflicts(pages);
+  if(report.inconsistencies.length)set('consistency',1,null,report.inconsistencies.map(f=>f.evidence).join(' · '),report.inconsistencies.flatMap(f=>f.sources),'cross-page-facts');
   report.pages=pages.map(p=>pageRecommendations(p,profile));
   report.sample={attempted:attemptedPages,read:pages.map(p=>p.url)};
   report.aiPanel={plannedQuestions:[],plannedCount:0,validCount:0,mentionCount:null,complete:false};
   report.limitations=['Forsiden og op til tre linkede sider undersøges som en stikprøve.','Tilladelse i crawlregler beviser ikke et faktisk besøg eller en placering.','Faglige vurderinger og eksterne kilder kræver dokumenteret gennemgang.','Observeret AI-synlighed og forståelse udgør 16 %; faktiske AI-svar er endnu ikke målt.'];
   return finalizeScore(report);
+}
+
+export function historyConflicts(pages){
+  const claims=pages.flatMap(page=>[...clean(page.text).matchAll(/(?:stiftet|grundlagt|etableret|founded|established|været her siden|since)\s*(?:i\s+)?((?:18|19|20)\d{2})/gi)].map(match=>({year:match[1],quote:match[0],url:page.url})));
+  if(new Set(claims.map(c=>c.year)).size<2)return [];
+  return [{kind:'history',evidence:claims.map(c=>`${c.quote} (${c.url})`).join(' · '),sources:[...new Set(claims.map(c=>c.url))],claims,recommendation:'Afklar om årstallene beskriver selskabet, brandet eller en anden milepæl, og forklar forskellen ens på alle sider.'}];
 }

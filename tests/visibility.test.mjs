@@ -27,7 +27,9 @@ test('v2 first impression preserves evidence and flags several possible offering
 });
 test('page tasks are tied to sampled same-origin pages',()=>{
  const links='<a href="/services">Services</a><a href="https://elsewhere.test/">External</a><a href="/about#team">About</a>';
- assert.deepEqual(internalPages(links,'https://example.com/',3),['https://example.com/services','https://example.com/about']);
+ assert.deepEqual(internalPages(links,'https://example.com/',3),['https://example.com/about','https://example.com/services']);
  const report=pageRecommendations({url:'https://example.com/services',text:'<h1>Our services</h1><h2>Consulting</h2>'});
  assert.equal(report.url,'https://example.com/services');assert.ok(report.tasks.some(x=>x.code==='description'));assert.ok(report.tasks.some(x=>x.code==='title'));
 });
+
+ test('history compares explicit milestones across pages and ignores copyright years',async()=>{const {historyConflicts}=await import('../netlify/functions/lib/visibility.mjs');assert.equal(historyConflicts([{url:'https://example.com',text:'<p>Founded 1982</p> ©2026'},{url:'https://example.com/about',text:'Established 1986'}]).length,1);assert.equal(historyConflicts([{url:'https://example.com',text:'Founded 1982 ©2026'}]).length,0);});

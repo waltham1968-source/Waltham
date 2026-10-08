@@ -29,12 +29,15 @@ menuButton.addEventListener('click',()=>{const open=menu.classList.toggle('open'
 menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');menuButton.setAttribute('aria-expanded','false');}));
 form.addEventListener('submit',async event=>{
  event.preventDefault();void recordVisibilityUse($('#website').value).catch(()=>console.warn('Visibility usage could not be recorded.'));const button=form.querySelector('[type=submit]');button.disabled=true;results.hidden=true;status.className='';status.textContent=t('loading');form.setAttribute('aria-busy','true');
- const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),45000);
+ const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),115000);
  try{
   const response=await fetch('/api/ai-visibility',{method:'POST',headers:{'content-type':'application/json','accept-language':locale},body:JSON.stringify({...Object.fromEntries(new FormData(form)),locale}),signal:controller.signal});
   if(response.status===429)throw new Error(t('queue'));
   if(!response.headers.get('content-type')?.includes('application/json'))throw new Error(t('unavailable'));
   const data=await response.json();if(!response.ok)throw new Error(data.error||t('failed'));report=data;
+  status.textContent=locale==='nb'?'Undersøker eksterne kilder og sammenligner opplysninger …':locale==='da'?'Undersøger eksterne kilder og sammenligner oplysninger …':locale==='de'?'Externe Quellen werden untersucht …':'Researching external sources and comparing facts …';
+  try {const researchResponse=await fetch('/api/ai-visibility-research',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({url:data.url,company:$('#company')?.value||'',locale}),signal:controller.signal});data.research=await researchResponse.json();}catch{data.research={status:'unavailable',findings:[]};}
+
   text('#result-domain',`${hostLabel(data)} · ${new Date(data.checkedAt).toLocaleString(formats[locale])}`);
   text('#score',data.score===null?'—':data.score.toLocaleString(formats[locale]));text('#score-status',data.scoreStatus);text('#score-summary',data.summary);text('#risk',data.riskLabel||t(data.risk));text('#coverage',t('coverage',data));
   text('#method-version',t('methodLabel',{version:data.methodVersion}));
@@ -73,6 +76,14 @@ form.addEventListener('submit',async event=>{
     const meaning=document.createElement('p');meaning.textContent=source.meaning;article.append(meaning);return article;
   }));
   $('#findings').replaceChildren(...data.checks.map(c=>{const article=document.createElement('article');article.className='finding';const h=document.createElement('strong');h.textContent=`${c.checkpointId} · ${c.statusLabel} · ${c.label}`;const p=document.createElement('p');p.textContent=c.evidence;const rating=document.createElement('small');rating.textContent=c.fulfillment===null?t('weightOnly',{weight:c.weight}):t('rating',{value:c.fulfillment,weight:c.weight});article.append(h,p,rating);return article;}));
+  const research=document.createElement('section');research.id='research-details';
+  $('#research-details')?.remove();
+  const heading=document.createElement('h3');heading.textContent=locale==='nb'?'Dokumenterte funn og forbedringer':locale==='da'?'Dokumenterede fund og forbedringer':locale==='de'?'Belegte Erkenntnisse':'Documented findings and improvements';research.append(heading);
+  if(data.research?.status!=='completed'){const p=document.createElement('p');p.textContent=locale==='nb'?'Den eksterne undersøkelsen kunne ikke fullføres. Resultatet omfatter derfor bare nettstedet; eksterne forhold er fortsatt uavklart.':locale==='da'?'Den eksterne undersøgelse kunne ikke gennemføres. Eksterne forhold er derfor stadig uafklarede.':'External research could not be completed. External evidence remains unexamined.';research.append(p);}
+  for(const f of data.research?.findings||[]){const article=document.createElement('article');article.className='finding';const h=document.createElement('strong');h.textContent=f.title;article.append(h);for(const value of [f.observation,f.meaning]){const p=document.createElement('p');p.textContent=value;article.append(p);}for(const url of f.sources){const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=new URL(url).hostname;article.append(a,document.createTextNode(' · '));}research.append(article);}
+  for(const search of data.research?.searches||[]){const p=document.createElement('p');p.textContent=`${search.group}: ${search.status} — ${search.note}`;research.append(p);}
+  results.append(research);
+  if(data.research?.priorities?.length)list('#actions',data.research.priorities.slice(0,3));
   status.textContent=t('ready');results.hidden=false;results.focus();results.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
  }catch(error){status.className='error';status.textContent=error.name==='AbortError'?t('timeout'):error instanceof TypeError?t('failed'):error.message;}
  finally{clearTimeout(timer);button.disabled=false;form.removeAttribute('aria-busy');}
