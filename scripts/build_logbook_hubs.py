@@ -56,15 +56,15 @@ entries = {
 copy = {
     "dk": ("da", "Logbog", "AI-synlighed, kundeindsigt og praktisk AI.", "Artikler og erfaringer om AI-synlighed, kundeindsigt og praktisk brug af AI i virksomheder. Læs Walthams logbog med eksempler og modeller.", "Læs notatet", "Artikler, modeller, lærebøger og produkter fra arbejdet med Waltham. Nye bidrag samles her med det seneste først."),
     "no": ("nb", "Loggbok", "AI-synlighet, kundeinnsikt og praktisk AI.", "Artikler og erfaringer om AI-synlighet, kundeinnsikt og praktisk bruk av AI i virksomheter. Les Walthams loggbok med eksempler og modeller.", "Les notatet", "Artikler, modeller, lærebøker og produkter fra arbeidet med Waltham. Nye bidrag samles her, med det nyeste først."),
-    "en": ("en", "Journal", "Notes from the work of creating momentum.", "Observations, experience and ideas about business, technology, markets and people — collected in one place.", "Read the entry", "Written along the way. Short, concrete and without consulting jargon."),
-    "de": ("de", "Logbuch", "Notizen aus der Arbeit, Dinge in Bewegung zu bringen.", "Beobachtungen, Erfahrungen und Ideen zu Unternehmen, Technologie, Märkten und Menschen — an einem Ort gesammelt.", "Eintrag lesen", "Unterwegs geschrieben. Kurz, konkret und ohne Beraterjargon."),
+    "en": ("en", "Journal", "AI visibility, customer insight and practical AI.", "Articles and experience on AI visibility, customer insight and practical AI for business. Explore the Waltham Journal for examples and models.", "Read the entry", "Written along the way. Short, concrete and without consulting jargon."),
+    "de": ("de", "Logbuch", "KI-Sichtbarkeit, Kundenverständnis und praktische KI.", "Artikel und Erfahrungen zu KI-Sichtbarkeit, Kundenverständnis und KI im Unternehmensalltag. Im Waltham-Logbuch finden Sie Beispiele und Modelle.", "Eintrag lesen", "Unterwegs geschrieben. Kurz, konkret und ohne Beraterjargon."),
 }
 
 names = {"dk":"logbog.html", "no":"loggbok.html", "en":"journal.html", "de":"logbuch.html"}
 home_labels = {"dk":"Logbog", "no":"Loggbok", "en":"Journal", "de":"Logbuch"}
 public_url = lambda lang: f'https://www.waltham.dk/{lang}/{names[lang]}'
 
-page_titles = {"dk": "Artikler om AI-synlighed og kundeindsigt | Waltham Logbog", "no": "Artikler om AI-synlighet og kundeinnsikt | Waltham Loggbok"}
+page_titles = {"en": "Articles on AI visibility and customer insight | Waltham Journal", "de": "Artikel über KI-Sichtbarkeit und Kundenverständnis | Waltham", "dk": "Artikler om AI-synlighed og kundeindsigt | Waltham Logbog", "no": "Artikler om AI-synlighet og kundeinnsikt | Waltham Loggbok"}
 
 for lang, items in entries.items():
     html_lang, label, heading, lead, action, note = copy[lang]
