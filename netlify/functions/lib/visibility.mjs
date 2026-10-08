@@ -2,6 +2,7 @@ import dns from 'node:dns/promises';
 import https from 'node:https';
 import http from 'node:http';
 import net from 'node:net';
+import {CHECKPOINTS,finalizeScore,sourceInventory} from './visibility-master.mjs';
 
 const MAX_PAGE_BYTES=3_000_000;
 const REQUEST_TIMEOUT_MS=10000;
@@ -116,7 +117,7 @@ export function pageRecommendations(page,profile={}){
   if(desired.length && desired.every(x=>!text.includes(x.toLocaleLowerCase())))tasks.push({priority:2,code:'desired'});
   return {url:page.url,title:title||new URL(page.url).pathname,tasks};
 }
-export function analyze({page,robots,sitemap,profile={},submittedUrl=page.url}){
+function analyzeSignals({page,robots,sitemap,profile={},submittedUrl=page.url}){
   const html=page.text,text=clean(html), lower=text.toLocaleLowerCase('da');
   const title=clean(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]||'');
   const metas=[...html.matchAll(/<meta\b[^>]*>/gi)].map(m=>attrs(m[0]));
@@ -144,14 +145,58 @@ export function analyze({page,robots,sitemap,profile={},submittedUrl=page.url}){
   add('understanding','Tilbuddet er beskrevet',Boolean(description.length>=50 && /<h1\b/i.test(html)),8,description||'Ingen kort sidebeskrivelse fundet.','Beskriv konkret, hvad I tilbyder, og hvem det hjælper.');
   add('understanding','Geografi eller målgruppe er angivet',Boolean(business?.address || business?.areaServed || business?.audience || (profile.market && searchable.includes(profile.market.toLowerCase()))),7,business?.address?'Adresse fundet i virksomhedsdata.':business?.areaServed||business?.audience?'Område eller målgruppe fundet i virksomhedsdata.':profile.market?`Søgt efter “${profile.market}” i sidens tekst.`:'Geografi/målgruppe ikke verificeret.','Angiv tydeligt jeres område og målgruppe på relevante sider.');
   add('understanding','Sammenhængende virksomhedsprofil',Boolean(business?.name && (business.url||business['@id']) && (business.sameAs||business.telephone||business.address)),7,business?'Virksomhedsdata fundet; navn, identitet og kontakt kontrolleret.':'Ingen genkendelig virksomhedsprofil i strukturerede data.','Knyt navn, webadresse og kontaktoplysninger sammen i hjemmesidens virksomhedsdata.');
-  const measured=checks.filter(c=>c.pass!==null),weight=measured.reduce((s,c)=>s+c.weight,0),earned=measured.reduce((s,c)=>s+(c.pass?c.weight:0),0);
-  const score=Number((1+9*earned/weight).toFixed(1));
   const desired=String(profile.desired||'').split(/[,;\n]/).map(s=>s.trim()).filter(Boolean).slice(0,6);
   const perception=desired.map(term=>({term,found:searchable.includes(term.toLowerCase())}));
-  return {version:'2.0',submittedUrl,url:page.url,checkedAt:new Date().toISOString(),score,scoreStatus:'Foreløbig',coverage:weight,risk:score<4?'High':score<7?'Medium':'Low',title,description,checks,bots,
+  return {submittedUrl,url:page.url,checkedAt:new Date().toISOString(),title,description,checks,bots,
     impression:describeImpression(html,{url:page.url,title,description,business,profile}),
     summary:'Et første billede af hjemmesidens tilgængelighed og tydelighed. Scoren dokumenterer ikke, om AI anbefaler virksomheden.',
     presence:{status:'Ikke målt',questions:[`Hvilke virksomheder kan hjælpe med ${profile.offering||'[ydelse]'} i ${profile.market||'[område]'}?`,`Hvem vil du anbefale til ${profile.offering||'[ydelse]'} for ${profile.market||'[målgruppe]'}, og hvorfor?`,`Hvilke alternativer er der til ${profile.company||title||'[virksomheden]'}?`],competitors:[]},
     perception:{status:desired.length?'Indledende tekstmatch':'Mangler ønsket billede',observed:description||title||text.slice(0,250),comparisons:perception,note:'Ordmatch er et samtalegrundlag, ikke en vurdering af kundernes faktiske opfattelse. En fuld vurdering kræver virksomhedens mål og en kvalitativ gennemgang.'},
     limitations:['Kun den indtastede side, adgangsregler og én sideoversigt undersøges.','Tilladelse i adgangsregler dokumenterer ikke faktisk adgang gennem firewall eller placering i søgeresultater.','Forståelse vurderes via enkle signaler; tekst og virksomhedsdata kan være ufuldstændige eller forældede.','AI Presence udgør 30 % af den fulde model og er endnu ikke målt. Manglende målinger tæller ikke som nul.']};
+}
+
+export function analyze({page,robots,sitemap,profile={},submittedUrl=page.url,pages=[page],attemptedPages=pages.map(p=>p.url)}){
+  const report=analyzeSignals({page,robots,sitemap,profile,submittedUrl});
+  const signals=report.checks;
+  report.version='3.0';report.signals=signals.map(({weight,...signal})=>signal);
+  report.checks=CHECKPOINTS.map(definition=>{
+    const signal=signals.find(s=>s.id===definition.id);
+    return {...definition,label:signal?.label||definition.id,action:signal?.action||'',
+      fulfillment:null,pass:null,status:'not_examined',evidence:signal?.evidence||'',
+      evidenceKey:signal?'master.signal':'master.pending',sources:signal?[page.url]:[],
+      scope:'pending-review',priority:['readable','crawlers','indexable','identity','accuracy'].includes(definition.id)?1:2};
+  });
+  const set=(id,fulfillment,evidenceKey,evidence,sources,scope)=>Object.assign(report.checks.find(c=>c.id===id),{fulfillment,evidenceKey,evidence,sources,scope});
+  const readablePages=pages.filter(p=>p.status===undefined||p.status===200).filter(p=>clean(p.text).split(/\s+/).length>=100);
+  // This is a bounded sample. It cannot establish that every essential page is accessible.
+  const allSampledReadable=readablePages.length===attemptedPages.length;
+  set('readable',allSampledReadable?3:readablePages.length?2:0,'master.readable',`${readablePages.length}/${attemptedPages.length}`,pages.map(p=>p.url),'sampled-pages');
+  const crawler=signals.find(s=>s.id==='crawlers');
+  const robotKnown=crawler.pass!==null;
+  if(robotKnown){
+    const botnames=Object.keys(report.bots);
+    const decisions=attemptedPages.map(url=>Object.fromEntries(botnames.map(bot=>[bot,allowed(robots.status===200?robots.text:'',bot,new URL(url).pathname+new URL(url).search)])));
+    const allAllowed=decisions.every(result=>Object.values(result).every(Boolean));
+    set('crawlers',allAllowed?4:0,null,decisions.map((result,i)=>`${attemptedPages[i]}: ${Object.entries(result).map(([bot,ok])=>`${bot}: ${ok?'allowed':'restricted'}`).join(' · ')}`).join('\n'),[new URL('/robots.txt',page.url).href],'sampled-search-crawler-rules');
+    report.crawlerDecisions=decisions;
+  }
+  const indexing=signals.find(s=>s.id==='indexable');
+  // An explicit noindex is a finding; absence is only a signal, not proof of indexing.
+  if(indexing.pass===false)set('indexable',0,null,indexing.evidence,[page.url],'observed-noindex');
+  const site=signals.find(s=>s.id==='sitemap');
+  if(site.pass===true){
+    const locations=[...sitemap.text.matchAll(/<(?:[\w-]+:)?loc\b[^>]*>([\s\S]*?)<\/(?:[\w-]+:)?loc>/gi)].map(m=>decode(m[1].trim()));
+    const isIndex=/<(?:[\w-]+:)?sitemapindex\b/i.test(sitemap.text);
+    const sampleCovered=!isIndex&&attemptedPages.every(url=>locations.includes(url));
+    set('sitemap',sampleCovered?3:2,'master.sitemap',`${locations.length}`, [sitemap.url||new URL('/sitemap.xml',page.url).href,page.url],'sampled-sitemap-links');
+  }else if(site.pass===false)set('sitemap',null,'master.sitemapMissing',site.evidence,[sitemap?.url||new URL('/sitemap.xml',page.url).href],'sitemap-location-only');
+  if(signals.find(s=>s.id==='identity').pass===true)set('identity',2,'master.identity',signals.find(s=>s.id==='identity').evidence,[page.url],'own-website-only');
+  // Identity, semantic content, people, external reputation and AI observations need reviewed sources.
+  // A missing schema tag or keyword never means the business lacks the corresponding capability.
+  report.sources=sourceInventory(pages,report.checkedAt);
+  report.pages=pages.map(p=>pageRecommendations(p,profile));
+  report.sample={attempted:attemptedPages,read:pages.map(p=>p.url)};
+  report.aiPanel={plannedQuestions:[],plannedCount:0,validCount:0,mentionCount:null,complete:false};
+  report.limitations=['Forsiden og op til tre linkede sider undersøges som en stikprøve.','Tilladelse i crawlregler beviser ikke et faktisk besøg eller en placering.','Faglige vurderinger og eksterne kilder kræver dokumenteret gennemgang.','Observeret AI-synlighed og forståelse udgør 16 %; faktiske AI-svar er endnu ikke målt.'];
+  return finalizeScore(report);
 }

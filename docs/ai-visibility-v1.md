@@ -1,5 +1,7 @@
 # Waltham AI Visibility Score v1.0
 
+Historical specification. The current Analyzer uses report version 3.0 and master method 1.3: 18 checkpoints, weighted 0–100 score and explicit coverage. See [the current implementation notes](ai-visibility-v3.md). The 1–10 formula and 40/30/30 weights below describe the earlier implementation.
+
 ## V2 first impression extension
 
 The check now returns `version: "2.0"` and a separate `impression` object. It extracts the business name, leading heading, page description, opening paragraph and prominent section headings from the submitted page. It shows possible offerings, questions that remain unresolved, and whether the user's desired terms appear in the readable text. The result links back to the source page. The four localized result pages present this in place of the older perception word comparison.

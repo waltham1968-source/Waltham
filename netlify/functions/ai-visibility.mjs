@@ -29,17 +29,17 @@ export default async req=>{
     const declared=robots?.status===200?robots.text.match(/^\s*sitemap:\s*(https?:\/\/\S+)/im)?.[1]:null;
     const sitemapUrl=declared||new URL('/sitemap.xml',page.url).href;
     const sitemap=await readPublic(sitemapUrl).catch(()=>null);
-    const report=analyze({page,robots,sitemap,profile,submittedUrl});
     const candidates=internalPages(page.text,page.url,3);
     const extra=await Promise.all(candidates.map(async candidate=>{
       if(robots?.status===200 && !allowed(robots.text,'WalthamVisibilityCheck',new URL(candidate).pathname))return null;
       try{const result=await readPublic(candidate);return result.status===200 && new URL(result.url).origin===new URL(page.url).origin && /text\/html|application\/xhtml\+xml/i.test(result.headers['content-type']||'')?result:null;}catch{return null;}
     }));
-    report.pages=[page,...extra.filter(Boolean)].map(p=>pageRecommendations(p,profile));
+    const report=analyze({page,robots,sitemap,profile,submittedUrl,pages:[page,...extra.filter(Boolean)],attemptedPages:[page.url,...candidates]});
     const placeKey=process.env.GOOGLE_PLACES_API_KEY;
-    report.google={searchCrawlerAllowed:report.bots.Googlebot,indexable:report.checks.find(c=>c.id==='indexable')?.pass??null,reviewsCount:null,reviewsRating:null,reviewsUrl:null,reviewsStatus:placeKey?'unverified':'not_configured',aiMentionsCount:null,searchPresence:null};
+    report.google={searchCrawlerAllowed:report.bots.Googlebot,indexable:report.signals.find(c=>c.id==='indexable')?.pass??null,reviewsCount:null,reviewsRating:null,reviewsUrl:null,reviewsStatus:placeKey?'unverified':'not_configured',aiMentionsCount:null,searchPresence:null};
     const place=await googleReviews({name:profile.company||report.impression.identity,siteUrl:page.url,key:placeKey});
-    if(place){report.google.reviewsCount=place.count;report.google.reviewsRating=place.rating;report.google.reviewsUrl=place.url;report.google.reviewsStatus='verified';}
+    if(place){report.google.reviewsCount=place.count;report.google.reviewsRating=place.rating;report.google.reviewsUrl=place.url;report.google.reviewsStatus='verified';
+      const source=report.sources.find(s=>s.group==='google_maps');Object.assign(source,{url:place.url,status:'verified',googleTotals:true,observation:`${place.count} reviews; rating ${place.rating}`,meaning:'Matched by website host; review totals only, individual reviews not read.'});}
     return json(localizeReport(report,locale,profile));
   }catch(error){return json({error:error instanceof SyntaxError?t('failed'):technicalError(error,t)},error instanceof SyntaxError?400:422);}
 };

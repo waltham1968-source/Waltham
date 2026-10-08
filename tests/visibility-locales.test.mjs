@@ -18,8 +18,8 @@ test('localized reports preserve measurements and original website excerpts',()=
   assert.equal(result.score,raw.score);assert.equal(result.coverage,raw.coverage);
   assert.deepEqual(result.checks.map(c=>c.pass),raw.checks.map(c=>c.pass));
   assert.equal(result.perception.observed,raw.perception.observed);
-  assert.equal(result.checks.find(c=>c.id==='offering').evidence,raw.description);
-  assert.equal(result.checks.find(c=>c.id==='identity').evidence,t('identity.text',profile));
+  assert.ok(result.checks.find(c=>c.id==='offering').evidence.startsWith(raw.description));assert.ok(result.checks.find(c=>c.id==='offering').evidence.endsWith(t('master.signal')));
+  assert.ok(result.checks.find(c=>c.id==='identity').evidence.startsWith(t('identity.text',profile)));
   assert.equal(result.presence.questions[0],t('q1',profile));
   assert.equal(result.checks.find(c=>c.id==='crawlers').evidence.includes(t('allowed')),true);
   assert.equal(result.locale,locale);
@@ -29,9 +29,9 @@ test('unknown and missing measurements are localized without invented evidence',
  const report=analyze({page:{...page,text:'<h1>Only a heading</h1>'},robots:null,sitemap:null});
  for(const locale of ['nb','en','de']){
   const r=localizeReport(report,locale),t=translator(locale);
-  assert.equal(r.checks.find(c=>c.id==='crawlers').evidence,t('crawlers.unknown'));
-  assert.equal(r.checks.find(c=>c.id==='sitemap').evidence,t('sitemap.unknown'));
-  assert.equal(r.checks.find(c=>c.id==='identity').evidence,t('identity.no'));
+  assert.equal(r.checks.find(c=>c.id==='crawlers').evidence,t('crawlers.unknown')+' '+t('master.signal'));
+  assert.equal(r.checks.find(c=>c.id==='sitemap').evidence,t('sitemap.unknown')+' '+t('master.signal'));
+  assert.equal(r.checks.find(c=>c.id==='identity').evidence,t('identity.no')+' '+t('master.signal'));
   assert.equal(r.perception.status,t('perceptionMissing'));
   assert.deepEqual(r.presence.competitors,[]);
  }
