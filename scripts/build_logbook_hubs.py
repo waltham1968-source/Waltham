@@ -62,7 +62,7 @@ copy = {
 
 names = {"dk":"logbog.html", "no":"loggbok.html", "en":"journal.html", "de":"logbuch.html"}
 home_labels = {"dk":"Logbog", "no":"Loggbok", "en":"Journal", "de":"Logbuch"}
-public_url = lambda lang: f'https://waltham.no/{lang}/{names[lang]}' if lang == "no" else f'https://waltham.dk/{lang}/{names[lang]}'
+public_url = lambda lang: f'https://www.waltham.dk/{lang}/{names[lang]}'
 
 for lang, items in entries.items():
     html_lang, label, heading, lead, action, note = copy[lang]
