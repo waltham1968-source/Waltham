@@ -1,2 +1,10 @@
 [build]
   publish = "."
+
+[[edge_functions]]
+  function = "onehouse-access"
+  path = "/forslag/onehouse"
+
+[[edge_functions]]
+  function = "onehouse-access"
+  path = "/forslag/onehouse/*"
