@@ -33,8 +33,10 @@ for (const [locale, lang, hub, page, label] of locales) {
       assert.ok(!services.replace(/[.,]/g, '').includes(amount), 'removed price ' + amount);
       assert.ok(!overview.replace(/[.,]/g, '').includes(amount), 'removed overview price ' + amount);
     }
-    assert.doesNotMatch(services, /class="offer-price(?:-note)?"|DKK/);
-    assert.doesNotMatch(overview, /class="offer-price(?:-note)?"|DKK/);
+    assert.equal((services.match(/DKK/g) || []).length, 1);
+    assert.ok(services.replace(/[., ]/g, "").includes("1250"));
+    assert.equal((overview.match(/DKK/g) || []).length, 1);
+    assert.ok(overview.replace(/[., ]/g, "").includes("1250"));
     assert.equal((services.match(/mailto:waltham@me.com/g) || []).length, 6);
     assert.doesNotMatch(services, /ovdal|mathias/i);
     assert.ok(services.includes('href="' + hub + '"'));
