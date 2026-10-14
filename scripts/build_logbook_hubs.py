@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 entries = {
     "dk": [
+        ("14. oktober 2026 · AI-synlighed · Digital troværdighed", "Den nye .com-bølge", "Har AI en grund til at anbefale din virksomhed? Om sammenhængen mellem virksomhedens selvbillede, virkelighed og omdømme.", "den-nye-dotcom-boelge.html"),
         ('7. oktober 2026 · AI · Markedsanalyse · English', 'Could AI Search Create a New Golden Age for Market Research?', 'Kan AI-søgning skabe en ny guldalder for markedsanalyse? Om at forstå mennesket bag spørgsmålet og gøre virksomhedens relevans tydelig.', '../en/ai-search-market-research.html'),
         ('6. oktober 2026 · AI · Kundeservice', 'Måske skal AI ikke tage telefonen', 'Hybrid kundeservice: mennesket tager relationen, AI tager arbejdet omkring den.', 'maaske-skal-ai-ikke-tage-telefonen.html'),
         ('6. oktober 2026 · AI · English', 'A great website is a seaworthy yacht.', 'But it still needs a course and a way to be found. A maritime perspective on visibility, direction and customer understanding.', '../en/a-seaworthy-website.html'),
