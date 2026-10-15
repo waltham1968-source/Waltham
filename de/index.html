@@ -1,68 +1,206 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Waltham Consulting | KI-Sichtbarkeit und strategische Beratung</title><meta name="description" content="Waltham hat Wurzeln bis ins Jahr 2001. Unser aktueller Schwerpunkt: AI Visibility – gefunden, verstanden und empfohlen werden. Wissenszentrum und schriftliche Beratung."><link rel="canonical" href="https://www.waltham.dk/de/">
-<link rel="alternate" hreflang="da" href="https://www.waltham.dk/dk/"><link rel="alternate" hreflang="nb" href="https://www.waltham.dk/no/"><link rel="alternate" hreflang="en" href="https://www.waltham.dk/en/"><link rel="alternate" hreflang="de" href="https://www.waltham.dk/de/">
-<link rel="stylesheet" href="/css/styles.css"><link rel="stylesheet" href="/css/brand-logo.css"><link rel="stylesheet" href="/css/consulting-home.css"><meta property="og:title" content="Waltham Consulting | KI-Sichtbarkeit und strategische Beratung"><meta property="og:image" content="https://www.waltham.dk/assets/waltham-logo-blue.png">
-<style>
-section[id]{scroll-margin-top:100px}.consulting-home .consulting-hero{min-height:78svh;background-image:linear-gradient(95deg,#07121aee,#07121ac4 60%,#07121a88),url('/assets/waltham-wave-background-v1.webp')}
-.consulting-home .consulting-hero h1.consulting-hero-title{font:400 clamp(53px,7.1vw,104px)/.95 var(--display)!important;color:#fff;max-width:14ch;letter-spacing:-.035em;text-transform:none;text-wrap:balance}
-.consulting-home .consulting-hero h1 em{color:var(--gold2)}.consulting-hero-copy{align-self:end}.consulting-hero-copy .quiet-link{display:block;margin-top:24px;text-decoration:underline;text-underline-offset:5px;color:#f6e8cc}
-.eyebrow-history{color:#e7d6b5;font-size:12px;letter-spacing:.15em;text-transform:uppercase}.history-line{margin-top:46px;color:#ffffffa1;font-size:13px}.history-line strong{color:#fff}
-.wide-copy{max-width:860px;color:var(--muted);font-size:18px;line-height:1.8}.position-lead{max-width:820px;font-size:clamp(18px,2vw,24px);line-height:1.6}
-.knowledge-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:40px}.knowledge-grid article{border:1px solid #d9d0c1;padding:32px;background:#faf8f3;display:flex;flex-direction:column}.knowledge-grid h3{font:400 clamp(28px,3vw,38px)/1.1 var(--display);margin:18px 0}.knowledge-grid p{color:#5d5b55;font-size:15px;line-height:1.7}.knowledge-grid article img{aspect-ratio:16/10;object-fit:cover;width:100%}.knowledge-grid a{display:inline-block;margin-top:auto;padding-top:20px;text-decoration:underline;text-underline-offset:5px}
-.dark-panel{background:#101820;color:#fff}.dark-panel p{color:#ddd6cd}.dark-panel h2{font-size:clamp(44px,6vw,74px);line-height:1.02}.dark-panel .button{margin-top:22px}
-.history-block,.dialog-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(40px,7vw,100px);align-items:start}.history-block h2,.dialog-layout h2{font-size:clamp(45px,6vw,75px);line-height:1}.history-block .copy p{color:#55534f;font-size:17px;line-height:1.8}
-.partner-note{margin-top:35px;padding:26px 30px;border-left:2px solid #b5986a;background:#ebe6db}.partner-note p{margin:8px 0 0}
-.dialog-section{background:#0c1923;color:#fff;padding:clamp(90px,11vw,145px) 0}.dialog-layout h2{margin:18px 0 25px}.dialog-layout .dialog-intro{color:#dfd7cb;font-size:18px;line-height:1.7}.dialog-layout .muted{color:#d3c6b5;font-size:14px}
-.dialog-form{padding:clamp(26px,4vw,44px);background:#f5f1e8;color:#1a1a16}.dialog-form h3{font:400 39px/1.1 var(--display);margin:0 0 23px}.dialog-form label{display:block;font-size:13px;font-weight:600;margin:16px 0 6px}.dialog-form input:not([type="hidden"]),.dialog-form textarea{width:100%;padding:13px 14px;border:1px solid #bcb3a4;border-radius:0;background:#fff;color:#151515;font:inherit}.dialog-form textarea{min-height:115px;resize:vertical}.dialog-form .form-note{font-size:13px;color:#5e5b54;line-height:1.65}.dialog-form .form-note a{text-decoration:underline}.dialog-form button{cursor:pointer;border:0;background:#101820;color:#fff;padding:15px 25px;font:600 13px var(--body)}.dialog-form .email-backup{margin:20px 0 0;font-size:13px}.dialog-form .email-backup a{text-decoration:underline}.hidden-field{position:absolute;left:-9999px}
-@media(max-width:900px){.knowledge-grid{grid-template-columns:1fr 1fr}.dialog-layout,.history-block{grid-template-columns:1fr}.consulting-home .consulting-hero{min-height:0}}@media(max-width:650px){.consulting-home .consulting-hero{padding-top:140px}.consulting-home .consulting-hero h1.consulting-hero-title{font-size:clamp(47px,11vw,70px)!important}.knowledge-grid{grid-template-columns:1fr}.dialog-form{padding:22px}}
+<!doctype html>
+<html lang="de">
+<head>
+<meta name="google-site-verification" content="7WIDwVPztYq3jdP2k8AsRwmvbJ3Vcj5N05rhVLwSzWY" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Waltham Consulting | Strategie, Analyse und Technologie</title>
+  <meta name="description" content="Waltham Consulting unterstützt Unternehmen bei Strategie, Analyse und der praktischen Nutzung von KI. Vertrauliche Zusammenarbeit mit Fokus auf den eigenen Systemen und der Selbstständigkeit des Kunden.">
+  <link rel="canonical" href="https://www.waltham.dk/de/">
+  <link rel="alternate" hreflang="da" href="https://www.waltham.dk/dk/">
+  <link rel="alternate" hreflang="nb" href="https://www.waltham.dk/no/">
+  <link rel="alternate" hreflang="en" href="https://www.waltham.dk/en/">
+  <link rel="alternate" hreflang="de" href="https://www.waltham.dk/de/">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/brand-logo.css">
+  <link rel="stylesheet" href="/css/consulting-home.css">
+  <meta property="og:title" content="Waltham Consulting | Strategie, Analyse und Technologie">
+  <meta property="og:description" content="Strategie, Analyse und Technologie. Beratung und praktische Lösungen mit Fokus auf Kontrolle und Selbstständigkeit des Kunden.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.waltham.dk/de/">
+  <meta property="og:image" content="https://www.waltham.dk/assets/waltham-logo-blue.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://www.waltham.dk/#organization","name":"Waltham Consulting","alternateName":"Waltham","url":"https://www.waltham.dk/","email":"waltham@me.com","telephone":"+4560222544","founder":{"@type":"Person","name":"Nikolai Waltham"},"address":{"@type":"PostalAddress","addressLocality":"Nyborg","postalCode":"5800","addressCountry":"DK"},"areaServed":[{"@type":"AdministrativeArea","name":"Fyn"},{"@type":"Country","name":"Denmark"},{"@type":"Country","name":"Norway"}],"description":"Strategische Beratung, Marktanalyse und praktische Nutzung von KI in den eigenen Systemen des Kunden. Die fachlichen Wurzeln des Unternehmens reichen bis 2001 zurück."}</script>
+  <style>
+    section[id]{scroll-margin-top:100px}
+    .consulting-home .consulting-hero{min-height:78svh;background-image:linear-gradient(95deg,#07121aee,#07121ac4 60%,#07121a88),url("/assets/waltham-wave-background-v1.webp")}
+    .consulting-home .consulting-hero h1.consulting-hero-title{font:400 clamp(57px,7.1vw,108px)/.93 var(--display)!important;color:#fff;max-width:12ch;letter-spacing:-.035em;text-transform:none;text-wrap:balance}
+    .consulting-home .consulting-hero h1 em{color:var(--gold2)}
+    .consulting-home .consulting-hero{align-items:flex-start;padding-top:140px;min-height:0}
+    .consulting-home .consulting-hero-grid{align-items:start}
+    .consulting-hero-copy{align-self:start}
+    .consulting-hero-copy .hero-tagline{margin-top:0}
+    .consulting-hero-copy .button{margin-top:24px}
+    .consulting-hero-copy .quiet-link{display:block;margin-top:24px;text-decoration:underline;text-underline-offset:5px;color:#f6e8cc}
+    .eyebrow-history{color:#e7d6b5;font-size:12px;letter-spacing:.15em;text-transform:uppercase}
+    .history-line{margin-top:46px;color:#ffffffa1;font-size:13px}
+    .history-line strong{color:#fff}
+    .position-lead{max-width:820px;font-size:clamp(18px,2vw,24px);line-height:1.6}
+    .wide-copy{max-width:860px;color:var(--muted);font-size:18px;line-height:1.8}
+    .knowledge-grid,.capability-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:40px}
+    .knowledge-grid article,.capability-grid article{border:1px solid #d9d0c1;padding:32px;background:#faf8f3;display:flex;flex-direction:column}
+    .knowledge-grid h3,.capability-grid h3{font:400 clamp(28px,3vw,38px)/1.1 var(--display);margin:18px 0}
+    .knowledge-grid p,.capability-grid p{color:#5d5b55;font-size:15px;line-height:1.7}
+    .knowledge-grid a{display:inline-block;margin-top:auto;padding-top:20px;text-decoration:underline;text-underline-offset:5px}
+    .dark-panel{background:#101820;color:#fff}
+    .dark-panel p,.dark-panel .copy{color:#ddd6cd}
+    .dark-panel .button{margin-top:22px}
+    .dark-panel h2{font-size:clamp(44px,6vw,74px);line-height:1.02;max-width:1000px}
+    .history-block{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(40px,7vw,100px);align-items:start}
+    .history-block h2{font-size:clamp(44px,6vw,76px);line-height:1}
+    .history-block a{border-bottom:1px solid currentColor}
+    .history-block .copy p{margin:0 0 20px;color:#55534f;font-size:17px;line-height:1.8}
+    .partner-note{margin-top:35px;padding:26px 30px;border-left:2px solid #b5986a;background:#ebe6db}
+    .partner-note p{margin:8px 0 0}
+    .dialog-section{background:#0c1923;color:#fff;padding:clamp(90px,11vw,145px) 0}
+    .dialog-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(42px,7vw,100px);align-items:start}
+    .dialog-layout h2{font-size:clamp(48px,6vw,77px);line-height:.95;margin:18px 0 25px}
+    .dialog-layout .dialog-intro{color:#dfd7cb;font-size:18px;line-height:1.7}
+    .dialog-layout .muted{color:#d3c6b5;font-size:14px}
+    .dialog-form{padding:clamp(26px,4vw,44px);background:#f5f1e8;color:#1a1a16}
+    .dialog-form h3{font:400 39px/1.1 var(--display);margin:0 0 23px}
+    .dialog-form label{display:block;font-size:13px;font-weight:600;letter-spacing:.025em;margin:16px 0 6px}
+    .dialog-form input:not([type="hidden"]),.dialog-form textarea{width:100%;padding:13px 14px;border:1px solid #bcb3a4;border-radius:0;background:#fff;color:#151515;font:inherit}
+    .dialog-form textarea{min-height:115px;resize:vertical}
+    .dialog-form .form-note{font-size:13px;color:#5e5b54;line-height:1.65}
+    .dialog-form .form-note a{text-decoration:underline}
+    .dialog-form button{cursor:pointer;border:0;background:#101820;color:#fff;padding:15px 25px;font:600 13px var(--body);letter-spacing:.03em}
+    .dialog-form .email-backup{margin:20px 0 0;font-size:13px}
+    .dialog-form .email-backup a{text-decoration:underline}
+    .hidden-field{position:absolute;left:-9999px}
+    .consulting-footer .wrap{grid-template-columns:1fr auto auto}
+    @media(max-width:900px){.knowledge-grid,.capability-grid{grid-template-columns:1fr 1fr}.dialog-layout,.history-block{grid-template-columns:1fr}.consulting-footer .wrap{grid-template-columns:1fr}.consulting-home .consulting-hero{min-height:0}}
+    @media(max-width:650px){.consulting-home .consulting-hero{padding-top:140px}.consulting-home .consulting-hero h1.consulting-hero-title{font-size:clamp(51px,12vw,73px)!important}.knowledge-grid,.capability-grid{grid-template-columns:1fr}.dialog-layout h2{font-size:53px}.dialog-form{padding:22px}}
 
-.sparring-offer{background:#ebe5db}
-.sparring-offer .sparring-offer-grid{display:grid;grid-template-columns:1.16fr .84fr;gap:clamp(38px,7vw,100px);align-items:center}
-.sparring-offer h2{font:400 clamp(45px,5.4vw,72px)/1.03 var(--display);letter-spacing:-.03em;margin:16px 0 24px;max-width:820px}
-.sparring-offer .offer-intro{font-size:19px;line-height:1.75;color:#504d47;max-width:710px}
-.sparring-offer .offer-points{list-style:none;padding:0;margin:30px 0 32px;max-width:680px;border-top:1px solid #bfb4a6}
-.sparring-offer .offer-points li{padding:14px 0;border-bottom:1px solid #bfb4a6;display:flex;gap:15px;align-items:baseline;color:#37362f;font-size:15px}
-.sparring-offer .offer-points li:before{content:"✓";color:#8c6b3f;font-weight:700}
-.sparring-offer .offer-panel{background:#101c26;color:white;padding:clamp(28px,4vw,50px);box-shadow:0 14px 45px #141c2420}
-.sparring-offer .offer-panel .offer-label{color:#dcc49b;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
-.sparring-offer .offer-panel h3{font:400 clamp(36px,4vw,53px)/1.05 var(--display);margin:18px 0}
-.sparring-offer .offer-panel>p:not(.offer-label):not(.offer-price){color:#dfd4c5;font-size:15px;line-height:1.7}
-.sparring-offer .offer-price{border-top:1px solid #ffffff36;margin:28px 0 0;padding-top:24px;font:400 clamp(40px,5vw,65px)/1 var(--display);color:#fff}
-.sparring-offer .offer-price small{display:block;margin-top:9px;font:400 13px/1.5 var(--body);color:#d9c7ae}
-.sparring-offer .offer-panel a{display:inline-block;margin:22px 0 10px;color:#e7c78a;border-bottom:1px solid #e7c78a;padding-bottom:5px;text-decoration:none}
-.sparring-offer .offer-panel .offer-note{font-size:12px!important;color:#bdb4aa!important}
-@media(max-width:900px){.sparring-offer .sparring-offer-grid{grid-template-columns:1fr}}
-</style><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Waltham Consulting","url":"https://www.waltham.dk/","founder":{"@type":"Person","name":"Nikolai Waltham"},"email":"waltham@me.com"}</script></head>
-<body class="consulting-home"><header class="site-header"><a class="logo" href="/de/">Waltham<span>.</span><small>Consulting</small></a><button class="menu-button" aria-expanded="false" aria-controls="menu">Menu</button><nav id="menu" aria-label="Menu"><a href="/de/sparringspartner.html">Sparringspartner</a><a href="/de/wissenszentrum.html">Wissenszentrum</a><a href="/de/ai-visibility-check">Visibility Checker</a><a href="#om">Über Waltham</a><a class="nav-cta" href="#kontakt">Dialog beginnen</a></nav><div class="language-switcher" aria-label="Language"><a href="/dk/">DK</a><a href="/no/" >NO</a><a href="/en/" >EN</a><a href="/de/" aria-current="page">DE</a></div></header>
-<main><section class="consulting-hero"><div class="wrap consulting-hero-grid"><div><p class="eyebrow-history">Waltham · Consulting · Research · Strategy</p><h1 class="consulting-hero-title">Gefunden werden.<br>Verstanden werden.<br><em>Empfohlen werden.</em></h1><p class="history-line"><strong>Wurzeln bis ins Jahr 2001.</strong> Erfahrung mit Märkten, Menschen und Technologie.</p></div><div class="consulting-hero-copy"><p class="hero-tagline">Aktueller Schwerpunkt · AI Visibility</p><p>Immer mehr Kunden fragen KI um Rat, bevor sie einen Anbieter auswählen. Eine klare Unternehmensidentität, nachprüfbare Aussagen und ein guter digitaler Ruf gewinnen dadurch an Bedeutung.</p><p>Waltham verbindet Marktforschung, unternehmerisches Denken und Kommunikation, um Unternehmen in dieser neuen Suchwelt zu unterstützen.</p><a class="button primary" href="/de/sparringspartner.html">Beratung und Preis ansehen</a><a class="quiet-link" href="/de/wissenszentrum.html">Wissenszentrum entdecken →</a></div></div></section>
-<section class="section sparring-offer" id="sparring">
-  <div class="wrap sparring-offer-grid">
-    <div class="offer-main">
-      <p class="label">Persönliche Beratung von Waltham</p>
-      <h2>Ein erfahrener Sparringspartner. An Ihrer Seite.</h2>
-      <p class="offer-intro">Ein kritischer Blick auf Ideen, KI-Sichtbarkeit, digitale Identität und Unternehmensstrategie. Vorzugsweise schriftlich – ohne überflüssige Beratungspakete.</p>
-      <ul class="offer-points"><li>Ein konkretes Anliegen oder laufende Beratung</li><li>Unabhängige Einschätzungen und klare nächste Schritte</li><li>Ziel ist mehr eigene Handlungsfähigkeit</li></ul>
-      <a class="button primary" href="/de/sparringspartner.html">Leistung und Preis ansehen →</a>
+    .consulting-home .consulting-hero h1.consulting-hero-title{font-size:clamp(64px,7.3vw,108px)!important;line-height:.98;max-width:none}
+    .consulting-home .consulting-hero{padding-bottom:80px}
+    .consulting-home .section{padding:clamp(65px,7vw,100px) 0}
+    .consulting-home h2{font-size:clamp(40px,4.8vw,64px);line-height:1.04}
+    .consulting-home .section-lead{max-width:760px}
+    .capability-grid h3{font-size:clamp(29px,3vw,36px)}
+    .capability-grid p{margin-bottom:0}
+    .capability-grid a,.publication-links a,.text-link{display:inline-block;text-decoration:underline;text-underline-offset:5px}
+    .capability-grid a{margin-top:24px;font-size:14px}
+    .publication-links{display:flex;flex-wrap:wrap;gap:16px 30px;margin-top:25px;font-size:14px}
+    .work-principles{background:#ebe5db}
+    .discretion-note{border-top:1px solid #c8beae;padding-top:25px;margin-top:30px;font-size:15px;max-width:850px;color:#55534f}
+    .consulting-home .consulting-hero-copy>p:not(.hero-tagline){color:#dddce0}
+    .consulting-home .logo>span{animation:none;opacity:0}
+    .consulting-home .dialog-layout h2{font-size:clamp(43px,5vw,66px)}
+    a:focus-visible,button:focus-visible{outline:2px solid #b5986a;outline-offset:5px}
+    @media(max-width:900px){.consulting-home .consulting-hero-grid{gap:35px}}
+    @media(max-width:650px){.consulting-home .consulting-hero h1.consulting-hero-title{font-size:clamp(53px,12vw,73px)!important}.history-line{margin-top:28px}.consulting-home .consulting-hero{padding-top:125px;padding-bottom:60px}.publication-links{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body id="top" class="consulting-home">
+<header class="site-header">
+  <a class="logo" href="/de/" aria-label="Waltham Consulting, Startseite">Waltham<span>.</span><small>Consulting</small></a>
+  <button class="menu-button" aria-expanded="false" aria-controls="menu">Menü</button>
+  <nav id="menu" aria-label="Hauptmenü"><a href="#fokus">Beratung</a><a href="#arbejdsform">Arbeitsweise</a><a href="#om">Über Waltham</a><a href="/de/wissenszentrum.html">Wissen und Perspektiven</a><a href="/de/sparringspartner.html">Beratung und Preis</a><a class="nav-cta" href="#kontakt">Kontakt</a></nav>
+  <div class="language-switcher" aria-label="Sprache"><a href="/dk/">DK</a><a href="/no/">NO</a><a href="/en/">EN</a><a href="/de/" aria-current="page">DE</a></div>
+</header>
+<main>
+  <section class="consulting-hero" aria-labelledby="hero-title">
+    <div class="wrap consulting-hero-grid">
+      <div>
+        <p class="eyebrow-history">Strategie · Analyse · Technologie</p>
+        <h1 class="consulting-hero-title" id="hero-title">Waltham<br>Consulting</h1>
+        <p class="history-line"><strong>Wurzeln bis ins Jahr 2001.</strong><br>Erfahrung mit Märkten, Menschen und Technologie.</p>
+      </div>
+      <div class="consulting-hero-copy">
+        <p class="hero-tagline">Beratung und praktische Entwicklung</p>
+        <p>Wir helfen Unternehmen, Entscheidungen zu fundieren, Ideen zu entwickeln und Technologie in der täglichen Arbeit einzusetzen.</p>
+        <p>Wir arbeiten vertraulich und soweit wie möglich in den eigenen Systemen des Kunden. Ziel sind Lösungen, die das Unternehmen selbst verstehen, nutzen und weiterführen kann.</p>
+        <a class="quiet-link" href="#fokus">Unsere Arbeitsbereiche →</a>
+      </div>
     </div>
-    <aside class="offer-panel">
-      <p class="offer-label">Waltham Sparringspartner</p>
-      <h3>Beratung, die Sie weiterbringt.</h3>
-      <p>Waltham Sparringspartner bietet persönliche, vertrauliche Beratung. Umfang und Preis werden im Voraus vereinbart.</p>
-      <p class="offer-price">1.250 DKK <small>pro Stunde · zzgl. MwSt.</small></p>
-      <a href="/de/sparringspartner.html">Leistung und Preis ansehen →</a>
-      <p class="offer-note">Ihre erste Anfrage ist unverbindlich.</p>
-    </aside>
+  </section>
+
+  <section class="section consulting-intro" id="fokus"><span id="tilgang" aria-hidden="true"></span>
+    <div class="wrap">
+      <p class="label">Arbeitsbereiche</p>
+      <h2>Von der geschäftlichen Klärung<br>zur praktischen Anwendung.</h2>
+      <div class="capability-grid">
+        <article><p class="label">01 · Strategie und Analyse</p><h3>Entscheidungen und Entwicklung</h3><p>Markteinblicke, Bewertung von Ideen und vertrauliche Beratung zu den Möglichkeiten des Unternehmens. Wir helfen, die Aufgabe zu klären und den nächsten Schritt zu priorisieren.</p></article>
+        <article><p class="label">02 · KI und Arbeitsabläufe</p><h3>Technologie in der Praxis</h3><p>Wir helfen, die Arbeit mit Wissen, Dokumenten und Kommunikation zu vereinfachen. Klar abgegrenzte Lösungen werden auf Basis der bestehenden Systeme des Unternehmens entwickelt.</p></article>
+        <article><p class="label">03 · AI Visibility</p><h3>Digitale Identität und Sichtbarkeit</h3><p>Wir arbeiten am Zusammenspiel dessen, was das Unternehmen sagt, was andere sagen und was es leistet. Eine klare, dokumentierte Grundlage, um gefunden und bewertet zu werden.</p><a href="/de/ai-visibility-check.html">Mehr über KI-Sichtbarkeit →</a></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section work-principles" id="arbejdsform"><span id="arbejde" aria-hidden="true"></span>
+    <div class="wrap">
+      <p class="label">Arbeitsweise</p>
+      <h2>Beim Kunden verankert.</h2>
+      <p class="section-lead">Aufgabe, Umfang und Preis werden von Anfang an vereinbart. Wir arbeiten in überschaubaren Etappen und beziehen Spezialisten ein, wenn die Aufgabe es erfordert.</p>
+      <div class="capability-grid">
+        <article><h3>Eigene Systeme</h3><p>Soweit wie möglich arbeiten wir mit Ihren eigenen Konten, Werkzeugen und Abläufen. Zugänge, Datenverarbeitung und mögliche externe Dienste werden als Teil der Aufgabe geklärt.</p></article>
+        <article><h3>Kontrolle und Eigentum</h3><p>Ihre Materialien, Konten und Konfigurationen sollen unter Ihrer Kontrolle bleiben. Wir klären Rechte und Anbieterbedingungen, damit deutlich ist, was Ihnen gehört und wovon die Lösung abhängt.</p></article>
+        <article><h3>Übergabe und Schulung</h3><p>Dokumentation, Schulung und Unterstützung werden nach Bedarf vereinbart. Ziel ist, dass Sie die tägliche Nutzung selbst handhaben können. Wartungsbedarf und weitere Hilfe werden offen beschrieben.</p></article>
+      </div>
+      <p class="discretion-note"><strong>Diskretion ist Teil der Zusammenarbeit.</strong> Vertrauliche Unterlagen werden nur nach Vereinbarung und nur im für die Aufgabe notwendigen Umfang geteilt. Kundennamen, Aufgaben und Ergebnisse werden nur mit ausdrücklicher Zustimmung veröffentlicht.</p>
+    </div>
+  </section>
+
+  <section class="section" id="om">
+    <div class="wrap history-block">
+      <div><p class="label">Die Erfahrung hinter Waltham</p><h2>Von der Idee zum Unternehmen.</h2></div>
+      <div class="copy">
+        <p>Waltham baut auf Nikolai Walthams Erfahrung in der Entwicklung von Ideen und der Gründung von Unternehmen auf. Den Anfang machte ein Ski- und Fahrradgeschäft, danach folgte SmartSense mit Gasdetektion und Automatisierung und im Jahr 2001 das Analyseunternehmen InFact.</p>
+        <p>Bei InFact stand Nikolai Waltham hinter Idee, Methode und Technologie sowie Name, Positionierung und Marketing. Das Unternehmen wurde um eine eigene Technologie für automatisierte Telefonbefragungen aufgebaut und wuchs durch den praktischen Nutzen der Lösung, Kundenbeziehungen und Empfehlungen – ohne bezahlte Werbung. Nach dem Verkauf im Jahr 2024 wird InFact unter neuen Eigentümern fortgeführt: ein Unternehmen, das nach 25 Jahren ohne seinen Gründer weiterlebt.</p>
+        <p>Der Name Waltham &amp; Co AS entstand 2003. Heute fließen die Erfahrungen aus Marktanalyse, Technologie und Unternehmensaufbau in Beratung und praktische Entwicklung für andere Unternehmen ein.</p>
+        <p>Waltham hat seinen Sitz in Nyborg und arbeitet mit externen Spezialisten zusammen, wenn ergänzende Kompetenzen benötigt werden.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section selected-work" id="viden">
+    <div class="wrap history-block">
+      <div><p class="label">Wissen und Perspektiven</p><h2>Ausgewählte fachliche Beiträge.</h2></div>
+      <div class="copy">
+        <p>Artikel, Modelle und Beispiele zu Technologie, Kommunikation und Geschäftsentwicklung. Wir veröffentlichen, wenn eine Fragestellung zu einer Erkenntnis führt, die sich praktisch nutzen lässt. Kundeninformationen werden nur nach Vereinbarung veröffentlicht.</p>
+        <div class="publication-links"><a href="/de/logbuch.html">Artikel und Perspektiven →</a><a href="/de/wissenszentrum.html">Wissenszentrum →</a><a href="/de/wissenszentrum.html#historier">Geschichten und Beispiele →</a><a href="/de/ai-visibility-check.html">AI Visibility Checker →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dialog-section" id="kontakt">
+    <div class="wrap dialog-layout">
+      <div>
+        <p class="label">Kontakt</p>
+        <h2>Ein erstes Gespräch.</h2>
+        <p class="dialog-intro">Beschreiben Sie kurz die Aufgabe oder Entscheidung, vor der Sie stehen. Wir melden uns und klären, ob Waltham der richtige Partner ist.</p>
+        <p class="muted">Die erste Anfrage ist unverbindlich. Umfang und Preis werden vereinbart, bevor die Arbeit beginnt.</p>
+        <p class="muted"><a class="text-link" href="/de/sparringspartner.html">Mehr über Beratung und Preis →</a></p>
+      </div>
+      <form class="dialog-form" name="waltham-sparring" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/de/anfrage-erhalten.html">
+        <input type="hidden" name="form-name" value="waltham-sparring"><input type="hidden" name="emne" value="generel">
+        <p class="hidden-field"><label>Dieses Feld nicht ausfüllen: <input name="bot-field" autocomplete="off"></label></p>
+        <h3>Waltham kontaktieren</h3>
+        <label for="dialog-name">Ihr Name *</label><input id="dialog-name" name="navn" autocomplete="name" required maxlength="120" placeholder="Ihr Name">
+        <label for="dialog-email">Ihre E-Mail *</label><input id="dialog-email" name="email" type="email" autocomplete="email" required maxlength="200" placeholder="name@unternehmen.de">
+        <label for="dialog-site">Website des Unternehmens (optional)</label><input id="dialog-site" name="hjemmeside" type="text" inputmode="url" maxlength="250" placeholder="www.unternehmen.de">
+        <label for="dialog-about">Worum geht es bei Ihrer Anfrage? (optional)</label><textarea id="dialog-about" name="baggrund" maxlength="2500" placeholder="Beschreiben Sie kurz, wobei Sie Unterstützung wünschen."></textarea>
+        <p class="form-note">Wir verwenden diese Angaben nur, um Ihre Anfrage zu beantworten und nachzuverfolgen. Bitte geben Sie im Formular keine Geschäftsgeheimnisse oder sensiblen Informationen an. <a href="/de/datenschutz.html">Lesen Sie, wie wir personenbezogene Daten verarbeiten.</a></p>
+        <button type="submit">Anfrage senden →</button>
+        <p class="email-backup">Bevorzugen Sie E-Mail? <a href="mailto:waltham@me.com?subject=Henvendelse%20til%20Waltham">Direkt an Waltham schreiben</a>.</p>
+      </form>
+    </div>
+  </section>
+</main>
+<footer class="consulting-footer">
+  <div class="wrap">
+    <a class="logo" href="/de/">Waltham<span>.</span><small>Consulting</small></a>
+    <p>Nyborg · Fyn · <a href="tel:+4560222544">+45 60 22 25 44</a> · <a href="mailto:waltham@me.com">waltham@me.com</a> · <a href="/de/datenschutz.html">Datenschutz</a></p>
+    <p>CVR 41072334 · © <span id="year"></span> Waltham</p>
   </div>
-</section>
-<section class="section consulting-intro" id="fokus"><div class="wrap"><p class="label">Neue Regeln für Sichtbarkeit</p><h2>Gefunden zu werden reicht nicht. Man muss auch verstanden und ausgewählt werden.</h2><p class="position-lead">Wer einen KI-Assistenten um Empfehlungen bittet, erhält nicht immer nur eine Liste von Websites. Vielmehr geht es darum, Bedürfnisse zu verstehen und passende Angebote zu erkennen.</p><p class="wide-copy">Wirksame KI-Sichtbarkeit beginnt nicht mit einem technischen Trick. Sie beginnt mit einem Unternehmen, das klar sagen kann, was es leistet, wem es hilft und warum es Vertrauen verdient. Websites, Inhalte und Technologie sind dabei Mittel zum Zweck.</p><div class="focus-grid"><article><span>01 · Selbstbild</span><h3>Was Sie sagen.</h3><p>Wer sind Sie? Was versprechen Sie? Ist Ihr Nutzen verständlich?</p></article><article><span>02 · Ruf</span><h3>Was andere sagen.</h3><p>Wie beschreiben Kunden, Partner und unabhängige Quellen Ihr Unternehmen?</p></article><article><span>03 · Wirklichkeit</span><h3>Was Sie leisten.</h3><p>Können Sie Ihre Aussagen belegen? Vertrauen braucht Übereinstimmung.</p></article></div><p style="font-size:14px;margin-top:24px;max-width:900px">Selbstbild · Ruf · Wirklichkeit ist ein strategisches Modell von Waltham, keine Behauptung über den genauen Algorithmus eines KI-Systems.</p></div></section>
-<section class="section selected-work" id="viden"><div class="wrap"><p class="label">Waltham Wissenszentrum</p><h2>Die Veränderung verstehen.<br>Bevor Sie in Lösungen investieren.</h2><p class="wide-copy">Erklärungen, Modelle, Artikel und Praxisbeispiele für Unternehmer, Führungskräfte, Berater und Lehrende – auch ohne technische Vorkenntnisse.</p><div class="knowledge-grid"><article><p class="label">01 · Grundlagen</p><h3>Was ist AI Visibility?</h3><p>Von klassischen Suchergebnissen zu Gesprächen und Empfehlungen. Was ändert sich, wenn Kunden KI fragen?</p><a href="/de/wissenszentrum.html#grundbog">Hier beginnen →</a></article><article><p class="label">02 · Modelle</p><h3>Das Marktplatzmodell</h3><p>Ein anschauliches Modell für den Unterschied zwischen Sichtbarkeit und tatsächlicher Empfehlung.</p><a href="/de/wissenszentrum.html#modeller">Modell ansehen →</a></article><article><p class="label">03 · Artikel</p><h3>Perspektiven und Experimente</h3><p>Beobachtungen, Analysen und Hypothesen – offen für Kritik und Diskussion.</p><a href="/de/logbuch.html">Artikel lesen →</a></article></div><a class="evidence-link" style="margin-top:27px" href="/de/wissenszentrum.html">Zum gesamten Wissenszentrum →</a></div></section>
-<section class="section" id="historier"><div class="wrap"><p class="label">Walthams Geschichtensammlung</p><h2>Kleine Geschichten. Große Gedanken.</h2><p class="wide-copy">Ideen, die Sie zu Ihren eigenen machen können. Kurze Geschichten für Ihr nächstes Meeting. Unser Ziel: Sie werden selbst kompetenter und handlungsfähiger – statt von Beratern abhängig.</p><div class="knowledge-grid"><article><img loading="lazy" src="/assets/images/ski-og-sykkelstasjonen-arkiv.jpg" alt="Historical ski and bicycle shop photo"><p class="label">01 · Story</p><h3>Den Rabatt mit einem Lächeln geben</h3><p>Warum den guten Abschluss mit einem verärgerten Gesicht verderben?</p><a href="/de/rabatt-mit-einem-laecheln.html">Geschichte lesen →</a></article><article><img loading="lazy" src="/assets/ai-telefon-menneske.jpeg" alt="Illustration of AI and human customer contact"><p class="label">02 · Customer experience</p><h3>Vielleicht sollte KI nicht ans Telefon gehen</h3><p>Automatisierung kann beeindrucken und gleichzeitig Distanz zum Kunden schaffen.</p><a href="/dk/maaske-skal-ai-ikke-tage-telefonen.html" hreflang="da">Dänischen Artikel lesen →</a></article><article><img loading="lazy" src="/assets/waltham-ai-search-golden-age-cover.webp" alt="Cover image for market research article"><p class="label">03 · Research</p><h3>Eine neue Blütezeit der Marktforschung?</h3><p>Kann die KI-Suche der Marktforschung neue Chancen eröffnen?</p><a href="/en/ai-search-market-research.html" hreflang="en">Englischen Artikel lesen →</a></article></div><a class="evidence-link" style="margin-top:27px" href="/de/wissenszentrum.html#historier">Zur Geschichtensammlung →</a><p class="wide-copy" style="font-size:14px">Kurze Lernfilme sind in Vorbereitung. Derzeit zeigen wir illustrierte Geschichten und Artikel, keine fertigen Videos.</p></div></section>
-<section class="section dark-panel" id="checker"><div class="wrap"><p class="label">Praktisches Werkzeug</p><h2>Wie erscheint Ihr Unternehmen im Netz?</h2><p class="wide-copy">Der AI Visibility Checker gibt einen ersten strukturierten Einblick in Zugänglichkeit und Klarheit Ihrer Website. Er ist Gesprächsgrundlage, keine Garantie für KI-Empfehlungen.</p><a class="button primary" href="/de/ai-visibility-check">AI Visibility Checker ausprobieren</a></div></section>
-<section class="section" id="digitalt-omdoemme" style="background:#e8e2d6"><div class="wrap history-block"><div><p class="label">Ein kleines kostenloses Werkzeug</p><h2>Wissen Sie, wie Sie online erscheinen?</h2></div><div><p class="wide-copy">Suchen Sie nach Ihrem eigenen Namen und sehen Sie, welche öffentlichen Profile und Erwähnungen andere finden können.</p><a class="evidence-link" href="/de/digital-reputation.html">Digitalen Fußabdruck ansehen →</a><p class="wide-copy" style="font-size:14px">Ein begrenzter Blick auf öffentliche Quellen, keine umfassende Bewertung Ihrer Person.</p></div></div></section><section class="section" id="om"><div class="wrap history-block"><div><p class="label">Die Erfahrung hinter Waltham</p><h2>Wurzeln bis ins Jahr 2001.</h2><p class="wide-copy">Consulting · Research · Strategy</p></div><div class="copy"><p>Die fachlichen Wurzeln von Waltham reichen zu einem 2001 gegründeten norwegischen Unternehmen für Technologie und Marktforschung zurück. 2003 erhielt dieses ursprüngliche Unternehmen den Namen Waltham &amp; Co AS.</p><p>Im Lauf der Jahre kamen Unternehmensgründungen, Marktforschung, Softwareentwicklung, Kommunikation und Geschäftsentwicklung in Norwegen und Dänemark hinzu. Heute fließt diese Erfahrung vor allem in AI Visibility ein.</p><div class="partner-note"><strong>Breite Kompetenz – ohne den Anspruch, alles allein zu können.</strong><p>Waltham kombiniert strategische Beratung mit einem Netzwerk für Analyse, Inhalte, Design, Websites und Technologie. Bei Bedarf bringen wir die passenden Fachleute zusammen.</p></div></div></div></section>
-<section class="dialog-section" id="kontakt"><div class="wrap dialog-layout"><div><p class="label">Persönliche Beratung · Vorzugsweise schriftlich</p><h2>Sie müssen die Antwort noch nicht kennen. Schreiben Sie uns.</h2><p class="dialog-intro">Sie möchten wissen, wie Ihr Unternehmen erscheint, wenn Kunden KI fragen? Beginnen Sie mit Ihrer Website-Adresse und ein paar Worten zu Ihrer Frage.</p><p class="dialog-intro">Wir versuchen zunächst, Ihr Unternehmen zu verstehen, und antworten schriftlich. Wenn wir Stärken oder Verbesserungsmöglichkeiten erkennen, sprechen wir sie an.</p><p class="muted">Keine verpflichtende Terminbuchung. Keine Standardpakete.</p><p class="muted" style="font-size:14px;margin-top:14px">Beratung ist kostenpflichtig: 1.250 DKK pro Stunde zzgl. MwSt. Umfang und Preis vereinbaren wir, bevor die Beratung beginnt.</p></div><form class="dialog-form" name="waltham-sparring-de" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/de/nachricht-erhalten.html"><input type="hidden" name="form-name" value="waltham-sparring-de"><input type="hidden" name="emne" value="generel"><p class="hidden-field"><label>Do not fill out: <input name="bot-field"></label></p><h3>Lassen Sie uns Ihr Unternehmen ansehen</h3>
-<label for="name">Ihr Name *</label><input id="name" name="navn" autocomplete="name" maxlength="120" required placeholder="Ihr Name">
-<label for="email">E-Mail-Adresse *</label><input id="email" name="email" type="email" autocomplete="email" maxlength="200" required placeholder="name@unternehmen.de">
-<label for="site">Website Ihres Unternehmens *</label><input id="site" name="hjemmeside" type="text" inputmode="url" maxlength="250" required placeholder="www.unternehmen.de">
-<label for="about">Was hat Ihr Interesse geweckt? (optional)</label><textarea id="about" name="baggrund" maxlength="2500" placeholder="Beschreiben Sie kurz, worüber Sie sprechen möchten."></textarea>
-<p class="form-note">Wir verwenden die Angaben nur zur Bearbeitung Ihrer Anfrage. Bitte übermitteln Sie keine sensiblen Informationen. <a href="/de/datenschutz.html">Datenschutzhinweise lesen.</a></p><button type="submit">Schriftlichen Dialog beginnen →</button><p class="email-backup">Lieber per E-Mail? <a href="mailto:waltham@me.com?subject=Waltham%20AI%20Visibility">Waltham direkt schreiben</a></p></form></div></section></main>
-<footer class="consulting-footer"><div class="wrap"><a class="logo" href="/de/">Waltham<span>.</span><small>Consulting</small></a><p>Research · Strategy · AI Visibility · <a href="/de/datenschutz.html">Datenschutz</a></p><p>CVR 41072334 · © <span id="year"></span> Waltham</p></div></footer>
-<script>const header=document.querySelector('.site-header'),menu=document.querySelector('#menu'),button=document.querySelector('.menu-button');addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>30));button.addEventListener('click',()=>{const open=menu.classList.toggle('open');button.setAttribute('aria-expanded',String(open))});menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{menu.classList.remove('open');button.setAttribute('aria-expanded','false')}));document.querySelector('#year').textContent=new Date().getFullYear();</script><script src="/js/cookie-notice.js" defer></script><script>if(new URLSearchParams(location.search).get("emne")==="sparringspartner"){const f=document.querySelector(".dialog-form");if(f&&f.elements.emne){f.elements.emne.value="sparringspartner";const t=f.querySelector("h3");if(t)t.textContent="Anfrage zur Beratung";}}</script></body></html>
+</footer>
+<script>
+const header=document.querySelector('.site-header'),menu=document.querySelector('#menu'),button=document.querySelector('.menu-button');
+addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>30));
+button.addEventListener('click',()=>{const open=menu.classList.toggle('open');button.setAttribute('aria-expanded',String(open))});
+menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{menu.classList.remove('open');button.setAttribute('aria-expanded','false')}));
+document.querySelector('#year').textContent=new Date().getFullYear();
+</script>
+<script src="/js/cookie-notice.js"></script>
+<script>if(new URLSearchParams(location.search).get("emne")==="sparringspartner"){const f=document.querySelector(".dialog-form");if(f&&f.elements.emne){f.elements.emne.value="sparringspartner";const t=f.querySelector("h3");if(t)t.textContent="Gespräch über Beratung beginnen";}}</script></body>
+</html>

@@ -15,11 +15,9 @@ const read = path => readFileSync(resolve(root, path), 'utf8');
 const serviceIds = ['ai-visibility', 'clearer-website', 'ai-clarity', 'google-profile', 'advisory-sparring'];
 
 for (const [locale, lang, hub, page, label] of locales) {
-  test(locale + ': menu, overview and five services stay connected', () => {
-    const home = read(locale + '/index.html');
+  test(locale + ': overview and five services stay connected', () => {
     const overview = read(locale + '/' + hub);
     const services = read(locale + '/' + page);
-    assert.ok(home.includes('href="/' + locale + '/' + hub + '">' + label + '</a>'));
     for (const id of serviceIds) assert.ok(overview.includes('id="' + id + '"'), 'overview retains ' + id);
     for (const name of ['Digital Opportunity Scan', 'Market Intelligence Sprint', 'AI Opportunity Review']) {
       assert.ok(overview.includes('<h3>' + name + '</h3>'), name + ' preserved');

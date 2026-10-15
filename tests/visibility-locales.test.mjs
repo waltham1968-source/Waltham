@@ -53,7 +53,7 @@ test('home menus and language switches keep the selected visibility locale',()=>
  for(const [path,lang] of [['dk','da'],['no','nb'],['en','en'],['de','de']]){
   const html=readFileSync(new URL(`../${path}/ai-visibility-check.html`,import.meta.url),'utf8');
   const home=readFileSync(new URL(`../${path}/index.html`,import.meta.url),'utf8');
-  assert.ok(home.includes(`href="/${path}/ai-visibility-check"`));
+  assert.match(home, new RegExp(`href=["']/${path}/ai-visibility-check(?:\\.html)?["']`));
   assert.ok(html.includes(`<html lang="${lang}">`));
   assert.ok(html.includes('type="module" src="/js/ai-visibility.js"'));
   assert.ok(html.includes('id="score-status"'));

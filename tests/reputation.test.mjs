@@ -24,7 +24,6 @@ test('all language versions provide an ungated self-search without usage logging
   assert.ok(html.includes('type="checkbox" name="self" required'));
   assert.ok(html.includes('/js/digital-reputation.js'));
   assert.doesNotMatch(html,/visibility-usage|type="email"/);
-  assert.ok(readFileSync(new URL(`../${locale}/index.html`,import.meta.url),'utf8').includes(`/${locale}/digital-reputation.html`));
  }
  assert.doesNotMatch(readFileSync(new URL('../js/digital-reputation.js',import.meta.url),'utf8'),/recordVisibilityUse|localStorage|innerHTML/);
 });
