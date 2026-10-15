@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 entries = {
     "dk": [
+        ("15. oktober 2026 · AI-synlighed · Virksomhedsrådgivning", "En ny guldalder for konsulentbranchen?", "AI-synlighed som indgang til strategi, organisation og kundeoplevelser. Om sammenhæng mellem løfter, omdømme og leverancer.", "en-ny-guldalder-for-konsulentbranchen.html"),
         ("14. oktober 2026 · AI-synlighed · Digital troværdighed", "Den nye .com-bølge", "Har AI en grund til at anbefale din virksomhed? Om sammenhængen mellem virksomhedens selvbillede, virkelighed og omdømme.", "den-nye-dotcom-boelge.html"),
         ('7. oktober 2026 · AI · Markedsanalyse · English', 'Could AI Search Create a New Golden Age for Market Research?', 'Kan AI-søgning skabe en ny guldalder for markedsanalyse? Om at forstå mennesket bag spørgsmålet og gøre virksomhedens relevans tydelig.', '../en/ai-search-market-research.html'),
         ('6. oktober 2026 · AI · Kundeservice', 'Måske skal AI ikke tage telefonen', 'Hybrid kundeservice: mennesket tager relationen, AI tager arbejdet omkring den.', 'maaske-skal-ai-ikke-tage-telefonen.html'),
