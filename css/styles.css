@@ -84,3 +84,20 @@ body:not(.market-page) .country-cta .button{margin-top:18px}
 .site-header .menu-button{display:inline-flex;order:3;margin-left:4px;align-items:center;justify-content:center;min-width:48px;min-height:44px;cursor:pointer}
 .site-header .language-switcher{margin-left:auto}
 @media(max-width:560px){.site-header nav{max-height:calc(100dvh - 86px)}}
+
+/* Advisory pages: allow grid items and long headings to fit narrow screens. */
+html body .sp-layout{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}
+.sp-layout>*:not(script),.sp-feature-grid>*,.sp-about>*,.step>div{min-width:0}
+html body .sp-hero h1{max-width:100%;overflow-wrap:anywhere;hyphens:auto}
+.sp-hero p,.sp-section h2,.sp-feature-grid h3,.sp-nav a{overflow-wrap:anywhere}
+@media(max-width:900px){
+  html body .sp-layout{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:620px){
+  html body .sp-hero h1{font-size:clamp(34px,9vw,50px);line-height:1.06}
+  html body .sp-hero-back{padding:22px 18px}
+  html body .sp-price{padding:24px 20px;max-width:100%}
+  html body .sp-price strong{font-size:clamp(34px,10vw,50px)}
+  html body .sp-section h2{font-size:clamp(34px,9vw,48px)}
+  .sp-nav{max-width:100%}
+}
