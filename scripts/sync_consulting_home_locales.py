@@ -70,6 +70,9 @@ LOCALES = {
         "insight_title": "Utvalgte faglige bidrag.",
         "insight_text": "Artikler, modeller og eksempler om teknologi, kommunikasjon og forretningsutvikling. Vi publiserer når en problemstilling gir en innsikt som kan brukes i praksis. Kundeopplysninger offentliggjøres bare etter avtale.",
         "publication_links": ["Artikler og perspektiver →", "Kunnskapssenter →", "Historier og eksempler →", "AI Visibility Checker →"],
+        "market_title": "Markedsinngang mellom Norge og Danmark",
+        "market_text": "Praktisk sparring for virksomheter som vil forstå, teste eller etablere seg på den andre siden av Skagerrak.",
+        "market_links": ["Danmark → Norge", "Norge → Danmark"],
         "contact_title": "En innledende samtale.",
         "contact_intro": "Skriv kort om oppgaven eller beslutningen dere står overfor. Vi svarer og avklarer om Waltham er den rette samarbeidspartneren.",
         "contact_muted": "Den første henvendelsen er uforpliktende. Omfang og pris avtales før arbeidet begynner.",
@@ -144,6 +147,9 @@ LOCALES = {
         "insight_title": "Selected professional contributions.",
         "insight_text": "Articles, models and examples on technology, communication and business development. We publish when a question produces insight that can be used in practice. Client information is made public only by agreement.",
         "publication_links": ["Articles and perspectives →", "Knowledge centre →", "Stories and examples →", "AI Visibility Checker →"],
+        "market_title": "Market entry between Denmark and Norway",
+        "market_text": "Practical guidance for companies seeking to understand, test or establish themselves on the other side of the Skagerrak.",
+        "market_links": ["Denmark → Norway", "Norway → Denmark"],
         "contact_title": "An initial conversation.",
         "contact_intro": "Tell us briefly about the assignment or decision you are facing. We will respond and clarify whether Waltham is the right partner.",
         "contact_muted": "The initial enquiry is without obligation. Scope and price are agreed before work begins.",
@@ -218,6 +224,9 @@ LOCALES = {
         "insight_title": "Ausgewählte fachliche Beiträge.",
         "insight_text": "Artikel, Modelle und Beispiele zu Technologie, Kommunikation und Geschäftsentwicklung. Wir veröffentlichen, wenn eine Fragestellung zu einer Erkenntnis führt, die sich praktisch nutzen lässt. Kundeninformationen werden nur nach Vereinbarung veröffentlicht.",
         "publication_links": ["Artikel und Perspektiven →", "Wissenszentrum →", "Geschichten und Beispiele →", "AI Visibility Checker →"],
+        "market_title": "Markteintritt zwischen Dänemark und Norwegen",
+        "market_text": "Praktische Beratung für Unternehmen, die den Markt auf der anderen Seite des Skagerrak verstehen, testen oder dort Fuß fassen möchten.",
+        "market_links": ["Dänemark → Norwegen", "Norwegen → Dänemark"],
         "contact_title": "Ein erstes Gespräch.",
         "contact_intro": "Beschreiben Sie kurz die Aufgabe oder Entscheidung, vor der Sie stehen. Wir melden uns und klären, ob Waltham der richtige Partner ist.",
         "contact_muted": "Die erste Anfrage ist unverbindlich. Umfang und Preis werden vereinbart, bevor die Arbeit beginnt.",
@@ -324,6 +333,10 @@ def localise(source: str, locale: str, data: dict) -> str:
     old_links = '<a href="/dk/logbog.html">Artikler og perspektiver →</a><a href="/dk/videnscenter.html">Videnscenter →</a><a href="/dk/videnscenter.html#historier">Historier og eksempler →</a><a href="/dk/ai-visibility-check">AI Visibility Checker →</a>'
     new_links = f'<a href="{data["journal"]}">{data["publication_links"][0]}</a><a href="{data["knowledge"]}">{data["publication_links"][1]}</a><a href="{data["knowledge"]}#historier">{data["publication_links"][2]}</a><a href="{data["visibility"]}">{data["publication_links"][3]}</a>'
     html = replace_once(html, old_links, new_links)
+    html = replace_once(html, 'Markedsadgang mellem Danmark og Norge', data['market_title'])
+    html = replace_once(html, 'Praktisk sparring til virksomheder, der vil forstå, teste eller etablere sig på den anden side af Skagerrak.', data['market_text'])
+    html = replace_once(html, '>Danmark → Norge</a>', f'>{data["market_links"][0]}</a>')
+    html = replace_once(html, '>Norge → Danmark</a>', f'>{data["market_links"][1]}</a>')
     html = replace_once(html, 'En indledende samtale.', data['contact_title'])
     html = replace_once(html, 'Skriv kort om den opgave eller beslutning, I står med. Vi vender tilbage og afklarer, om Waltham er den rette samarbejdspartner.', data['contact_intro'])
     html = replace_once(html, 'Den første henvendelse er uforpligtende. Omfang og pris aftales, før arbejdet begynder.', data['contact_muted'])
