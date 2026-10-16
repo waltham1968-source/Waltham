@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 entries = {
     "dk": [
+        ('16. oktober 2026 · Praktisk AI · Engelsk', 'The Summer of 2026 — When My Computer Came Alive', 'En lille momsafvigelse blev begyndelsen på en eftermiddag, der ændrede Nikolais syn på computeren. En personlig fortælling om at uddelegere arbejde til AI.', '../en/the-summer-of-2026.html'),
         ("15. oktober 2026 · AI-synlighed · Virksomhedsrådgivning", "En ny guldalder for konsulentbranchen?", "AI-synlighed som indgang til strategi, organisation og kundeoplevelser. Om sammenhæng mellem løfter, omdømme og leverancer.", "en-ny-guldalder-for-konsulentbranchen.html"),
         ("14. oktober 2026 · AI-synlighed · Digital troværdighed", "Den nye .com-bølge", "Har AI en grund til at anbefale din virksomhed? Om sammenhængen mellem virksomhedens selvbillede, virkelighed og omdømme.", "den-nye-dotcom-boelge.html"),
         ('7. oktober 2026 · AI · Markedsanalyse · English', 'Could AI Search Create a New Golden Age for Market Research?', 'Kan AI-søgning skabe en ny guldalder for markedsanalyse? Om at forstå mennesket bag spørgsmålet og gøre virksomhedens relevans tydelig.', '../en/ai-search-market-research.html'),
@@ -23,6 +24,7 @@ entries = {
         ("27. juli 2026 · Samarbejde", "Samarbejde skal give mening for begge parter", "Start småt, skab synlig værdi og fortsæt, når det virker.", "samarbejde-skal-give-mening.html"),
     ],
     "no": [
+        ('16. oktober 2026 · Praktisk AI · Engelsk', 'The Summer of 2026 — When My Computer Came Alive', 'Et lite momsavvik ble starten på en ettermiddag som endret Nikolais syn på datamaskinen. En personlig fortelling om å delegere arbeid til AI.', '../en/the-summer-of-2026.html'),
         ('7. oktober 2026 · AI · Markedsanalyse · English', 'Could AI Search Create a New Golden Age for Market Research?', 'Kan AI-søk skape en ny gullalder for markedsanalyse? Om å forstå mennesket bak spørsmålet og gjøre virksomhetens relevans tydelig.', '../en/ai-search-market-research.html'),
         ('6. oktober 2026 · AI · English', 'A great website is a seaworthy yacht.', 'But it still needs a course and a way to be found. A maritime perspective on visibility, direction and customer understanding.', '../en/a-seaworthy-website.html'),
         ('6. oktober 2026 · AI', 'Når kunden spør ChatGPT, blir virksomheten din anbefalt?', 'Kundenes søk flytter fra klassiske Google-søk mot samtaler med AI-assistenter. Markedsplassmodellen forklarer hva det betyr for virksomheten din.', 'markedsplassmodellen.html'),
@@ -35,6 +37,7 @@ entries = {
         ("27. juli 2026 · Samarbeid", "Samarbeid skal gi mening for begge parter", "Begynn smått, skap synlig verdi og fortsett når det virker.", "samarbeid-skal-gi-mening.html"),
     ],
     "en": [
+        ('16 October 2026 · Practical AI · Personal experience', 'The Summer of 2026 — When My Computer Came Alive', 'A small VAT discrepancy became an afternoon that changed how Nikolai saw his computer. A personal story about learning to delegate work to AI.', 'the-summer-of-2026.html'),
         ('7 October 2026 · AI Search · Market Research', 'Could AI Search Create a New Golden Age for Market Research?', 'AI search gives market research a new role: understanding the person behind the question and helping businesses explain when they are a good fit.', 'ai-search-market-research.html'),
         ('6 October 2026 · Visibility · English', 'A great website is a seaworthy yacht.', 'But it still needs a course and a way to be found. A maritime perspective on visibility, direction and customer understanding.', 'a-seaworthy-website.html'),
         ("29 August 2026 · Product development", "One web address can open an entire business", "The potential check connects public signals with concrete opportunities, products and partners.", "one-web-address-can-open-a-business.html"),
@@ -72,6 +75,12 @@ for lang, items in entries.items():
     html_lang, label, heading, lead, action, note = copy[lang]
     page_title = page_titles.get(lang, f"{label} — Waltham")
     cards = "".join(f'<article><span>{date}</span><h2>{title}</h2><p>{desc}</p><a href="{href}">{action} →</a></article>' for date,title,desc,href in items)
+    # Retain the public English PDF when regenerating the Summer 2026 entry.
+    if any(href.endswith("the-summer-of-2026.html") for _, _, _, href in items):
+        pdf_labels = {"dk": "Hent PDF · Engelsk · 5 sider", "no": "Last ned PDF · Engelsk · 5 sider", "en": "Download PDF · English · 5 pages"}
+        summer_href = next(href for _, _, _, href in items if href.endswith("the-summer-of-2026.html"))
+        marker = f'<a href="{summer_href}">{action} →</a>'
+        cards = cards.replace(marker, marker + f'<p style="font-size:13px;margin-top:12px"><a href="/downloads/the-summer-of-2026-en.pdf" download>{pdf_labels[lang]}</a></p>', 1)
     switches = "".join(f'<a href="/{code}/{names[code]}" lang="{copy[code][0]}"' + (' aria-current="page"' if code==lang else '') + f'>{code.upper()}</a>' for code in ("dk","no","en","de"))
     page = f'''<!doctype html><html lang="{html_lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="{lead}"><title>{page_title}</title><link rel="canonical" href="{public_url(lang)}">''' + "".join(f'<link rel="alternate" hreflang="{copy[c][0]}" href="{public_url(c)}">' for c in ("dk","no","en","de")) + f'''<link rel="stylesheet" href="../css/styles.css"><link rel="stylesheet" href="../css/brand-logo.css"><link rel="stylesheet" href="../css/logbook.css?v=5"></head><body class="logbook-page"><header class="logbook-nav"><div class="wrap"><a class="logo" href="index.html">Waltham<span>.</span><small>Consulting</small></a><nav class="language-switcher" aria-label="Language">{switches}</nav><a class="back" href="index.html">← Waltham</a></div></header><main><section class="logbook-hero"><div class="wrap"><p class="eyebrow">Waltham {label}</p><h1>{heading}</h1><p>{lead}</p></div></section><section class="logbook-index"><div class="wrap"><div class="logbook-register"><b>{label}</b><span>01 — fortløbende</span></div><p class="logbook-note">{note}</p><div class="logbook-list">{cards}</div></div></section></main><footer><div class="wrap"><a class="logo" href="index.html">Waltham<span>.</span><small>Consulting</small></a><p>{label} · Waltham Consulting</p></div></footer><script src="/js/cookie-notice.js"></script></body></html>'''
     index_path = ROOT/lang/names[lang]
