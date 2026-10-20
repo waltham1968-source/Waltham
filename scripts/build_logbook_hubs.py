@@ -37,6 +37,7 @@ entries = {
         ("27. juli 2026 · Samarbeid", "Samarbeid skal gi mening for begge parter", "Begynn smått, skap synlig verdi og fortsett når det virker.", "samarbeid-skal-gi-mening.html"),
     ],
     "en": [
+        ('20 October 2026 · AI · Customer service', "Maybe AI Shouldn't Answer the Phone", 'Do not automate the relationship by accident. A practical case for transparent AI, fast human handover and people supported by better tools.', 'maybe-ai-shouldnt-answer-the-phone.html'),
         ('16 October 2026 · Practical AI · Personal experience', 'The Summer of 2026 — When My Computer Came Alive', 'A small VAT discrepancy became an afternoon that changed how Nikolai saw his computer. A personal story about learning to delegate work to AI.', 'the-summer-of-2026.html'),
         ('7 October 2026 · AI Search · Market Research', 'Could AI Search Create a New Golden Age for Market Research?', 'AI search gives market research a new role: understanding the person behind the question and helping businesses explain when they are a good fit.', 'ai-search-market-research.html'),
         ('6 October 2026 · Visibility · English', 'A great website is a seaworthy yacht.', 'But it still needs a course and a way to be found. A maritime perspective on visibility, direction and customer understanding.', 'a-seaworthy-website.html'),
