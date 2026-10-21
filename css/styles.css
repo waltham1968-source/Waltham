@@ -101,3 +101,43 @@ html body .sp-hero h1{max-width:100%;overflow-wrap:anywhere;hyphens:auto}
   html body .sp-section h2{font-size:clamp(34px,9vw,48px)}
   .sp-nav{max-width:100%}
 }
+
+/* Shared Waltham wave: keep the dark page introductions visually connected. */
+body .hero,
+body.consulting-home .consulting-hero,
+body .logbook-hero,
+body .k-hero,
+body .sp-hero,
+body .visibility-hero,
+body .product-hub-hero,
+body .market-hero,
+body .country-hero,
+body .venture-hero,
+body .insight-hero,
+body .product-detail-hero,
+body .story-hero {
+  background-color:#07151d;
+  background-image:linear-gradient(100deg,rgba(5,15,22,.94) 0%,rgba(5,15,22,.78) 52%,rgba(5,15,22,.42) 100%),url('/assets/waltham-wave-background-v1.webp');
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+}
+
+/* The article register is shorter, so lift the sea slightly to keep the waves visible. */
+body .logbook-hero{background-position:center 62%}
+
+@media(max-width:700px){
+  body .hero,
+  body.consulting-home .consulting-hero,
+  body .logbook-hero,
+  body .k-hero,
+  body .sp-hero,
+  body .visibility-hero,
+  body .product-hub-hero,
+  body .market-hero,
+  body .country-hero,
+  body .venture-hero,
+  body .insight-hero,
+  body .product-detail-hero,
+  body .story-hero{background-position:58% center}
+}
