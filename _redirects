@@ -1,4 +1,23 @@
-https://www.waltham.dk/ https://www.waltham.dk/dk/ 302!
-https://waltham.dk/ https://www.waltham.dk/dk/ 302!
-https://www.waltham.no/ https://www.waltham.dk/no/ 302!
-https://waltham.no/ https://www.waltham.dk/no/ 302!
+https://www.waltham.dk/ https://www.waltham.dk/dk/ 301!
+https://waltham.dk/ https://www.waltham.dk/dk/ 301!
+https://www.waltham.no/ https://www.waltham.dk/no/ 301!
+https://waltham.no/ https://www.waltham.dk/no/ 301!
+
+# Keep direct index-file requests out of Google's index.
+https://www.waltham.dk/index.html https://www.waltham.dk/dk/ 301!
+https://waltham.dk/index.html https://www.waltham.dk/dk/ 301!
+https://www.waltham.no/index.html https://www.waltham.dk/no/ 301!
+https://waltham.no/index.html https://www.waltham.dk/no/ 301!
+
+# Consolidate the extensionless aliases reported by Search Console.
+/de/markt-island /de/markt-island.html 301!
+/en/market-iceland /en/market-iceland.html 301!
+/de/ai-augmented-market-estimation /de/ai-augmented-market-estimation.html 301!
+/no/en-nettadresse-kan-apne-en-forretning /no/en-nettadresse-kan-apne-en-forretning.html 301!
+/dk/ai-augmented-market-estimation /dk/ai-augmented-market-estimation.html 301!
+/veltrimmet-seilbat /veltrimmet-seilbat.html 301!
+/en/catalogue-to-targeted-content /en/catalogue-to-targeted-content.html 301!
+
+# The .no domains are aliases; keep every deep link on the canonical .dk host.
+https://www.waltham.no/* https://www.waltham.dk/:splat 301!
+https://waltham.no/* https://www.waltham.dk/:splat 301!
