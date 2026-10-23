@@ -1,4 +1,5 @@
 [build]
+  command = "node scripts/update-home-articles.mjs"
   publish = "."
 
 [[edge_functions]]
