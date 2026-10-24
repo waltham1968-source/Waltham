@@ -57,7 +57,12 @@ test('home menus and language switches keep the selected visibility locale',()=>
   assert.ok(html.includes(`<html lang="${lang}">`));
   assert.ok(html.includes('type="module" src="/js/ai-visibility.js"'));
   assert.ok(html.includes('id="score-status"'));
-  for(const target of ['dk','no','en','de'])assert.ok(html.includes(`href="/${target}/ai-visibility-check"`));
+  const switcherStart=html.indexOf('<div class="language-switcher"');
+  const switcherEnd=html.indexOf('</div>',switcherStart);
+  const switcher=switcherStart>=0&&switcherEnd>=0?html.slice(switcherStart,switcherEnd+6):'';
+  assert.ok(switcher);
+  for(const target of ['dk','no','en'])assert.ok(switcher.includes(`href="/${target}/ai-visibility-check"`));
+  assert.ok(!switcher.includes('href="/de/ai-visibility-check"'));
   if(path!=='dk')assert.ok(!home.includes('href="/dk/ai-visibility-check"'));
  }
 });
