@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 entries = {
     "dk": [
+        ('28. oktober 2026 · AI · Markedsanalyse · Engelsk', 'What If We Run Out of Customers Before We Run Out of AI Ideas?', 'AI gør det lettere at skabe produkter. Men følger kunderne med? Nikolai Waltham om kundernes tid, tillid og lyst til at købe. Artikel på engelsk.', 'what-if-we-run-out-of-customers-before-ai-ideas.html'),
         ('16. oktober 2026 · Praktisk AI · Engelsk', 'The Summer of 2026 — When My Computer Came Alive', 'En lille momsafvigelse blev begyndelsen på en eftermiddag, der ændrede Nikolais syn på computeren. En personlig fortælling om at uddelegere arbejde til AI.', '../en/the-summer-of-2026.html'),
         ("15. oktober 2026 · AI-synlighed · Virksomhedsrådgivning", "En ny guldalder for konsulentbranchen?", "AI-synlighed som indgang til strategi, organisation og kundeoplevelser. Om sammenhæng mellem løfter, omdømme og leverancer.", "en-ny-guldalder-for-konsulentbranchen.html"),
         ("14. oktober 2026 · AI-synlighed · Digital troværdighed", "Den nye .com-bølge", "Har AI en grund til at anbefale din virksomhed? Om sammenhængen mellem virksomhedens selvbillede, virkelighed og omdømme.", "den-nye-dotcom-boelge.html"),
