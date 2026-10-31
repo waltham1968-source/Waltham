@@ -1,61 +1,40 @@
-# Nikolai Waltham
+# Waltham Consulting
 
-> Nikolai Waltham is a Norwegian entrepreneur, systems thinker, practical problem-solver and sailor based in Nyborg, Denmark. He helps leaders rethink how work gets done by combining four decades of practical business experience with modern AI.
+> A research-driven communications agency based in Nyborg, Denmark, with AI visibility as a central purpose. Waltham combines market insight, documented customer experiences and communication to help businesses become understandable and credible to people and AI.
 
-## Core perspective
+## Method: WHAT · WHO · PROOF
 
-- AI is a tool, not the destination.
-- The objective of a good system is to remove unnecessary work and return time and attention to people.
-- Nikolai's work focuses on early-stage problems: connecting ideas, identifying leverage and deciding what is worth building.
-- His experience includes entrepreneurship, automated telephone interviewing, property management, sales, mechanics, renovation, boatbuilding and offshore sailing.
+- WHAT: Describe the specific service, product or expertise.
+- WHO: Explain the customer, need and situation it helps.
+- PROOF: Provide real experiences, completed work or original research. Distinguish evidence, opinions and hypotheses.
+- Trust before insight: start with useful public information. Deeper access to a client's internal work is agreed separately.
+- Research and human fact-checking precede publication. AI is a tool, not a source of invented customer experience.
+- Articles, illustrations and sharing texts support owned publishing and voluntary distribution. Independent press coverage is different and cannot be promised.
+- Search rankings, AI recommendations and commercial effects are not guaranteed.
 
-## Services
+## Main pages
 
-- AI & Systems Review for companies
-- Idea Catalyst sessions for founders and inventors
-- Independent thinking partnership for owners and leaders
-- From Idea to Business: a guided case journey through competitor research, business model, legal and ownership issues, website and launch
+- [Danish homepage](https://www.waltham.dk/dk/)
+- [Norwegian homepage](https://www.waltham.dk/no/)
+- [English homepage](https://www.waltham.dk/en/)
+- [Articles in Danish](https://www.waltham.dk/dk/logbog.html)
+- [Articles in Norwegian](https://www.waltham.dk/no/loggbok.html)
+- [Articles in English](https://www.waltham.dk/en/journal.html)
+- [AI Visibility Check](https://www.waltham.dk/dk/ai-visibility-check.html)
+- [Strategy and advice](https://www.waltham.dk/dk/sparringspartner.html)
+- [About Waltham](https://www.waltham.dk/om.html)
 
-## From Idea to Business
+## Selected reading
 
-- One persistent case room shared by specialised digital experts.
-- Competitor and market analysis precedes major product decisions.
-- Legal and ownership work covers partner roles, ownership agreements, confidentiality, IP, commercial terms and data protection.
-- AI structures questions, explains options and prepares drafts; material legal agreements are escalated for qualified legal review.
-- The journey produces a market map, business case, legal roadmap, website prototype and 90-day launch plan.
-- Anonymised concept case: turning one retail sales catalogue into a steady stream of targeted product stories and measurable customer encounters with AI-assisted content production.
-- TILLID review: maps verifiable evidence of transparency, identity, delivery capability, continuity, integrity and documentation, then makes those trust signals easier for people, search engines and AI assistants to find and understand.
-- Anonymised concept case: turning a loosely described car problem into a workshop-ready fault report, relevant provider links and a user-approved service request ready to send.
-- Provider matching: helps local businesses describe specific problem expertise, verifiable trust signals, current contact routes and next actions so search engines and AI assistants can understand when the provider is relevant to a user's situation.
-- The Trust Bridge: a dedicated service that connects the company it knows itself to be with the company customers, search engines and AI assistants can actually find, understand and assess. It covers transparency, identity, delivery capability, continuity, integrity and documentation.
-- Anonymised property-company trust case: shows how an established company can possess real trust capital while leaving too little searchable and verifiable evidence for prospective tenants, search engines and AI assistants. The case distinguishes visual design from evidence, visibility and documented delivery capability.
-
-## Recurring themes
-
-- Practical AI and business automation
-- Systems thinking and human judgment
-- Time as the most valuable resource
-- Momentum and self-reinforcing processes
-- Learning through building and repairing
-- Sailing as a model for balanced systems
-- Entrepreneurship with limited resources
-
-## Primary source
-
-- https://waltham.no/
-- https://waltham.no/tillidsbroen.html
-- https://waltham.no/no/tillitsbroen.html
-- https://waltham.no/en/the-trust-bridge.html
-- https://waltham.no/case-etableret-ejendomsvirksomhed-tillid.html
-- https://waltham.no/no/case-etablert-eiendomsvirksomhet-tillit.html
-- https://waltham.no/en/established-property-company-trust-case.html
-
-## Contact
-
-- Email: waltham@me.com
-- LinkedIn: https://linkedin.com/in/nikolaiwaltham
-
+- [Punkt 1 Nyborg: customer service and trust](https://www.waltham.dk/dk/punkt-1-nyborg-reklamationsservice.html): Nikolai Waltham's own customer experience. A replacement part was ordered; delivery and final resolution are not confirmed in the source. The image is an AI illustration, not a documentary photograph.
 - [When AI becomes the new gateway to your business](https://www.waltham.dk/en/when-ai-becomes-the-new-gateway-to-your-business.html): AI shortlists, digital reputation and customer understanding: practical reflections on turning AI capabilities into working business processes.
 - [Maybe AI Shouldn't Answer the Phone](https://www.waltham.dk/en/maybe-ai-shouldnt-answer-the-phone.html): A practical case for transparent AI, fast human handover and customer-service employees supported by AI rather than hidden behind it.
 - [From 10,000 leads to five relevant customers](https://www.waltham.dk/en/from-10000-leads-to-five-relevant-customers.html): A working hypothesis about using AI to replace mass lead lists with better research, useful content and a few well-founded customer conversations.
 - [Google reviews are becoming more important in the age of AI search](https://www.waltham.dk/en/google-reviews-ai-search.html): Documents what Google says about local ranking and reviews, and carefully distinguishes those facts from the working hypothesis about AI-powered local search.
+
+
+## Contact
+
+- Email: waltham@me.com
+- Phone: +45 60 22 25 44
+- Waltham.no redirects to the Norwegian section on the canonical www.waltham.dk host.
