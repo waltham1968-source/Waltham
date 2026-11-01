@@ -21,3 +21,9 @@ https://waltham.no/index.html https://www.waltham.dk/no/ 301!
 # The .no domains are aliases; keep every deep link on the canonical .dk host.
 https://www.waltham.no/* https://www.waltham.dk/:splat 301!
 https://waltham.no/* https://www.waltham.dk/:splat 301!
+
+# Atlas: retain the established model URL instead of duplicating its content.
+/artikler/den-nye-digitale-markedsplads/ /dk/markedsplassmodellen.html 301!
+/nyborg-erhvervsatlas/index.html /nyborg-erhvervsatlas/ 301!
+/artikler/hvorfor-ai-vil-se-beviser/index.html /artikler/hvorfor-ai-vil-se-beviser/ 301!
+/artikler/markedspladsen-har-faaet-en-ny-kunde/index.html /artikler/markedspladsen-har-faaet-en-ny-kunde/ 301!
