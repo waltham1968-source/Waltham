@@ -27,3 +27,6 @@ https://waltham.no/* https://www.waltham.dk/:splat 301!
 /nyborg-erhvervsatlas/index.html /nyborg-erhvervsatlas/ 301!
 /artikler/hvorfor-ai-vil-se-beviser/index.html /artikler/hvorfor-ai-vil-se-beviser/ 301!
 /artikler/markedspladsen-har-faaet-en-ny-kunde/index.html /artikler/markedspladsen-har-faaet-en-ny-kunde/ 301!
+
+# Danish content on the Danish root; preserve the old Norwegian slug.
+/veltrimmet-seilbat.html /dk/veltrimmet-sejlbaad.html 301!
