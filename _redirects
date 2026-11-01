@@ -1,13 +1,19 @@
+# Route the old Norwegian market-entry address to its Norwegian content.
+https://www.waltham.no/norge-danmark https://www.waltham.no/no/norge-danmark.html 301!
+https://www.waltham.no/norge-danmark.html https://www.waltham.no/no/norge-danmark.html 301!
+https://www.waltham.no/dk/* https://www.waltham.dk/dk/:splat 301!
+https://www.waltham.no/en/* https://www.waltham.dk/en/:splat 301!
+https://www.waltham.no/de/* https://www.waltham.dk/de/:splat 301!
 https://www.waltham.dk/ https://www.waltham.dk/dk/ 301!
 https://waltham.dk/ https://www.waltham.dk/dk/ 301!
-https://www.waltham.no/ https://www.waltham.dk/no/ 301!
-https://waltham.no/ https://www.waltham.dk/no/ 301!
+https://www.waltham.no/ https://www.waltham.no/no/ 301!
+https://waltham.no/ https://www.waltham.no/no/ 301!
 
 # Keep direct index-file requests out of Google's index.
 https://www.waltham.dk/index.html https://www.waltham.dk/dk/ 301!
 https://waltham.dk/index.html https://www.waltham.dk/dk/ 301!
-https://www.waltham.no/index.html https://www.waltham.dk/no/ 301!
-https://waltham.no/index.html https://www.waltham.dk/no/ 301!
+https://www.waltham.no/index.html https://www.waltham.no/no/ 301!
+https://waltham.no/index.html https://www.waltham.no/no/ 301!
 
 # Consolidate the extensionless aliases reported by Search Console.
 /de/markt-island /de/markt-island.html 301!
@@ -18,9 +24,10 @@ https://waltham.no/index.html https://www.waltham.dk/no/ 301!
 /veltrimmet-seilbat /veltrimmet-seilbat.html 301!
 /en/catalogue-to-targeted-content /en/catalogue-to-targeted-content.html 301!
 
-# The .no domains are aliases; keep every deep link on the canonical .dk host.
-https://www.waltham.no/* https://www.waltham.dk/:splat 301!
-https://waltham.no/* https://www.waltham.dk/:splat 301!
+# Norwegian pages belong on the Norwegian domain.
+https://www.waltham.dk/no/* https://www.waltham.no/no/:splat 301!
+https://waltham.dk/no/* https://www.waltham.no/no/:splat 301!
+https://waltham.no/* https://www.waltham.no/:splat 301!
 
 # Atlas: retain the established model URL instead of duplicating its content.
 /artikler/den-nye-digitale-markedsplads/ /dk/markedsplassmodellen.html 301!
