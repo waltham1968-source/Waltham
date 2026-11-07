@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 entries = {
     "dk": [
+        ('7. november 2026 · AI-søgning · Omdømme', 'Hvem ville du anbefale til en ven?', 'Hvordan finder kunder en fagperson, de tør anbefale? En flænge i et storsejl gør spørgsmålet konkret.', 'hvem-ville-du-anbefale-til-en-ven.html'),
         ('28. oktober 2026 · AI · Markedsanalyse · Engelsk', 'What If We Run Out of Customers Before We Run Out of AI Ideas?', 'AI gør det lettere at skabe produkter. Men følger kunderne med? Nikolai Waltham om kundernes tid, tillid og lyst til at købe. Artikel på engelsk.', 'what-if-we-run-out-of-customers-before-ai-ideas.html'),
         ('16. oktober 2026 · Praktisk AI · Engelsk', 'The Summer of 2026 — When My Computer Came Alive', 'En lille momsafvigelse blev begyndelsen på en eftermiddag, der ændrede Nikolais syn på computeren. En personlig fortælling om at uddelegere arbejde til AI.', '../en/the-summer-of-2026.html'),
         ("15. oktober 2026 · AI-synlighed · Virksomhedsrådgivning", "En ny guldalder for konsulentbranchen?", "AI-synlighed som indgang til strategi, organisation og kundeoplevelser. Om sammenhæng mellem løfter, omdømme og leverancer.", "en-ny-guldalder-for-konsulentbranchen.html"),
@@ -25,6 +26,7 @@ entries = {
         ("27. juli 2026 · Samarbejde", "Samarbejde skal give mening for begge parter", "Start småt, skab synlig værdi og fortsæt, når det virker.", "samarbejde-skal-give-mening.html"),
     ],
     "no": [
+        ('7. november 2026 · AI-søk · Omdømme', 'Hvem ville du anbefalt til en venn?', 'Hvordan finner kunder en fagperson de tør å anbefale? En flenge i et storseil gjør spørsmålet konkret.', 'hvem-ville-du-anbefalt-til-en-venn.html'),
         ('16. oktober 2026 · Praktisk AI · Engelsk', 'The Summer of 2026 — When My Computer Came Alive', 'Et lite momsavvik ble starten på en ettermiddag som endret Nikolais syn på datamaskinen. En personlig fortelling om å delegere arbeid til AI.', '../en/the-summer-of-2026.html'),
         ('7. oktober 2026 · AI · Markedsanalyse · English', 'Could AI Search Create a New Golden Age for Market Research?', 'Kan AI-søk skape en ny gullalder for markedsanalyse? Om å forstå mennesket bak spørsmålet og gjøre virksomhetens relevans tydelig.', '../en/ai-search-market-research.html'),
         ('6. oktober 2026 · AI · English', 'A great website is a seaworthy yacht.', 'But it still needs a course and a way to be found. A maritime perspective on visibility, direction and customer understanding.', '../en/a-seaworthy-website.html'),
@@ -38,6 +40,7 @@ entries = {
         ("27. juli 2026 · Samarbeid", "Samarbeid skal gi mening for begge parter", "Begynn smått, skap synlig verdi og fortsett når det virker.", "samarbeid-skal-gi-mening.html"),
     ],
     "en": [
+        ('7 November 2026 · AI search · Reputation', 'Who would you recommend to a friend?', 'How do customers find someone they would recommend? A torn mainsail makes the question practical.', 'who-would-you-recommend-to-a-friend.html'),
         ('20 October 2026 · AI · Customer service', "Maybe AI Shouldn't Answer the Phone", 'Do not automate the relationship by accident. A practical case for transparent AI, fast human handover and people supported by better tools.', 'maybe-ai-shouldnt-answer-the-phone.html'),
         ('16 October 2026 · Practical AI · Personal experience', 'The Summer of 2026 — When My Computer Came Alive', 'A small VAT discrepancy became an afternoon that changed how Nikolai saw his computer. A personal story about learning to delegate work to AI.', 'the-summer-of-2026.html'),
         ('7 October 2026 · AI Search · Market Research', 'Could AI Search Create a New Golden Age for Market Research?', 'AI search gives market research a new role: understanding the person behind the question and helping businesses explain when they are a good fit.', 'ai-search-market-research.html'),
@@ -73,10 +76,23 @@ public_url = lambda lang: f'https://www.waltham.dk/{lang}/{names[lang]}'
 
 page_titles = {"en": "Articles on AI visibility and customer insight | Waltham Journal", "de": "Artikel über KI-Sichtbarkeit und Kundenverständnis | Waltham", "dk": "Artikler om AI-synlighed og kundeindsigt | Waltham Logbog", "no": "Artikler om AI-synlighet og kundeinnsikt | Waltham Loggbok"}
 
+covers = {'hvem-ville-du-anbefale-til-en-ven.html': '/assets/sejlbaad-flaenget-storsejl.jpg', 'hvem-ville-du-anbefalt-til-en-venn.html': '/assets/sejlbaad-flaenget-storsejl.jpg', 'who-would-you-recommend-to-a-friend.html': '/assets/sejlbaad-flaenget-storsejl.jpg'}
+
+
+def card_open(href):
+    cover = covers.get(href)
+    if cover is None:
+        return '<article>'
+    return f'<article class="has-thumb"><img class="logbook-thumb" src="{cover}" alt="" width="160" height="107" loading="lazy">'
+
+
 for lang, items in entries.items():
     html_lang, label, heading, lead, action, note = copy[lang]
     page_title = page_titles.get(lang, f"{label} — Waltham")
-    cards = "".join(f'<article><span>{date}</span><h2>{title}</h2><p>{desc}</p><a href="{href}">{action} →</a></article>' for date,title,desc,href in items)
+    cards = "".join(
+        f'{card_open(href)}<span>{date}</span><h2>{title}</h2><p>{desc}</p><a href="{href}">{action} →</a></article>'
+        for date, title, desc, href in items
+    )
     # Retain the public English PDF when regenerating the Summer 2026 entry.
     if any(href.endswith("the-summer-of-2026.html") for _, _, _, href in items):
         pdf_labels = {"dk": "Hent PDF · Engelsk · 5 sider", "no": "Last ned PDF · Engelsk · 5 sider", "en": "Download PDF · English · 5 pages"}

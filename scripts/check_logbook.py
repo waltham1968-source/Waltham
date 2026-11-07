@@ -49,8 +49,12 @@ def main():
                 errors.append(f'{label}: requires exactly one title and canonical')
             elif page.canonicals[0] not in sitemap:
                 errors.append(f'{label}: canonical missing from sitemap')
-            elif urlsplit(page.canonicals[0]).netloc != 'www.waltham.dk':
-                errors.append(f'{label}: unexpected canonical host')
+            else:
+                allowed_hosts = {'www.waltham.dk'}
+                if target.relative_to(ROOT).parts[0] == 'no':
+                    allowed_hosts.add('www.waltham.no')
+                if urlsplit(page.canonicals[0]).netloc not in allowed_hosts:
+                    errors.append(f'{label}: unexpected canonical host')
     for error in errors:
         print(error)
     print(f'Checked {len(checked)} logbook destinations; {len(errors)} errors.')
