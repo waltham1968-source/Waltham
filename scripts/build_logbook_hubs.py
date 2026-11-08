@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 entries = {
     "dk": [
+        ('8. november 2026 · AI, digitalisering og forretningsudvikling', 'Den nye digitale kløft: Adgang til data bliver afgørende for værdien af AI', 'OECD dokumenterer store forskelle i AI-brug. Waltham analyserer, hvordan kontrolleret adgang til data kan påvirke det praktiske udbytte.', 'den-nye-digitale-kloeft.html'),
         ('7. november 2026 · AI-søgning · Omdømme', 'Hvem ville du anbefale til en ven?', 'Hvordan finder kunder en fagperson, de tør anbefale? En flænge i et storsejl gør spørgsmålet konkret.', 'hvem-ville-du-anbefale-til-en-ven.html'),
         ('28. oktober 2026 · AI · Markedsanalyse · Engelsk', 'What If We Run Out of Customers Before We Run Out of AI Ideas?', 'AI gør det lettere at skabe produkter. Men følger kunderne med? Nikolai Waltham om kundernes tid, tillid og lyst til at købe. Artikel på engelsk.', 'what-if-we-run-out-of-customers-before-ai-ideas.html'),
         ('16. oktober 2026 · Praktisk AI · Engelsk', 'The Summer of 2026 — When My Computer Came Alive', 'En lille momsafvigelse blev begyndelsen på en eftermiddag, der ændrede Nikolais syn på computeren. En personlig fortælling om at uddelegere arbejde til AI.', '../en/the-summer-of-2026.html'),
@@ -26,6 +27,7 @@ entries = {
         ("27. juli 2026 · Samarbejde", "Samarbejde skal give mening for begge parter", "Start småt, skab synlig værdi og fortsæt, når det virker.", "samarbejde-skal-give-mening.html"),
     ],
     "no": [
+        ('8. november 2026 · AI, digitalisering og forretningsutvikling', 'Det nye digitale skillet: Tilgang til data blir avgjørende for verdien av AI', 'OECD dokumenterer store forskjeller i AI-bruk. Waltham analyserer hvordan kontrollert tilgang til data kan påvirke det praktiske utbyttet.', 'det-nye-digitale-skillet.html'),
         ('7. november 2026 · AI-søk · Omdømme', 'Hvem ville du anbefalt til en venn?', 'Hvordan finner kunder en fagperson de tør å anbefale? En flenge i et storseil gjør spørsmålet konkret.', 'hvem-ville-du-anbefalt-til-en-venn.html'),
         ('16. oktober 2026 · Praktisk AI · Engelsk', 'The Summer of 2026 — When My Computer Came Alive', 'Et lite momsavvik ble starten på en ettermiddag som endret Nikolais syn på datamaskinen. En personlig fortelling om å delegere arbeid til AI.', '../en/the-summer-of-2026.html'),
         ('7. oktober 2026 · AI · Markedsanalyse · English', 'Could AI Search Create a New Golden Age for Market Research?', 'Kan AI-søk skape en ny gullalder for markedsanalyse? Om å forstå mennesket bak spørsmålet og gjøre virksomhetens relevans tydelig.', '../en/ai-search-market-research.html'),
@@ -40,6 +42,7 @@ entries = {
         ("27. juli 2026 · Samarbeid", "Samarbeid skal gi mening for begge parter", "Begynn smått, skap synlig verdi og fortsett når det virker.", "samarbeid-skal-gi-mening.html"),
     ],
     "en": [
+        ('8 November 2026 · AI, digitalisation and business development', 'The new digital divide: Access to data will shape the value of AI', 'The OECD documents wide gaps in AI use. Waltham examines how controlled access to data could shape the practical benefits.', 'the-new-digital-divide.html'),
         ('7 November 2026 · AI search · Reputation', 'Who would you recommend to a friend?', 'How do customers find someone they would recommend? A torn mainsail makes the question practical.', 'who-would-you-recommend-to-a-friend.html'),
         ('20 October 2026 · AI · Customer service', "Maybe AI Shouldn't Answer the Phone", 'Do not automate the relationship by accident. A practical case for transparent AI, fast human handover and people supported by better tools.', 'maybe-ai-shouldnt-answer-the-phone.html'),
         ('16 October 2026 · Practical AI · Personal experience', 'The Summer of 2026 — When My Computer Came Alive', 'A small VAT discrepancy became an afternoon that changed how Nikolai saw his computer. A personal story about learning to delegate work to AI.', 'the-summer-of-2026.html'),
@@ -76,7 +79,7 @@ public_url = lambda lang: f'https://www.waltham.dk/{lang}/{names[lang]}'
 
 page_titles = {"en": "Articles on AI visibility and customer insight | Waltham Journal", "de": "Artikel über KI-Sichtbarkeit und Kundenverständnis | Waltham", "dk": "Artikler om AI-synlighed og kundeindsigt | Waltham Logbog", "no": "Artikler om AI-synlighet og kundeinnsikt | Waltham Loggbok"}
 
-covers = {'hvem-ville-du-anbefale-til-en-ven.html': '/assets/sejlbaad-flaenget-storsejl.jpg', 'hvem-ville-du-anbefalt-til-en-venn.html': '/assets/sejlbaad-flaenget-storsejl.jpg', 'who-would-you-recommend-to-a-friend.html': '/assets/sejlbaad-flaenget-storsejl.jpg'}
+covers = {'hvem-ville-du-anbefale-til-en-ven.html': '/assets/sejlbaad-flaenget-storsejl.jpg', 'hvem-ville-du-anbefalt-til-en-venn.html': '/assets/sejlbaad-flaenget-storsejl.jpg', 'who-would-you-recommend-to-a-friend.html': '/assets/sejlbaad-flaenget-storsejl.jpg', 'den-nye-digitale-kloeft.html': '/assets/digital-kloeft-ai-data.jpg', 'det-nye-digitale-skillet.html': '/assets/digital-kloeft-ai-data.jpg', 'the-new-digital-divide.html': '/assets/digital-kloeft-ai-data.jpg'}
 
 
 def card_open(href):
