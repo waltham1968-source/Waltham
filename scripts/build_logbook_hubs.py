@@ -79,14 +79,15 @@ public_url = lambda lang: f'https://www.waltham.dk/{lang}/{names[lang]}'
 
 page_titles = {"en": "Articles on AI visibility and customer insight | Waltham Journal", "de": "Artikel über KI-Sichtbarkeit und Kundenverständnis | Waltham", "dk": "Artikler om AI-synlighed og kundeindsigt | Waltham Logbog", "no": "Artikler om AI-synlighet og kundeinnsikt | Waltham Loggbok"}
 
-covers = {'hvem-ville-du-anbefale-til-en-ven.html': '/assets/sejlbaad-flaenget-storsejl.jpg', 'hvem-ville-du-anbefalt-til-en-venn.html': '/assets/sejlbaad-flaenget-storsejl.jpg', 'who-would-you-recommend-to-a-friend.html': '/assets/sejlbaad-flaenget-storsejl.jpg', 'den-nye-digitale-kloeft.html': '/assets/digital-kloeft-ai-data.jpg', 'det-nye-digitale-skillet.html': '/assets/digital-kloeft-ai-data.jpg', 'the-new-digital-divide.html': '/assets/digital-kloeft-ai-data.jpg'}
+covers = {'hvem-ville-du-anbefale-til-en-ven.html': '/assets/sejlbaad-flaenget-storsejl.jpg', 'hvem-ville-du-anbefalt-til-en-venn.html': '/assets/sejlbaad-flaenget-storsejl.jpg', 'who-would-you-recommend-to-a-friend.html': '/assets/sejlbaad-flaenget-storsejl.jpg', 'den-nye-digitale-kloeft.html': '/assets/broen-til-udvidet-ai-adgang.jpg', 'det-nye-digitale-skillet.html': '/assets/broen-til-udvidet-ai-adgang.jpg', 'the-new-digital-divide.html': '/assets/broen-til-udvidet-ai-adgang.jpg'}
 
 
 def card_open(href):
     cover = covers.get(href)
     if cover is None:
         return '<article>'
-    return f'<article class="has-thumb"><img class="logbook-thumb" src="{cover}" alt="" width="160" height="107" loading="lazy">'
+    height = 90 if cover == "/assets/broen-til-udvidet-ai-adgang.jpg" else 107
+    return f'<article class="has-thumb"><img class="logbook-thumb" src="{cover}" alt="" width="160" height="{height}" loading="lazy">'
 
 
 for lang, items in entries.items():
