@@ -1,4 +1,7 @@
-.hub-offer{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,350px);gap:clamp(30px,7vw,90px);align-items:center}
+.hub-offer{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"intro art" "price art";gap:24px clamp(30px,6vw,72px);align-items:center}
+.hub-offer-intro{grid-area:intro;align-self:end}
+.hub-offer-image{grid-area:art;display:block;width:100%;height:auto;border:1px solid #ffffff38}
+.hub-offer .offer-card{grid-area:price;align-self:start;max-width:390px}
 .hub-offer .offer-card{background:#faf8f3;color:var(--ink);padding:clamp(24px,4vw,44px)}
 .hub-offer .offer-card p{color:var(--ink);margin:0 0 12px}
 .hub-offer .offer-card .offer-price{margin:4px 0 20px;font-size:clamp(34px,4vw,50px)}
@@ -14,5 +17,5 @@
 .hub-reference a{text-decoration:underline;text-underline-offset:4px}
 .hub-offer a:focus-visible,.hub-next a:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
 @media(max-width:850px){.hub-delivery .offer-grid{grid-template-columns:1fr}}
-@media(max-width:720px){.hub-offer{grid-template-columns:1fr}}
-@media print{.product-hub-nav,footer,.button,.hub-reference{display:none}.product-hub-hero,.hub-next{color:#111;background:#fff;padding:18px 0}.digital-offers{padding:18px 0}.digital-services-hero .services-lead,.hub-offer .eyebrow{color:#222}.hub-offer{grid-template-columns:1fr 250px;gap:20px}.hub-delivery .offer-grid{grid-template-columns:repeat(3,1fr)}.hub-offer h1{font-size:38px}.offer-card{break-inside:avoid}}
+@media(max-width:820px){.hub-offer{grid-template-columns:1fr;grid-template-areas:"intro" "price" "art"}}
+@media print{.product-hub-nav,footer,.button,.hub-reference{display:none}.product-hub-hero,.hub-next{color:#111;background:#fff;padding:18px 0}.digital-offers{padding:18px 0}.digital-services-hero .services-lead,.hub-offer .eyebrow{color:#222}.hub-offer{grid-template-columns:1fr 250px;grid-template-areas:"intro art" "price art";gap:20px}.hub-delivery .offer-grid{grid-template-columns:repeat(3,1fr)}.hub-offer h1{font-size:38px}.offer-card{break-inside:avoid}}
