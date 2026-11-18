@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
+import {existsSync,readFileSync} from 'node:fs';
 import {analyze} from '../netlify/functions/lib/visibility.mjs';
 import {localizeReport} from '../netlify/functions/lib/visibility-locale.mjs';
 import {copy,translator,language} from '../js/visibility-copy.mjs';
@@ -49,22 +49,15 @@ test('translations match their editable source',()=>{
   const [key,...values]=line.split('|');for(const [i,locale] of ['da','nb','en','de'].entries())assert.equal(copy[locale][key],values[i]);
  }
 });
-test('home menus and language switches keep the selected visibility locale',()=>{
- for(const [path,lang] of [['dk','da'],['no','nb'],['en','en'],['de','de']]){
-  const html=readFileSync(new URL(`../${path}/ai-visibility-check.html`,import.meta.url),'utf8');
-  const home=readFileSync(new URL(`../${path}/index.html`,import.meta.url),'utf8');
-  assert.match(home, new RegExp(`href=["']/${path}/ai-visibility-check(?:\\.html)?["']`));
-  assert.ok(html.includes(`<html lang="${lang}">`));
-  assert.ok(html.includes('type="module" src="/js/ai-visibility.js"'));
-  assert.ok(html.includes('id="score-status"'));
-  const switcherStart=html.indexOf('<div class="language-switcher"');
-  const switcherEnd=html.indexOf('</div>',switcherStart);
-  const switcher=switcherStart>=0&&switcherEnd>=0?html.slice(switcherStart,switcherEnd+6):'';
-  assert.ok(switcher);
-  for(const target of ['dk','no','en'])assert.ok(switcher.includes(`href="/${target}/ai-visibility-check"`));
-  assert.ok(!switcher.includes('href="/de/ai-visibility-check"'));
-  if(path!=='dk')assert.ok(!home.includes('href="/dk/ai-visibility-check"'));
+test('retired visibility checker stays out of public pages and the sitemap',()=>{
+ for(const locale of ['dk','no','en','de']){
+  const retiredPage=new URL(`../${locale}/ai-visibility-check.html`,import.meta.url);
+  assert.equal(existsSync(retiredPage),false,`${locale}: public checker page`);
+  const home=readFileSync(new URL(`../${locale}/index.html`,import.meta.url),'utf8');
+  assert.doesNotMatch(home,/href=["'][^"']*\/ai-visibility-check(?:\.html)?["']/i,`${locale}: homepage link`);
  }
+ const sitemap=readFileSync(new URL('../sitemap.xml',import.meta.url),'utf8');
+ assert.doesNotMatch(sitemap,/\/ai-visibility-check(?:\.html)?<\/loc>/i);
 });
 test('localization preserves submitted and redirected URLs',()=>{
  const result=analyze({page,robots:null,sitemap:null,submittedUrl:'https://original.example'});

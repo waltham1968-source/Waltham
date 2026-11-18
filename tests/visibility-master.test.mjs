@@ -1,6 +1,5 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
 import {CHECKPOINTS,calculateScore,applyReviewedEvidence,sourceInventory} from '../netlify/functions/lib/visibility-master.mjs';
 import {analyze} from '../netlify/functions/lib/visibility.mjs';
 const empty=()=>CHECKPOINTS.map(c=>({...c,fulfillment:null,status:'not_examined'}));
@@ -71,11 +70,4 @@ test('missing schema or exact desired phrases do not create semantic or expertis
 test('crawler restrictions on sampled paths are visible even when the homepage is allowed',()=>{
  const result=analyze({page,robots:{status:200,text:'User-agent: *\nDisallow: /services'},sitemap:null,pages:[page],attemptedPages:[page.url,'https://example.com/services']});
  assert.equal(result.checks.find(c=>c.id==='crawlers').fulfillment,0);assert.ok(result.criticalFindings.includes('02'));
-});
-test('all four customer pages use the new scale and expose source inventory and method version',()=>{
- for(const locale of ['dk','no','en','de']){
-  const html=readFileSync(new URL(`../${locale}/ai-visibility-check.html`,import.meta.url),'utf8');
-  assert.ok(html.includes(' / 100</span>'));assert.ok(html.includes('id="source-list"'));assert.ok(html.includes('id="method-version"'));
-  assert.ok(!html.includes('1 + 9'));assert.ok(!html.includes('70 % af den fulde'));assert.ok(html.includes('16'));
- }
 });
