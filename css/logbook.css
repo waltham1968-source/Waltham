@@ -15,4 +15,5 @@
 
 .logbook-list article.has-thumb{grid-template-columns:150px 112px minmax(0,1fr) auto;grid-template-areas:"date image title action" "date image description action"}
 .logbook-thumb{grid-area:image;width:112px;height:78px;object-fit:cover;border-radius:3px;background:#e5dfd3}
+.logbook-thumb[src="/assets/din-naeste-kunde.webp"]{object-position:right bottom}
 @media(max-width:760px){.logbook-list article.has-thumb{grid-template-columns:96px minmax(0,1fr);grid-template-areas:"image date" "image title" "description description" "action action";column-gap:18px}.logbook-thumb{width:96px;height:72px;align-self:start}.logbook-list article.has-thumb span{align-self:start}.logbook-list article.has-thumb h2{align-self:start}}
